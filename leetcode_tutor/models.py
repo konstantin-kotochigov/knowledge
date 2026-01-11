@@ -67,10 +67,5 @@ def init_db():
     Base.metadata.create_all(engine)
 
 def get_db():
-    """Get database session"""
-    db = SessionLocal()
-    try:
-        return db
-    except Exception:
-        db.close()
-        raise
+    """Get database session - caller must close session after use"""
+    return SessionLocal()

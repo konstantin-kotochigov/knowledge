@@ -94,7 +94,7 @@ def process_problems():
     
     # Find problems without solutions or hints
     problems = db.query(Problem).filter(
-        (Problem.has_solution == False) | (Problem.has_hint == False)
+        (Problem.has_solution.is_(False)) | (Problem.has_hint.is_(False))
     ).limit(GENERATION_LIMIT).all()
     
     if not problems:

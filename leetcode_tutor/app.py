@@ -47,8 +47,8 @@ def get_daily_problems():
     
     # Select 2 new problems that have both hints and solutions
     available_problems = db.query(Problem).filter(
-        Problem.has_solution == True,
-        Problem.has_hint == True
+        Problem.has_solution.is_(True),
+        Problem.has_hint.is_(True)
     ).all()
     
     if len(available_problems) < 2:
