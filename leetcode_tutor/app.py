@@ -33,8 +33,17 @@ def get_daily_problems():
         # Return existing daily problems
         problem_ids = [dp.problem_id for dp in daily_problems]
         problems = db.query(Problem).filter(Problem.id.in_(problem_ids)).all()
+        # Convert to dicts to avoid session issues
+        result = [{
+            'leetcode_id': p.leetcode_id,
+            'title': p.title,
+            'difficulty': p.difficulty,
+            'description': p.description,
+            'hint': p.hint,
+            'solution': p.solution
+        } for p in problems]
         db.close()
-        return problems
+        return result
     
     # Select 2 new problems that have both hints and solutions
     available_problems = db.query(Problem).filter(
@@ -55,9 +64,20 @@ def get_daily_problems():
         db.add(daily_problem)
     
     db.commit()
+    
+    # Convert to dicts to avoid session issues
+    result = [{
+        'leetcode_id': p.leetcode_id,
+        'title': p.title,
+        'difficulty': p.difficulty,
+        'description': p.description,
+        'hint': p.hint,
+        'solution': p.solution
+    } for p in selected]
+    
     db.close()
     
-    return selected
+    return result
 
 
 @app.route('/')
