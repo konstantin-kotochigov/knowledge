@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Постановка задачи &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Overview';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ColBERT (2020)" href="colbert.html" />
+    <link rel="prev" title="Book Overview" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Постановка задачи</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/Overview.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/Overview.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Постановка задачи</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Постановка задачи</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">История</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Формальная постановка</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancements">Enhancements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#user-query-misspecification">User query misspecification</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Обзор подходов</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-retrieval">Sparse Retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-retrieval">Dense Retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-retrieval">Hybrid Retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#approximate-index">Approximate Index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-step-retrieval">Multi-step Retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#retriever-as-a-model">Retriever as a Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#early-vs-late-fusion">Early vs Late Fusion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Приложения поиска</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-for-generation">Retrieval for Generation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rocchio-1971">Rocchio (1971)</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>Постановка задачи<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><strong>Информационный поиск</strong> - поиск такого документа (документов) в базе документов, который наиболее релевантен запросу пользователя.</p>
+<p>Задачи информационного поиска воникают в большинстве современных приложений, где есть пользователи. Пример, магазин электронной торговли - поиск товара.</p>
+<p><i>Документом</i> называют наименьший блок информации, с которым работает поиск. Это может быть как физический документ (например, содержимое docx файла), так и просто выделенный кусок текста. Такой кусок текста называют чанком (chunk) или пассажем (passage).</p>
+<p><i>Запрос</i> - некий сформулированный ключ поиска (что ищем). Набор слов, так и вопрос в произвольной форме на естесвенном языке</p>
+<p><i>База документов</i> - доступный набор, допускабщий обращение к документам. Поиском (в узком смысле) называют некое приложение, которое по входу . Простой пример - выгруженый на отдельный сервер набор статей Wikipedia.</p>
+<img src="../_static/retrieval/img/overview1.png" width=500>
+<p>Модальность (тип содержимой информации) как документа, так и запроса может быть любой. В большинстве случаев модальность документа и запроса одинакова - это текст. В этом случае говорят о <strong>текстовом поиске</strong>. Яркий пример текстового поиска - поисковая система Google.</p>
+<p>В современных приложениях модальность не обязательно текстовая, это могут быть картинки, видео, аудио, или может быть вообще смешанной (например, в задаче поиска картинок по их текстовому описанию). Такая универсальность легко реализуется за счет того, что в моделях поиска внутренние представления документов (inner embeddings) остаются одинаковыми</p>
+<p>Почему задача оформилась в отдельную дисциплину:</p>
+<ul class="simple">
+<li><p>объектов много - простое линейное сканирование неэффективно и нужны алгоритмичесие хаки для ускорения процесса</p></li>
+<li><p>критерии поиска размываются</p></li>
+</ul>
+<p>Обычно непосредственно поиск - это только ядро функционала. В зависимости от того, что дальше необходимо сделать с найдненной информацией вторым шагом, легко выделяется несколько классов решений:</p>
+<ul class="simple">
+<li><p>Search<br>поисковые системы, результат = оригинал документа передается пользователю</p></li>
+<li><p>Recommendations<br>рекомендации продкутов, результат =</p></li>
+<li><p>Augmented Generation<br>генеративные модели с доступом к внешней памяти</p>
+<ul>
+<li><p>QA системы</p></li>
+<li><p>Factual answers
+Тут удобно, что алгоритмы первого этапа (непосредственно поиска, который часто называют просто Retrieval) во всех этих приложениях одинаковы и как правило и не сильно зависят от второго прикладного этапа</p></li>
+</ul>
+</li>
+</ul>
+<p>Релевантность - понятие градиентное, результат поиска почти всегда - набор докментов, финальный выбор какую информацию использовать за пользователем. Сопровождается задачей ранжирования набора документов</p>
+<p>Search and Retrieval usually do not require any substantial post-processing of retrieved documents. Generation does require it (sumamrize, find answers etc), but in most cases rely on the original document =&gt; can use standard retrieval</p>
+</section>
+<section id="id2">
+<h1>История<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<p>Термин предложил Мур в 1950 (не путать с Муром, который транзисторы), его определение было довольно широким<br>
+<i>”Information retrieval = the finding of information whose location or very existence is a priori unknown”</i></p>
+<p>Тогда же он обосновал важность поиска для приложений (закон Мура)<br>
+<i>”An information retrieval system will tend not to be used whenever it is more painful and troublesome for a customer to have information than for him not to have it”</i></p>
+<p>Коротко: чтобы поиском пользователись его важно делать простым</p>
+<p>Современное определение чуть конкретнее<br>
+<i>”Information retrieval = finding material (usually documents) of an unstructured nature (usually text) that satisfies an information need from within large collections (usually stored on computers)”</i></p>
+</section>
+<section id="id3">
+<h1>Формальная постановка<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<p>Арихтекутура современного информационного поиска выглядит примерно так</p>
+<p>Выбор конкретных компонент и деталей их взаимодействия и определяет, что перед нами за метод</p>
+<p>Настроить поиск значит определить:</p>
+<ul class="simple">
+<li><p>что есть “документ”</p>
+<ul>
+<li><p>какую информацию содержит<br>модальность, размер чанка, пересечение</p></li>
+<li><p>как эта информация закодирована<br>токенизация, эмбеддинговое пространство</p></li>
+</ul>
+</li>
+<li><p>что есть “релевантность”<br>метрика пересечения, взвешенность TF-IDF, косинусное расстояние, глубокая сеть и тп</p></li>
+<li><p>как делать “фильтрацию”<br>иерархически/одношагово, цикл по документам, какие пороги и тп</p></li>
+<li><p>как ранжировать домкументы</p></li>
+</ul>
+</section>
+<section id="enhancements">
+<h1>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading">#</a></h1>
+</section>
+<section id="user-query-misspecification">
+<h1>User query misspecification<a class="headerlink" href="#user-query-misspecification" title="Link to this heading">#</a></h1>
+<p>One of the main challenges in Information Retrieval (known before 1980s) is that users often cannot articulate their needs precisely because they don’t fully understand the problem. IR practitioneers of that time (<a class="reference external" href="https://arxiv.org/pdf/2503.00223">paper</a>) formulated the following target - a good IR system must be context-dependent, personalized, able to maintain dialogue with user</p>
+<p>Examples of poor specification:</p>
+<ul class="simple">
+<li><p>Ambiguous Queries / Polysemy<br>
+<code class="docutils literal notranslate"><span class="pre">jaguar,</span> <span class="pre">apple</span> <span class="pre">history</span></code><br><br></p></li>
+<li><p>Synonymy / Different Vocabulary<br>
+<code class="docutils literal notranslate"><span class="pre">heart</span> <span class="pre">attack</span> <span class="pre">symptoms</span></code><br><br></p></li>
+<li><p>Contextual or Temporal Mismatch<br>
+<code class="docutils literal notranslate"><span class="pre">president</span> <span class="pre">bush</span></code><br><br></p></li>
+<li><p>Mismatch Due to Domain Jargon<br>
+<code class="docutils literal notranslate"><span class="pre">How</span> <span class="pre">do</span> <span class="pre">I</span> <span class="pre">fix</span> <span class="pre">my</span> <span class="pre">computer’s</span> <span class="pre">blue</span> <span class="pre">screen?</span></code><br><br></p></li>
+<li><p>Overspecification (too narrow queries)<br>
+<code class="docutils literal notranslate"><span class="pre">best</span> <span class="pre">restaurants</span> <span class="pre">for</span> <span class="pre">vegan</span> <span class="pre">ramen</span> <span class="pre">in</span> <span class="pre">San</span> <span class="pre">Francisco</span> <span class="pre">open</span> <span class="pre">late</span></code><br><br></p></li>
+<li><p>User Under-Specification (too wide queries)<br>
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">tutorial</span></code></p></li>
+</ul>
+<p>Main takeaway = Retrieval requires some kind of query preprocessing / adjustment. Classic sparse retrievers like TF-IDF / BM25 might not be enough</p>
+</section>
+<section id="id4">
+<h1>Обзор подходов<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sparse-retrieval">
+<h1>Sparse Retrieval<a class="headerlink" href="#sparse-retrieval" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>In “Sparse Retrieval” each text document (and the query) is a vocabulary-sized vector (thus can be for example 100K wide). It is the older approach. The query is divided into query tokens, the Retriever lookups all documents from inverted index that tjis token. Docuemnts fetched for each query token ordered and form document lists (called posting lists)</p>
+<p>Next the lists are merged together (using AND logic), filtered and transfered for further ranking</p>
+<p>Various weighting mechanics (like TF-IDF) are applied to make fetching more accurate and nuanced</p>
+<p>Matching algorithms:</p>
+<ul class="simple">
+<li><p>TF-IDF</p></li>
+<li><p>BM25</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="dense-retrieval">
+<h1>Dense Retrieval<a class="headerlink" href="#dense-retrieval" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Dense Retrievers is a family of algorithms where queries and documents are mapped into the same latent vector-space by some sort of Encoder. Query/document proximity is then calculated by a cosine / dot-product similarity</p>
+<p>Dense Extraction can be implemented by either performing a “full-scan” (suitable for small indices) or “approximate fetch” (suitable for large indices but requires additional filtering of the result)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="hybrid-retrieval">
+<h1>Hybrid Retrieval<a class="headerlink" href="#hybrid-retrieval" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Многие методы находятся где-то посередине между классическими подходами</p>
+<p>Пара примеров</p>
+<ul class="simple">
+<li><p>созраняется размерность словаря, но вес считается для всех</p></li>
+<li></li>
+</ul>
+<p>Hybrid Retrievers use dense encoding as an intermediary representaion, but still use sparse retrieval from inverted index. They tend to take best from two worlds - semantic richness of Dense representation and efficiency of Sparse vectors. Often refered to as neural sparse retrieval.</p>
+<p>The output is a sparse vocabulary-sized vector of tokens that constitute the document/query, but instead of deterministic TFs weights we use more expressive, context-dependent weights</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="approximate-index">
+<h1>Approximate Index<a class="headerlink" href="#approximate-index" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Retrieving documents from a large database, whether using sparse or dense keys, requires full-scan of this database, which is <u>unsatisfactory</u> for most production-level systems</p>
+<p>This means we need to finr a way to accelerate retrieval. Puting hardware accelreration (sharding, caching etc) aside, the best option is to store documents in a manner optimized for fast retireval using proximity-based queries</p>
+<p>Most dense retrievers are approximate (at least at the candidate generation phase). Approximate nearest neighbours alogorithms that are worth mentioning include:</p>
+<ul class="simple">
+<li><p>k-D trees<br></p></li>
+<li><p>FAISS (Meta)<br></p></li>
+<li><p>Annoy (Spotify)<br>we build k decision trees, navigate to analyzed observation in <span class="math notranslate nohighlight">\(log(n)\)</span> and neighbours from the neighbouring nodes</p></li>
+<li><p>ScaNN (Google)<br></p></li>
+<li><p>HNWS (Yandex)<br>build a proximity graph, aggregate it several times to make it hierarchical and navigate to find neighbouring obervations</p></li>
+</ul>
+<p>See the notebook for more detailed explanation</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="multi-step-retrieval">
+<h1>Multi-step Retrieval<a class="headerlink" href="#multi-step-retrieval" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Most production-level retireval systems that typically rely on large amounts of data are implemented as an hierarchical multi-stage process. They pick most relevant documents by gradually filtering out irrelevant documents while performing increasingly more complex checks. This approach allows to find sufficient recall/precision balance by leveraging both approximate abd precise models.</p>
+<p>Here is typical 2-stage retireval process:</p>
+<ol class="arabic simple">
+<li><p>Lightweight selection = fast but low-precision candidate generation<br>Examples<br>- sparse matching: fast inverted index scan optionally using tf-idf / bm25 weighting <br>- approximate dense matching (for moderate size systems): fast approximate algorithms like FAISS, Annoy, HNSW to do <span class="math notranslate nohighlight">\(O(n)\)</span> selection</p></li>
+<li><p>Heavy model selection = slow but high-precision filtering<br>EXamples:<br>- gradient boosting or BERT over feature enriched documents</p></li>
+</ol>
+<p>If no filtering is intended, only ranking, the step is called reranking</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="retriever-as-a-model">
+<h1>Retriever as a Model<a class="headerlink" href="#retriever-as-a-model" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Retrievers can be trainable</p>
+<p>Retriver = Embedder + Combiner + Selector = Relevance predictor</p>
+<p>Methods:</p>
+<ul class="simple">
+<li><p>REALM</p></li>
+<li><p>colBERT</p></li>
+<li><p>DPR</p></li>
+<li><p>RAG</p></li>
+<li><p>DPR-CTL</p></li>
+<li><p>S3</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="early-vs-late-fusion">
+<h1>Early vs Late Fusion<a class="headerlink" href="#early-vs-late-fusion" title="Link to this heading">#</a></h1>
+<p>В рамках решения задачи Information Retrieval нам нужно сравнить запрос <span class="math notranslate nohighlight">\(Q\)</span> с каждым документом <span class="math notranslate nohighlight">\(D\)</span>, то есть смоделировать релевантность $<span class="math notranslate nohighlight">\(\textbf{Rel} \approx F(Q,D)\)</span>$ некоторой функцией двух аргументов. Сама функция F это некий Encoder, либо эвристически подобранный (как в старых sparse подходах), либо нейронка (как в новых dense подходах). А вот дальше надо понять, как именно комибинровать входные аргументы D и Q</p>
+<p>Принцип <strong>Early fusion</strong>: Q и D начинают взаимодействовать как можно раньше, в самом входе: Q просто конкатенируется с D</p>
+<p>Принцип <strong>Late fusion</strong>: представления для Q и D вычисляются отдельно, не влияя друг на друга, а их комбинация считается в последнем слое сети простой операцией (cosine product / dot product)</p>
+<p>Другое распространенное название этих подходов:</p>
+<ul class="simple">
+<li><p><strong>Cross-Encoder</strong> (aka Early Fusion model)</p></li>
+<li><p><strong>Bi-Encoder</strong> or <strong>Two-Tower</strong> (aka Late Fusion model)</p></li>
+</ul>
+<p>При этом ничего не мешает делать промежуточные варианты, сначала независимые модули кодируют по-отдельности, а затем модеируют уже их взаимодействие</p>
+<p>У обоих подходов есть свои плюсы и минусы. Все они находятся вокруг баланса скорости и точности</p>
+<p>Плюсы late fusion:</p>
+<ul class="simple">
+<li><p>быстрее меньше так как значительно весов</p></li>
+<li><p>можно закэшировать редко меняющюся ветку (в задаче рекодемеаицй это, например, эмбединг пользователя)</p></li>
+</ul>
+<p>Плюсы early fusion:</p>
+<ul class="simple">
+<li><p>точнее</p></li>
+</ul>
+<section id="id5">
+<h2>Приложения поиска<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="retrieval-for-generation">
+<h3>Retrieval for Generation<a class="headerlink" href="#retrieval-for-generation" title="Link to this heading">#</a></h3>
+<p>First LLM models relied entirely on their own weights. Problem: the knowledge of first ChatGPT was 2 years behind the actual time. To overcome this limitation you had to continuosly retrain the whole model, which is unfeasible.</p>
+<p>There came RAG = Retrieval Augmented Generation. Idea: relevant fresh data is attached directly to the LLM context on-the-run (real time)</p>
+<p>Classic RAG system:</p>
+<ol class="arabic simple">
+<li><p>Retriever component fetches candidate documents (focus on recall)<br></p>
+<ul class="simple">
+<li><p>using query matching</p></li>
+<li><p>using embedding matching</p></li>
+</ul>
+</li>
+<li><p>LLM uses them as a context</p></li>
+</ol>
+<img src="img/rag1.png" width=500>
+<p>Important problem, not only in the domain of LLM generation, but in the IR generally = original query might be not sufficient for accurate retireval</p>
+</section>
+</section>
+<section id="rocchio-1971">
+<h2>Rocchio (1971)<a class="headerlink" href="#rocchio-1971" title="Link to this heading">#</a></h2>
+<p>Один из первых персонализированных поисков, учитывавший историю предыдущих запросов</p>
+<p><strong>Идея:</strong> перед поиском ближайших соседей (методом Dense Retrieval) прибавлять к запросному вектору (query embedding) сумму векторов документов, которые пользователь ранее оценивал релевантными</p>
+<p>Если запроса нет, получится классическая реализация рекомендательной системы, где новые документы подбираются макстимально близкими к усредненной истории пользователя</p>
+<p>Rocchio algorithm defined the first personalized version of document Retrieval. What it does - it shifts query vector (from the document-query vector space) in the direction towards documents previously positively evaluated by this user</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Book Overview</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="colbert.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ColBERT (2020)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Постановка задачи</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">История</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Формальная постановка</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancements">Enhancements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#user-query-misspecification">User query misspecification</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Обзор подходов</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-retrieval">Sparse Retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-retrieval">Dense Retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-retrieval">Hybrid Retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#approximate-index">Approximate Index</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-step-retrieval">Multi-step Retrieval</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#retriever-as-a-model">Retriever as a Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#early-vs-late-fusion">Early vs Late Fusion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Приложения поиска</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-for-generation">Retrieval for Generation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rocchio-1971">Rocchio (1971)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

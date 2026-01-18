@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>uniCOIL (2021) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/unicoil';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SPLADE (2021)" href="splade.html" />
+    <link rel="prev" title="DPR (2020)" href="dpr_ctl.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/unicoil.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/unicoil.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>uniCOIL (2021)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="unicoil-2021">
+<h1>uniCOIL (2021)<a class="headerlink" href="#unicoil-2021" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/abs/2106.14807">[paper]</a><br>
+uniCOIL = Universal Contextualized Inverted List</p>
+<p><strong>uniCOIL</strong> — это метод <u>обучаемого</u> разреженного поиска (Learned Sparse Retrieval), который оптимизирует веса терминов в инвертированном индексе с помощью нейросетевых моделей. Он позволяет эффективно решать проблему семантического разрыва (vocabulary mismatch) и учитывать контекстуальную важность слов, сохраняя при этом возможность использования стандартных поисковых движков вроде Lucene.</p>
+<p><strong>Завдача</strong><br>
+Поиск наиболее релевантных документов в больших коллекциях. На входе имеем текстовый запрос <span class="math notranslate nohighlight">\(q\)</span>, на выходе — ранжированный список документов <span class="math notranslate nohighlight">\(d\)</span>, где оценка релевантности вычисляется как скалярное произведение весов общих терминов (Exact Match).</p>
+<p><strong>Мотивация</strong><br>
+Существовал значительный разрыв между эффективностью и качеством. Dense Retrieval (например, DPR, 2020) отлично справляется с семантикой, но требует больших вычислительных ресурсов для хранения векторного индекса и поиска по нему (HNSW/FAISS). Sparse Retrieval (BM25) очень быстр и масштабируем, но работает только с точными совпадениями слов и использует примитивные статистики (TF-IDF). Предшественник метода — модель COIL (2021) — пыталась совместить подходы, сохраняя в инвертированном индексе небольшие векторы для каждого слова, что усложняло архитектуру поискового движка. Авторы uniCOIL стремились упростить эту схему до классического инвертированного индекса, где для каждого слова хранится только одно число (скаляр), не теряя в качестве.</p>
+<p><strong>Альтернативы</strong><br>
+На момент появления uniCOIL основными конкурентами были:</p>
+<ul class="simple">
+<li><p>BM25: использует статические формулы частотности, не учитывает контекст.</p></li>
+<li><p>DeepCT (2019): предсказывает важность слова в контексте документа, но плохо работает с запросами и не решает проблему отсутствующих слов (expansion).</p></li>
+<li><p>Doc2query-T5 (2019): генерирует новые слова для документа, расширяя его семантику, но использует стандартные веса BM25.</p></li>
+<li><p>SPLADE (2021): мощный метод LSR, использующий Sparse Regularization (L1), но обладающий более сложным процессом обучения и более “тяжелыми” (менее разреженными) представлениями.</p></li>
+</ul>
+<p><strong>Идея</strong><br>
+Идея заключается в переходе от векторов (как в COIL) к скалярным весам, которые вычисляются контекстуально. uniCOIL объединяет два процесса: Term Weighting (определение важности слова в контексте) и Document Expansion (добавление новых релевантных слов). В отличие от классических методов, здесь веса терминов — это не частота появления, а выученная моделью оценка вклада этого слова в релевантность.</p>
+<p><strong>Архитектура</strong><br>
+Модель строится на базе BERT (обычно <code class="docutils literal notranslate"><span class="pre">distilbert-base-uncased</span></code> для скорости).</p>
+<ol class="arabic simple">
+<li><p>Encoder: BERT обрабатывает текст (запрос или документ) и выдает последовательность контекстуализированных векторов <span class="math notranslate nohighlight">\(h_i\)</span> для каждого токена.</p></li>
+<li><p>Weighting Layer: Поверх каждого вектора <span class="math notranslate nohighlight">\(h_i\)</span> применяется полносвязный слой с активацией ReLU, который проецирует вектор в одно скалярное значение <span class="math notranslate nohighlight">\(w_i = \text{ReLU}(w^T h_i + b)\)</span>.</p></li>
+<li><p>Representation: Представление документа/запроса — это вектор в пространстве словаря (Vocabulary-sized sparse vector), где ненулевые значения стоят только в позициях токенов, присутствующих в тексте.</p></li>
+<li><p>Expansion: Для документов используется предварительный этап генерации дополнительных токенов (через doc2query-T5), после чего uniCOIL назначает им веса.</p></li>
+</ol>
+<p><strong>Обучение</strong><br>
+Обучение проходит по принципу Siamese Network (но с разными весами или стратегиями для запроса и документа):</p>
+<ol class="arabic simple">
+<li><p>Loss function: Используется Contrastive Loss (обычно Cross-Entropy над оценками релевантности). Модель учится максимизировать скалярное произведение <span class="math notranslate nohighlight">\(\sum w_q \cdot w_d\)</span> для релевантных пар и минимизировать для нерелевантных.</p></li>
+<li><p>Data: В качестве обучающей выборки используется MS MARCO. Важным элементом является использование Hard Negatives (документов, которые BM25 считает релевантными, но которые на самом деле ими не являются).</p></li>
+<li><p>Distillation: Часто применяется Knowledge Distillation из более мощного Cross-Encoder (например, на базе ELECTRA), что дает прирост в несколько пунктов метрики nDCG.</p></li>
+</ol>
+<p><strong>Инференс</strong><br></p>
+<ol class="arabic simple">
+<li><p>Offline (Индексация): Документы расширяются через doc2query, прогоняются через uniCOIL, полученные веса <span class="math notranslate nohighlight">\(w_i\)</span> квантуются в целые числа и сохраняются в стандартный инвертированный индекс (например, в поле частоты слова в Lucene).</p></li>
+<li><p>Online (Поиск): Запрос <span class="math notranslate nohighlight">\(q\)</span> токенизируется, проходит через BERT-энкодер uniCOIL для получения весов терминов запроса.</p></li>
+<li><p>Retrieval: Выполняется обычный Weighted Boolean Query в поисковом движке. Финальный скор — это просто сумма весов совпавших токенов.</p></li>
+</ol>
+<p><strong>Результаты</strong><br>
+Сравнение проводилось на MS MARCO Passage Ranking и наборе тестов BEIR:</p>
+<ul class="simple">
+<li><p>uniCOIL показал MRR&#64;10 равный 0.351 на MS MARCO, что на 16пп выше, чем у классического BM25 (0.184) и сопоставимо с более сложными Dense моделями того времени.</p></li>
+<li><p>По сравнению с оригинальным COIL, uniCOIL уменьшил размер индекса в 5-10 раз (за счет хранения одного скаляра вместо вектора из 32 компонентов), при этом сохранив аналогичную точность.</p></li>
+<li><p>В отличие от Dense Retrieval, uniCOIL не требует GPU на этапе поиска и работает на стандартной CPU-инфраструктуре со скоростью, близкой к классическому полнотекстовому поиску.</p></li>
+</ul>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># uniCOIL (2021)</span>
+---
+[[paper]](https://arxiv.org/abs/2106.14807)&lt;br&gt;
+uniCOIL = Universal Contextualized Inverted List
+
+<span class="gs">__uniCOIL__</span> — метод <span class="gs">**Learned Sparse Retrieval**</span>, оптимизирующий веса терминов в инвертированном индексе с помощью нейросетей. Он решает проблему семантического разрыва и учитывает контекстуальную важность слов, сохраняя совместимость с поисковыми движками, такими как Lucene.
+
+<span class="gs">__Задача__</span>&lt;br&gt;
+Поиск релевантных документов в больших коллекциях. На входе текстовый запрос $q$, на выходе — ранжированный список документов $d$, где релевантность оценивается через скалярное произведение весов терминов.
+
+<span class="gs">__Мотивация__</span>&lt;br&gt;
+Dense Retrieval, как DPR (2020), требует значительных ресурсов, а Sparse Retrieval, как BM25, ограничен точными совпадениями. Предшественник COIL (2021) усложнял архитектуру, храня векторы для каждого слова. uniCOIL упрощает схему, используя скалярные веса.
+
+<span class="gs">__Альтернативы__</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span>BM25: статические частотные формулы.
+<span class="k">-</span><span class="w"> </span>DeepCT (2019): учитывает контекст, но не решает проблему отсутствующих слов.
+<span class="k">-</span><span class="w"> </span>Doc2query-T5 (2019): расширяет семантику, но использует стандартные веса.
+<span class="k">-</span><span class="w"> </span>SPLADE (2021): сложный процесс обучения и менее разреженные представления.
+
+<span class="gs">__Идея__</span>&lt;br&gt;
+Переход от векторов к скалярным весам, вычисляемым контекстуально. uniCOIL объединяет Term Weighting и Document Expansion, где веса терминов — это оценка вклада слова в релевантность.
+
+<span class="gs">__Архитектура__</span>&lt;br&gt;
+&lt;img src=&quot;img/img.png&quot; width=500&gt;
+<span class="k">1.</span> <span class="gs">**Encoder**</span>: BERT обрабатывает текст и выдает векторы $h_i$ для токенов.
+<span class="k">2.</span> <span class="gs">**Weighting Layer**</span>: Применяется полносвязный слой с ReLU, проецирующий вектор в скаляр $w_i$.
+<span class="k">3.</span> <span class="gs">**Representation**</span>: Документ/запрос представлен вектором, где ненулевые значения только для присутствующих токенов.
+<span class="k">4.</span> <span class="gs">**Expansion**</span>: Генерация дополнительных токенов через doc2query-T5 с назначением весов.
+
+<span class="gs">__Обучение__</span>&lt;br&gt;
+Используется Contrastive Loss для максимизации скалярного произведения релевантных пар. Обучение на MS MARCO с Hard Negatives и Knowledge Distillation из Cross-Encoder.
+
+<span class="gs">__Инференс__</span>&lt;br&gt;
+<span class="k">1.</span> <span class="gs">**Offline**</span>: Документы расширяются, прогоняются через uniCOIL, веса квантуются и сохраняются в инвертированный индекс.
+<span class="k">2.</span> <span class="gs">**Online**</span>: Запрос токенизируется, проходит через BERT-энкодер для получения весов.
+<span class="k">3.</span> <span class="gs">**Retrieval**</span>: Выполняется Weighted Boolean Query, финальный скор — сумма весов совпавших токенов.
+
+<span class="gs">__Результаты__</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span>MRR@10 на MS MARCO: 0.351, на 16пп выше BM25 (0.184), сопоставимо с Dense моделями.
+<span class="k">-</span><span class="w"> </span>uniCOIL уменьшил размер индекса в 5-10 раз по сравнению с COIL, сохранив точность.
+<span class="k">-</span><span class="w"> </span>Работает на CPU-инфраструктуре со скоростью, близкой к классическому полнотекстовому поиску.
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>💻 Пример кода<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Пример использования uniCOIL для обработки текстового запроса и документа.
+# Мы будем использовать библиотеку transformers для работы с BERT.
+
+from transformers import DistilBertTokenizer, DistilBertModel
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+# Инициализация токенизатора и модели BERT
+tokenizer = DistilBertTokenizer.from_pretrained(&#39;distilbert-base-uncased&#39;)
+model = DistilBertModel.from_pretrained(&#39;distilbert-base-uncased&#39;)
+
+# Пример текста запроса и документа
+query = &quot;What is the capital of France?&quot;
+document = &quot;Paris is the capital city of France.&quot;
+
+# Токенизация текста
+query_tokens = tokenizer(query, return_tensors=&#39;pt&#39;)
+document_tokens = tokenizer(document, return_tensors=&#39;pt&#39;)
+
+# Получение контекстуализированных векторов BERT для запроса и документа
+query_outputs = model(**query_tokens)
+document_outputs = model(**document_tokens)
+
+# Векторы скрытых состояний для каждого токена
+query_hidden_states = query_outputs.last_hidden_state
+document_hidden_states = document_outputs.last_hidden_state
+
+# Полносвязный слой для вычисления весов терминов
+class TermWeightingLayer(nn.Module):
+    def __init__(self, hidden_size):
+        super(TermWeightingLayer, self).__init__()
+        self.fc = nn.Linear(hidden_size, 1)
+
+    def forward(self, x):
+        # Применение полносвязного слоя и ReLU
+        return F.relu(self.fc(x))
+
+# Инициализация слоя для вычисления весов
+term_weighting_layer = TermWeightingLayer(hidden_size=query_hidden_states.size(-1))
+
+# Вычисление весов терминов для запроса и документа
+query_weights = term_weighting_layer(query_hidden_states).squeeze(-1)
+document_weights = term_weighting_layer(document_hidden_states).squeeze(-1)
+
+# Пример вычисления скалярного произведения весов для оценки релевантности
+# Мы используем только те токены, которые присутствуют в обоих текстах
+common_tokens = set(tokenizer.convert_ids_to_tokens(query_tokens[&#39;input_ids&#39;][0])) &amp; \
+                set(tokenizer.convert_ids_to_tokens(document_tokens[&#39;input_ids&#39;][0]))
+
+# Суммируем веса только для общих токенов
+relevance_score = sum(query_weights[i] * document_weights[j]
+                      for i, token_q in enumerate(tokenizer.convert_ids_to_tokens(query_tokens[&#39;input_ids&#39;][0]))
+                      for j, token_d in enumerate(tokenizer.convert_ids_to_tokens(document_tokens[&#39;input_ids&#39;][0]))
+                      if token_q == token_d and token_q in common_tokens)
+
+print(f&quot;Relevance score: {relevance_score.item()}&quot;)
+
+# Этот пример иллюстрирует, как uniCOIL использует контекстуализированные векторы BERT
+# для вычисления весов терминов и оценки релевантности через скалярное произведение.
+# В отличие от традиционных методов, веса терминов здесь обучаются, что позволяет
+# учитывать контекст и семантику, сохраняя при этом эффективность разреженного поиска.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dpr_ctl.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DPR (2020)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="splade.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SPLADE (2021)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

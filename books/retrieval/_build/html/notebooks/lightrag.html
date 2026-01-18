@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>LightRAG (2024) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/lightrag';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PathRAG (2025)" href="pathrag.html" />
+    <link rel="prev" title="GraphRAG (2024)" href="graphrag.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/lightrag.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/lightrag.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>LightRAG (2024)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lightrag-2024">
+<h1>LightRAG (2024)<a class="headerlink" href="#lightrag-2024" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://arxiv.org/abs/2410.05079">[paper]</a><br>
+LightRAG = Lightweight Retrieval-Augmented Generation</p>
+<p><strong>LightRAG</strong> — это фреймворк для построения систем Retrieval-Augmented Generation, использующий графовую структуру индекса и двухэтапную стратегию поиска (Dual-level Retrieval). Он позволяет эффективно отвечать как на узкоспециализированные запросы, так и на вопросы, требующие агрегации знаний по всему корпусу документов, при этом значительно снижая вычислительные затраты по сравнению с существующими графовыми подходами.</p>
+<p><strong>Постановка задачи</strong><br>
+Улучшение качества генерации ответов LLM путем предоставления релевантного контекста из внешней базы знаний. Основная цель — обеспечить высокую точность поиска (Retrieval) для запросов разной степени абстракции: от конкретных фактов до глобальных тем.</p>
+<p><strong>Мотивация</strong><br>
+Стандартные системы RAG на основе векторного поиска (Vector RAG) хорошо находят фрагменты текста по семантическому сходству, но плохо справляются с задачами, требующими сопоставления разрозненной информации из разных частей документов (Multi-hop Reasoning) или понимания общей структуры знаний. Существующие графовые решения (GraphRAG) решают эту проблему через индексацию сущностей и связей, но они крайне дороги в эксплуатации и медленны, так как требуют предварительного суммаризирования всех узлов и сообществ в графе.</p>
+<p><strong>Существующие подходы</strong><br>
+На момент появления LightRAG основными альтернативами были:</p>
+<ul class="simple">
+<li><p>Vector RAG (2020): поиск по Cosine Similarity эмбеддингов. Не видит структурных связей между документами и “слеп” к глобальным темам.</p></li>
+<li><p>GraphRAG (Microsoft, 2024): использует Community Detection для группировки узлов графа и генерирует текстовые суммаризации для каждого сообщества. Это позволяет отвечать на глобальные вопросы, но создание индекса требует огромного количества токенов LLM (высокая стоимость), а инференс замедлен из-за необходимости читать тяжелые суммаризации.</p></li>
+</ul>
+<p><strong>Идея</strong><br>
+Разработчики предложили объединить графовую структуру с механизмом Dual-level Retrieval. Вместо дорогостоящего вычисления суммаризаций сообществ (как в Microsoft GraphRAG), модель динамически извлекает контекст на двух уровнях абстракции: Low-level (конкретные сущности и их свойства) и High-level (абстрактные темы и общие концепции). Это достигается за счет специальной структуры графа, где текстовые чанки, сущности и отношения связаны в единую сеть.</p>
+<p><strong>Архитектура</strong><br>
+Система состоит из трех основных компонентов:</p>
+<ol class="arabic simple">
+<li><p>Graph-based Text Indexing: Процесс построения графа. Документы разбиваются на чанки. Из каждого чанка LLM извлекает сущности (Nodes) и отношения (Edges). В отличие от классических графов знаний, здесь каждый чанк текста сохраняется как отдельный тип узла, связанный с извлеченными из него сущностями.</p></li>
+<li><p>Dual-level Retrieval: Система поиска, работающая в двух режимах одновременно.</p></li>
+<li><p>Fragment-wise Generator: Модуль формирования итогового ответа на основе собранных графовых путей и чанков текста.</p></li>
+</ol>
+<p><strong>Алгоритм обучения</strong><br>
+LightRAG не требует дообучения (fine-tuning) весов основной LLM. Основной “обучающий” процесс заключается в построении индекса:</p>
+<ol class="arabic simple">
+<li><p>Extraction: LLM проходит по тексту и извлекает сущности и триплеты (субъект-предикат-объект).</p></li>
+<li><p>Deduplication: Идентичные сущности, найденные в разных частях корпуса, объединяются в один узел, создавая мостики между документами.</p></li>
+<li><p>Embedding: Для каждого узла и ребра вычисляются векторы (эмбеддинги) для быстрого векторного поиска.</p></li>
+</ol>
+<p><strong>Алгоритм инференса</strong><br>
+Процесс обработки запроса пользователя:</p>
+<ol class="arabic simple">
+<li><p>Query Keyword Extraction: LLM анализирует запрос и генерирует два набора ключевых слов: конкретные (для Low-level поиска) и абстрактные (для High-level поиска).</p></li>
+<li><p>Dual-level Matching:</p>
+<ul class="simple">
+<li><p>Low-level: ищутся сущности в графе, которые максимально близки к конкретным ключевым словам. Это позволяет найти специфические факты.</p></li>
+<li><p>High-level: ищутся высокоуровневые темы и связанные с ними группы сущностей.</p></li>
+</ul>
+</li>
+<li><p>Graph Traversal: Система собирает “подграф” из найденных узлов, ребер и связанных с ними исходных текстовых чанков.</p></li>
+<li><p>Response Generation: Весь собранный контекст (триплеты + текст) подается в LLM для генерации финального ответа.</p></li>
+</ol>
+<p><strong>Результаты</strong><br>
+Эффективность проверялась на датасетах MultiHop-RAG и наборах данных из разных областей (Agriculture, CS, Legal):</p>
+<ul class="simple">
+<li><p>Стоимость индексации: LightRAG требует в 100+ раз меньше токенов по сравнению с Microsoft GraphRAG за счет отказа от предварительной суммаризации сообществ.</p></li>
+<li><p>Качество ответов: На комплексных запросах (Comprehensive Queries) LightRAG превзошел Vector RAG по метрике Recall на 20-30%.</p></li>
+<li><p>Скорость: Время подготовки ответа сократилось в разы по сравнению с GraphRAG, так как объем извлекаемого контекста жестко ограничен релевантным подграфом, а не огромными суммаризациями сообществ.</p></li>
+</ul>
+<p><strong>Пример реализации</strong><br>
+Ниже представлен пример инициализации и использования библиотеки:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lightrag</span><span class="w"> </span><span class="kn">import</span> <span class="n">LightRAG</span><span class="p">,</span> <span class="n">QueryParam</span>
+
+<span class="c1"># Инициализация с указанием рабочей директории и модели</span>
+<span class="n">rag</span> <span class="o">=</span> <span class="n">LightRAG</span><span class="p">(</span><span class="n">working_dir</span><span class="o">=</span><span class="s2">&quot;./index_db&quot;</span><span class="p">,</span> <span class="n">llm_model_func</span><span class="o">=</span><span class="n">gpt_4o_complete</span><span class="p">)</span>
+
+<span class="c1"># Индексация текста (автоматически строит граф сущностей)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;corpus.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">rag</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="c1"># Выполнение глобального (High-level) запроса</span>
+<span class="c1"># Метод &#39;hybrid&#39; объединяет low-level и high-level поиск</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rag</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="s2">&quot;Какие основные технологические тренды описаны в документах?&quot;</span><span class="p">,</span> 
+    <span class="n">param</span><span class="o">=</span><span class="n">QueryParam</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;hybrid&quot;</span><span class="p">)</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+<p>Метод <code class="docutils literal notranslate"><span class="pre">insert()</span></code> выполняет декомпозицию текста и экстракцию графа, а параметр <code class="docutils literal notranslate"><span class="pre">mode=&quot;hybrid&quot;</span></code> в методе <code class="docutils literal notranslate"><span class="pre">query()</span></code> активирует двухслойный поиск по ключевым словам.</p>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># LightRAG (2024)</span>
+---
+[[paper]](https://arxiv.org/abs/2410.05079)&lt;br&gt;
+LightRAG = Lightweight Retrieval-Augmented Generation
+
+<span class="gs">__LightRAG__</span> — фреймворк для Retrieval-Augmented Generation, использующий графовую структуру индекса и стратегию Dual-level Retrieval. Он эффективно отвечает на узкоспециализированные запросы и вопросы, требующие агрегации знаний, снижая вычислительные затраты по сравнению с существующими графовыми подходами.
+
+<span class="gs">__Постановка задачи__</span>&lt;br&gt;
+Улучшение генерации ответов LLM через предоставление релевантного контекста из внешней базы знаний. Цель — высокая точность поиска для запросов разной абстракции.
+
+<span class="gs">__Мотивация__</span>&lt;br&gt;
+Стандартные системы RAG на основе Vector RAG хорошо находят текст по семантическому сходству, но плохо справляются с Multi-hop Reasoning. GraphRAG решает это через индексацию сущностей, но требует много ресурсов.
+
+<span class="gs">__Существующие подходы__</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span>Vector RAG (2020): поиск по Cosine Similarity, не видит структурных связей.
+<span class="k">-</span><span class="w"> </span>GraphRAG (Microsoft, 2024): использует Community Detection, но требует много токенов и медленен.
+
+<span class="gs">__Идея__</span>&lt;br&gt;
+Объединение графовой структуры с Dual-level Retrieval. Вместо суммаризаций, модель динамически извлекает контекст на двух уровнях: Low-level и High-level.
+
+<span class="gs">__Архитектура__</span>&lt;br&gt;
+<span class="k">1.</span> Graph-based Text Indexing: Документы разбиваются на чанки, из которых LLM извлекает сущности и отношения.
+<span class="k">2.</span> Dual-level Retrieval: Поиск в двух режимах.
+<span class="k">3.</span> Fragment-wise Generator: Формирование ответа на основе графовых путей и чанков.
+
+<span class="gs">__Алгоритм обучения__</span>&lt;br&gt;
+LightRAG не требует дообучения LLM. Основной процесс — построение индекса:
+<span class="k">1.</span> Extraction: Извлечение сущностей и триплетов.
+<span class="k">2.</span> Deduplication: Объединение идентичных сущностей.
+<span class="k">3.</span> Embedding: Вычисление эмбеддингов для узлов и ребер.
+
+<span class="gs">__Алгоритм инференса__</span>&lt;br&gt;
+<span class="k">1.</span> Query Keyword Extraction: Генерация ключевых слов для Low-level и High-level поиска.
+<span class="k">2.</span> Dual-level Matching: Поиск сущностей и тем.
+<span class="k">3.</span> Graph Traversal: Сбор &quot;подграфа&quot;.
+<span class="k">4.</span> Response Generation: Генерация ответа LLM.
+
+&lt;img src=&quot;img/img.png&quot; width=500&gt;
+
+<span class="gs">__Результаты__</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span>Индексация: LightRAG требует в 100+ раз меньше токенов, чем Microsoft GraphRAG.
+<span class="k">-</span><span class="w"> </span>Качество: Превосходит Vector RAG по Recall на 20-30% на комплексных запросах.
+<span class="k">-</span><span class="w"> </span>Скорость: Ответы готовятся быстрее, чем в GraphRAG.
+
+<span class="gs">__Пример реализации__</span>&lt;br&gt;
+```python
+from lightrag import LightRAG, QueryParam
+
+rag = LightRAG(working_dir=&quot;./index_db&quot;, llm_model_func=gpt_4o_complete)
+
+with open(&quot;corpus.txt&quot;) as f:
+    rag.insert(f.read())
+
+print(rag.query(
+    &quot;Какие основные технологические тренды описаны в документах?&quot;, 
+    param=QueryParam(mode=&quot;hybrid&quot;)
+))
+</pre></div>
+</div>
+<p>Метод <code class="docutils literal notranslate"><span class="pre">insert()</span></code> выполняет декомпозицию текста и экстракцию графа, а <code class="docutils literal notranslate"><span class="pre">mode=&quot;hybrid&quot;</span></code> активирует двухслойный поиск.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>💻 Пример кода<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Пример реализации LightRAG с использованием гипотетической библиотеки lightrag
+
+# Импортируем необходимые классы из библиотеки
+from lightrag import LightRAG, QueryParam
+
+# Инициализация LightRAG с указанием рабочей директории и функции модели LLM
+# Здесь gpt_4o_complete - это функция, которая обрабатывает запросы с помощью LLM
+rag = LightRAG(working_dir=&quot;./index_db&quot;, llm_model_func=gpt_4o_complete)
+
+# Индексация текста из файла corpus.txt
+# Метод insert() автоматически строит граф сущностей из текста
+with open(&quot;corpus.txt&quot;) as f:
+    rag.insert(f.read())
+
+# Выполнение глобального (High-level) запроса
+# Метод query() с параметром mode=&quot;hybrid&quot; активирует двухуровневый поиск
+result = rag.query(
+    &quot;Какие основные технологические тренды описаны в документах?&quot;, 
+    param=QueryParam(mode=&quot;hybrid&quot;)
+)
+
+# Вывод результата запроса
+print(result)
+
+# Пример выполнения конкретного (Low-level) запроса
+# Здесь мы ищем специфическую информацию, например, о конкретной технологии
+specific_result = rag.query(
+    &quot;Что известно о технологии блокчейн в документах?&quot;, 
+    param=QueryParam(mode=&quot;low-level&quot;)
+)
+
+# Вывод результата конкретного запроса
+print(specific_result)
+
+# Пример выполнения абстрактного (High-level) запроса
+# Здесь мы ищем общие темы или концепции
+abstract_result = rag.query(
+    &quot;Какие концепции связаны с устойчивым развитием?&quot;, 
+    param=QueryParam(mode=&quot;high-level&quot;)
+)
+
+# Вывод результата абстрактного запроса
+print(abstract_result)
+```
+
+### Комментарии к коду:
+
+1. **Инициализация LightRAG**: 
+   - `LightRAG` инициализируется с рабочей директорией для хранения индекса и функцией модели LLM (`gpt_4o_complete`), которая будет использоваться для обработки запросов.
+
+2. **Индексация текста**:
+   - Метод `insert()` принимает текст и автоматически разбивает его на чанки, извлекает сущности и строит графовую структуру. Это позволяет эффективно организовать данные для последующего поиска.
+
+3. **Запросы**:
+   - **Гибридный запрос** (`mode=&quot;hybrid&quot;`): Используется для поиска, который объединяет конкретные и абстрактные уровни, что позволяет находить как специфические факты, так и общие темы.
+   - **Конкретный запрос** (`mode=&quot;low-level&quot;`): Ориентирован на поиск специфических фактов или сущностей.
+   - **Абстрактный запрос** (`mode=&quot;high-level&quot;`): Ориентирован на поиск общих тем или концепций.
+
+4. **Вывод результатов**:
+   - Результаты каждого запроса выводятся с помощью `print()`, что позволяет увидеть, как LightRAG обрабатывает и возвращает информацию в зависимости от типа запроса.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: ""
+        },
+        kernelOptions: {
+            name: "",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = ''</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="graphrag.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">GraphRAG (2024)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pathrag.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PathRAG (2025)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

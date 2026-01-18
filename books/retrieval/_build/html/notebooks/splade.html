@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SPLADE (2021) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/splade';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RAG (2020)" href="rag.html" />
+    <link rel="prev" title="uniCOIL (2021)" href="unicoil.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/splade.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/splade.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SPLADE (2021)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SPLADE (2021)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Описание</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Задача</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Мотивация</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Альтернативы</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Идея</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Архитектура</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Обучение</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Инференс</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Результаты</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">💻 Пример кода</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="splade-2021">
+<h1>SPLADE (2021)<a class="headerlink" href="#splade-2021" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/abs/2109.10086">[paper]</a><br>
+SPLADE = Sparse Lexical and Expansion Model for Information Retrieval</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Описание<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><strong>SPLADE</strong> — это метод Learned Sparse Retrieval, который превращает текст в разреженные векторы высокой размерности (равной размеру словаря токенизатора). Модель одновременно решает задачи взвешивания термов (Term Weighting) и расширения документа (Document Expansion), позволяя использовать преимущества семантического поиска в рамках классического инвертированного индекса.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>Задача<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<p>Решается задача First Stage Retrieval: эффективный поиск топ-K релевантных документов в коллекции из миллионов записей по текстовому запросу.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id3">
+<h1>Мотивация<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<p>Классические методы типа BM25 (1994) страдают от проблемы Lexical Gap — если в запросе “автомобиль”, а в документе “машина”, BM25 их не сопоставит. Dense Retrieval (например, DPR, 2020) решает это через эмбеддинги, но требует огромных ресурсов для хранения векторных индексов и сложен в интерпретации. Существовавшие ранее методы расширения (Doc2query, 2019) работали на этапе предобработки и часто вносили шум, генерируя лишние слова, а методы взвешивания (DeepCT, 2019) не умели добавлять новые слова, которых нет в исходном тексте.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id4">
+<h1>Альтернативы<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>BM25: использует только статистику частот слов, игнорируя семантику.</p></li>
+<li><p>Doc2query (2019): T5-модель генерирует гипотетические вопросы к документу и дописывает их в конец. Минус: отдельная тяжелая стадия генерации, сложно контролировать количество добавляемых токенов.</p></li>
+<li><p>DeepCT (2019): BERT предсказывает веса только для существующих в тексте слов. Не решает проблему Lexical Gap.</p></li>
+<li><p>DPR (2020): Dense Retrieval подход. Требует Approximate Nearest Neighbor (ANN) поиска, потребляет много RAM (десятки ГБ для MS MARCO).</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id5">
+<h1>Идея<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+<p>Авторы предложили использовать Masked Language Modeling (MLM) голову предобученного Трансформера для того, чтобы проецировать токены документа в пространство всего словаря (Vocabulary Space). Вместо того чтобы предсказывать пропущенное слово, модель предсказывает “важность” каждого слова из словаря для данного текста. Если слово семантически близко к тексту, его вес будет отличным от нуля, даже если самого слова в тексте нет.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id6">
+<h1>Архитектура<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+<p>Модель строится на базе BERT.</p>
+<ol class="arabic simple">
+<li><p>Encoder: BERT обрабатывает последовательность токенов <span class="math notranslate nohighlight">\(t \in D\)</span>.</p></li>
+<li><p>Logits: Для каждого токена на выходе BERT берется вектор размерности словаря <span class="math notranslate nohighlight">\(V\)</span> (через стандартную MLM голову).</p></li>
+<li><p>Transformation: К логитам применяется <span class="math notranslate nohighlight">\(log(1 + ReLU(w))\)</span>, чтобы оставить только положительные значения и “прижать” слишком большие веса.</p></li>
+<li><p>Pooling: Выполняется Max Pooling по всем токенам документа. Для каждого слова <span class="math notranslate nohighlight">\(j\)</span> из словаря <span class="math notranslate nohighlight">\(V\)</span> итоговый вес <span class="math notranslate nohighlight">\(w_j = \max_{i \in D} w_{i,j}\)</span>.</p></li>
+<li><p>Sparsity: На выходной вектор накладывается регуляризация, чтобы большинство весов стали нулевыми.</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id7">
+<h1>Обучение<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<p>Процесс обучения объединяет две функции потерь:</p>
+<ol class="arabic simple">
+<li><p>Ranking Loss: Обычно используется InfoNCE или Contrastive Loss. Модель учится максимизировать скалярное произведение векторов запроса и релевантного документа по сравнению с нерелевантными (In-batch Negatives или Hard Negatives).</p></li>
+<li><p>Sparsity Loss: Применяется регуляризация FLOPs (Paria et al., 2020) или L1. Это критически важный компонент: без него вектор будет плотным (Dense). FLOPs loss минимизирует ожидаемое количество операций при поиске, заставляя модель обнулять веса маловажных токенов.</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id8">
+<h1>Инференс<a class="headerlink" href="#id8" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Indexing (Offline): Каждый документ коллекции пропускается через SPLADE. На выходе получается разреженный вектор (например, из 30 000 измерений только 100-200 имеют ненулевые значения). Эти значения сохраняются в обычный инвертированный индекс (ElasticSearch/Lucene) как веса термов.</p></li>
+<li><p>Query Encoding (Online): Запрос пропускается через ту же модель SPLADE, превращаясь в такой же разреженный вектор.</p></li>
+<li><p>Retrieval: Выполняется стандартный поиск в инвертированном индексе. Оценка релевантности — это сумма весов совпавших токенов (Dot Product).</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id9">
+<h1>Результаты<a class="headerlink" href="#id9" title="Link to this heading">#</a></h1>
+<p>Сравнение на датасете MS MARCO Passage Ranking:</p>
+<ul class="simple">
+<li><p>Эффективность: SPLADE v2 достигла MRR&#64;10 = 0.369. Для сравнения: BM25 = 0.187, а мощный Dense-энкодер DPR = 0.320.</p></li>
+<li><p>Хранение: Индекс SPLADE занимает примерно в 4-10 раз меньше места, чем плотные векторы DPR (за счет разреженности и хранения только ID токенов и их весов).</p></li>
+<li><p>Интерпретируемость: В отличие от Dense моделей, здесь можно посмотреть, какие именно слова “активировала” модель. Например, для текста про “коронавирус” модель может сама добавить веса словам “пандемия”, “вирус”, “маска”, что наглядно объясняет результат поиска.</p></li>
+</ul>
+<section id="id10">
+<h2>📝 Критический анализ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># SPLADE (2021)</span>
+---
+[[paper]](https://arxiv.org/abs/2109.10086)&lt;br&gt;
+SPLADE = Sparse Lexical and Expansion Model for Information Retrieval
+
+<span class="gu">## Описание</span>
+<span class="gs">**SPLADE**</span> — метод Learned Sparse Retrieval, преобразующий текст в разреженные векторы высокой размерности. Модель решает задачи взвешивания термов и расширения документа, используя преимущества семантического поиска в рамках классического инвертированного индекса.
+
+<span class="gu">## Задача</span>
+Решается задача First Stage Retrieval: эффективный поиск топ-K релевантных документов в коллекции из миллионов записей по текстовому запросу.
+
+<span class="gu">## Мотивация</span>
+Классические методы, такие как BM25 (1994), страдают от проблемы Lexical Gap. Dense Retrieval, например, DPR (2020), требует значительных ресурсов для хранения и сложен в интерпретации. Методы расширения, такие как Doc2query (2019), часто вносят шум, а методы взвешивания, такие как DeepCT (2019), не решают проблему Lexical Gap.
+
+<span class="gu">## Альтернативы</span>
+<span class="k">-</span><span class="w"> </span>BM25: игнорирует семантику.
+<span class="k">-</span><span class="w"> </span>Doc2query (2019): требует отдельной стадии генерации.
+<span class="k">-</span><span class="w"> </span>DeepCT (2019): не решает Lexical Gap.
+<span class="k">-</span><span class="w"> </span>DPR (2020): требует много RAM для ANN поиска.
+
+<span class="gu">## Идея</span>
+Использование Masked Language Modeling (MLM) головы предобученного Трансформера для проекции токенов документа в пространство всего словаря. Модель предсказывает &quot;важность&quot; каждого слова из словаря для текста.
+
+<span class="gu">## Архитектура</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Encoder**</span>: BERT обрабатывает токены $t \in D$.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Logits**</span>: Вектор размерности словаря $V$ через MLM голову.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Transformation**</span>: Применяется $log(1 + ReLU(w))$.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Pooling**</span>: Max Pooling по токенам документа.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Sparsity**</span>: Регуляризация для обнуления большинства весов.
+
+&lt;img src=&quot;img/img.png&quot; width=500&gt;
+
+<span class="gu">## Обучение</span>
+Объединяет две функции потерь:
+<span class="k">1.</span> <span class="gs">**Ranking Loss**</span>: Максимизация скалярного произведения векторов запроса и релевантного документа.
+<span class="k">2.</span> <span class="gs">**Sparsity Loss**</span>: Регуляризация FLOPs или L1 для минимизации операций при поиске.
+
+<span class="gu">## Инференс</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Indexing (Offline)**</span>: Документы проходят через SPLADE, создавая разреженные векторы, сохраняемые в инвертированный индекс.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Query Encoding (Online)**</span>: Запрос превращается в разреженный вектор.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Retrieval**</span>: Стандартный поиск в инвертированном индексе, оценка релевантности — сумма весов совпавших токенов.
+
+<span class="gu">## Результаты</span>
+На MS MARCO Passage Ranking:
+<span class="k">-</span><span class="w"> </span><span class="gs">**Эффективность**</span>: SPLADE v2 достигла MRR@10 = 0.369, превосходя BM25 и DPR.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Хранение**</span>: Индекс SPLADE занимает в 4-10 раз меньше места, чем DPR.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Интерпретируемость**</span>: Можно увидеть, какие слова &quot;активировала&quot; модель, например, для текста про &quot;коронавирус&quot; добавляются веса словам &quot;пандемия&quot;, &quot;вирус&quot;, &quot;маска&quot;.
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h2>💻 Пример кода<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BertTokenizer</span><span class="p">,</span> <span class="n">BertModel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+
+<span class="c1"># SPLADE: Sparse Lexical and Expansion Model for Information Retrieval</span>
+<span class="c1"># This example illustrates the key concepts of SPLADE using a simplified version.</span>
+
+<span class="c1"># Initialize BERT tokenizer and model</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">)</span>
+
+<span class="c1"># Sample document</span>
+<span class="n">document</span> <span class="o">=</span> <span class="s2">&quot;The car is fast and efficient.&quot;</span>
+
+<span class="c1"># Tokenize the document</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
+
+<span class="c1"># Pass the tokens through BERT</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+
+<span class="c1"># Extract the last hidden state</span>
+<span class="n">last_hidden_state</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">last_hidden_state</span>
+
+<span class="c1"># SPLADE Transformation: Apply the MLM head to project tokens into the vocabulary space</span>
+<span class="c1"># For simplicity, we use the hidden state directly as logits</span>
+<span class="n">logits</span> <span class="o">=</span> <span class="n">last_hidden_state</span>
+
+<span class="c1"># Transformation: Apply log(1 + ReLU(w)) to logits</span>
+<span class="n">transformed_logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">logits</span><span class="p">))</span>
+
+<span class="c1"># Pooling: Max Pooling over all tokens for each word in the vocabulary</span>
+<span class="n">pooled_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">transformed_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Sparsity: Apply L1 regularization to encourage sparsity</span>
+<span class="c1"># In practice, this would be part of the loss function during training</span>
+<span class="n">sparsity_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pooled_weights</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Display the resulting sparse vector</span>
+<span class="c1"># Note: In a real implementation, this vector would be used to create an inverted index</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sparse Vector Representation (Top 10 non-zero weights):&quot;</span><span class="p">)</span>
+<span class="n">non_zero_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">pooled_weights</span><span class="p">,</span> <span class="n">as_tuple</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">non_zero_weights</span> <span class="o">=</span> <span class="n">pooled_weights</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">non_zero_indices</span><span class="p">]</span>
+<span class="n">top_indices</span> <span class="o">=</span> <span class="n">non_zero_weights</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">indices</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">top_indices</span><span class="p">:</span>
+    <span class="n">token_id</span> <span class="o">=</span> <span class="n">non_zero_indices</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="n">token_weight</span> <span class="o">=</span> <span class="n">non_zero_weights</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">token_id</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Token: </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">, Weight: </span><span class="si">{</span><span class="n">token_weight</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Inference: Query Encoding</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;fast car&quot;</span>
+<span class="n">query_inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
+<span class="n">query_outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">query_inputs</span><span class="p">)</span>
+<span class="n">query_logits</span> <span class="o">=</span> <span class="n">query_outputs</span><span class="o">.</span><span class="n">last_hidden_state</span>
+<span class="n">query_transformed_logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">query_logits</span><span class="p">))</span>
+<span class="n">query_pooled_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">query_transformed_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Retrieval: Compute dot product between query and document sparse vectors</span>
+<span class="c1"># This is a simplified version of the retrieval process</span>
+<span class="n">retrieval_score</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pooled_weights</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">query_pooled_weights</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrieval Score: </span><span class="si">{</span><span class="n">retrieval_score</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Note: In a full implementation, the sparse vectors would be stored in an inverted index,</span>
+<span class="c1"># and retrieval would involve searching this index for top-K relevant documents.</span>
+<span class="err">```</span>
+
+<span class="c1">### Key Concepts Illustrated:</span>
+<span class="mf">1.</span> <span class="o">**</span><span class="n">Sparse</span> <span class="n">Vector</span> <span class="n">Representation</span><span class="o">**</span><span class="p">:</span> <span class="n">The</span> <span class="n">document</span> <span class="ow">is</span> <span class="n">transformed</span> <span class="n">into</span> <span class="n">a</span> <span class="n">sparse</span> <span class="n">vector</span> <span class="n">using</span> <span class="n">BERT</span><span class="s1">&#39;s MLM head, where each dimension corresponds to a vocabulary token.</span>
+<span class="mf">2.</span> <span class="o">**</span><span class="n">Transformation</span> <span class="ow">and</span> <span class="n">Pooling</span><span class="o">**</span><span class="p">:</span> <span class="n">Logarithmic</span> <span class="n">transformation</span> <span class="ow">and</span> <span class="nb">max</span> <span class="n">pooling</span> <span class="n">are</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">logits</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">the</span> <span class="n">final</span> <span class="n">sparse</span> <span class="n">vector</span><span class="o">.</span>
+<span class="mf">3.</span> <span class="o">**</span><span class="n">Sparsity</span><span class="o">**</span><span class="p">:</span> <span class="n">L1</span> <span class="n">regularization</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">encourage</span> <span class="n">sparsity</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">vector</span><span class="p">,</span> <span class="n">making</span> <span class="n">it</span> <span class="n">suitable</span> <span class="k">for</span> <span class="n">inverted</span> <span class="n">index</span> <span class="n">storage</span><span class="o">.</span>
+<span class="mf">4.</span> <span class="o">**</span><span class="n">Query</span> <span class="n">Encoding</span> <span class="ow">and</span> <span class="n">Retrieval</span><span class="o">**</span><span class="p">:</span> <span class="n">The</span> <span class="n">same</span> <span class="n">process</span> <span class="ow">is</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">the</span> <span class="n">query</span><span class="p">,</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">dot</span> <span class="n">product</span> <span class="ow">is</span> <span class="n">used</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">the</span> <span class="n">retrieval</span> <span class="n">score</span><span class="p">,</span> <span class="n">simulating</span> <span class="n">the</span> <span class="n">retrieval</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">an</span> <span class="n">inverted</span> <span class="n">index</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="n">example</span> <span class="n">provides</span> <span class="n">a</span> <span class="n">simplified</span> <span class="n">view</span> <span class="n">of</span> <span class="n">SPLADE</span><span class="s1">&#39;s core mechanisms, focusing on the transformation of text into sparse vectors and the retrieval process.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3_11",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3_11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="unicoil.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">uniCOIL (2021)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="rag.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">RAG (2020)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SPLADE (2021)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Описание</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Задача</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Мотивация</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Альтернативы</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Идея</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Архитектура</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Обучение</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Инференс</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Результаты</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">💻 Пример кода</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

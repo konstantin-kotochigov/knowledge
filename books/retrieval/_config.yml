@@ -1,0 +1,14 @@
+title: Информационный поиск
+author: Konstantin Kotochigov
+logo: logo.png
+execute:
+  execute_notebooks: off # Чтобы не пересчитывать код при каждой сборке
+html:
+  use_edit_page_button: true
+  use_repository_button: true
+  google_analytics_id: "UA-XXXXX" # Если нужна статистика
+  extra_css: custom.css
+repository:
+  url: https://github.com/kobstabtin-kotochigov/retrieval_book  # Ссылка на ваш будущий репозиторий
+  path_to_book: .                                    # Путь к книге внутри репозитория
+  branch: main                                         # Название главной ветки

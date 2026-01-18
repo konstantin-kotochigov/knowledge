@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contextual Clues Sampling (CCS, 2022) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/contextual_clues';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="S3 (2024)" href="s3.html" />
+    <link rel="prev" title="Doc2Query (2019)" href="doc2query.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/contextual_clues.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/contextual_clues.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contextual Clues Sampling (CCS, 2022)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Contextual Clues Sampling (CCS, 2022)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Контекст</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Проблема</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Идея метода</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Постановка задачи</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Существующие методы генерации негативных примеров</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Архитектура</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Алгоритм обучения (с фокусом на сэмплирование)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Алгоритм инференса</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Результаты</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">📝 Критический анализ</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Contextual Clues Sampling (CCS, 2022)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Контекст</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Проблема</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Идея метода</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Постановка задачи</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Архитектура</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Алгоритм обучения</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Алгоритм инференса</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Результаты</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">💻 Пример кода</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="contextual-clues-sampling-ccs-2022">
+<h1>Contextual Clues Sampling (CCS, 2022)<a class="headerlink" href="#contextual-clues-sampling-ccs-2022" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://arxiv.org/pdf/2210.07093">[paper]</a><br>CCS = Contextual Clues Sampling</p>
+<p>Contextual Clues Sampling (CCS) — это метод сэмплирования негативных примеров, предложенный исследователями из Университета Вашингтона и Microsoft Research в 2022 году. Он предназначен для улучшения обучения моделей Dense Retrieval путем генерации более сложных, контекстно-чувствительных негативных примеров для контрастивного обучения.</p>
+<section id="id1">
+<h2>Контекст<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Dense Retrieval модели, такие как DPR (2020), ANCE (2020), ColBERT (2020), использовали претренированных энкодерные модели, обучающиеся отличать  методом contrastive loss</p>
+<p>Ключевой аспект контрастивного обучения — это качество <strong>негативных примеров</strong>. Модель учится различать релевантные (позитивные) и нерелевантные (негативные) документы для данного запроса. Если негативные примеры слишком просты, модель легко их отличает, и обучение малоэффективно. Нам нужны “сложные” негативные примеры (<strong>hard negatives</strong>), которые семантически близки к позитивным, но при этом нерелевантны запросу. Обучение на таких примерах заставляет модель изучать более тонкие различия.</p>
+</section>
+<section id="id2">
+<h2>Проблема<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Существующие методы генерации hard negatives имеют свои ограничения:</p>
+<ul class="simple">
+<li><p><strong>In-batch negatives:</strong> Самый простой метод, когда все другие документы в текущем батче используются как негативные для каждого запроса. Легко реализовать, но качество негативов сильно зависит от состава батча и часто бывает недостаточным.</p></li>
+<li><p><strong>BM25 negatives:</strong> Документы, которые BM25 высоко ранжирует для данного запроса, но которые не являются релевантными. Эти негативы часто эффективны, но они основаны на лексическом совпадении и могут не охватывать семантически сложные случаи.</p></li>
+<li><p><strong>Approximate Nearest Neighbor (ANN) negatives:</strong> Поиск негативных примеров в пространстве эмбеддингов, которые близки к позитивному документу или запросу, но не являются релевантными. Требует поддержания ANN-индекса всего корпуса, что может быть вычислительно дорого.</p></li>
+<li><p><strong>Online hard negative mining (OHNM):</strong> Постоянный пересчет самых “сложных” негативов во время обучения. Эффективно, но очень дорого с точки зрения вычислений, так как требует постоянного прохода по большому корпусу.</p></li>
+</ul>
+<p>Основная проблема в том, что многие hard negatives, полученные лексическими или даже простыми семантическими методами, могут отличаться от позитивного документа только поверхностно. Модель должна научиться различать документы, которые не просто выглядят похоже, но и содержат <strong>общие контекстуальные ключи</strong>, но при этом приводят к разным ответам на запрос.</p>
+</section>
+<section id="id3">
+<h2>Идея метода<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Идея CCS заключается в том, чтобы генерировать hard negatives, которые разделяют <strong>контекстуальные ключи</strong> с позитивным документом, но при этом не являются релевантными запросу. Авторы предполагают, что если два документа разделяют общие контекстуальные элементы, но один из них является релевантным, а другой нет, то модель будет вынуждена учиться более тонким различиям для точной оценки релевантности.</p>
+<p>Вместо того чтобы искать негативы, которые похожи на запрос (как BM25) или просто похожи на позитивный документ в пространстве эмбеддингов, CCS фокусируется на поиске негативов, которые <strong>семантически связаны с <em>позитивным</em> документом</strong>, но не отвечают на <em>запрос</em>. Это делает их “контекстно-сложными” (contextually hard).</p>
+</section>
+<section id="id4">
+<h2>Постановка задачи<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Решается задача <strong>Dense Retrieval</strong>: для данного запроса <span class="math notranslate nohighlight">\(Q\)</span> необходимо найти <span class="math notranslate nohighlight">\(K\)</span> наиболее релевантных текстовых документов <span class="math notranslate nohighlight">\(D = \{d_1, d_2, \ldots, d_N\}\)</span> из большого корпуса. Модели обучаются посредством контрастивной функции потерь, где для пары <span class="math notranslate nohighlight">\((Q, d^+)\)</span> (запрос и релевантный документ) необходимо отличить <span class="math notranslate nohighlight">\(d^+\)</span> от множества нерелевантных документов <span class="math notranslate nohighlight">\(d^-\)</span>.</p>
+</section>
+<section id="id5">
+<h2>Существующие методы генерации негативных примеров<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>Как упомянуто выше, на момент появления CCS наиболее распространенными подходами были:</p>
+<ul class="simple">
+<li><p><strong>In-batch negatives:</strong> (часто используется в DPR (2020), ColBERT (2020)) — эффективны с точки зрения вычислений, но качество негативов непостоянно.</p></li>
+<li><p><strong>BM25 hard negatives:</strong> (используются в DPR (2020), ANCE (2020)) — показали хорошую эффективность, но ориентированы на лексическое совпадение.</p></li>
+<li><p><strong>ANCE (2020)</strong>: Асинхронное обновление индекса и майнинг hard negatives, близких к запросу в пространстве эмбеддингов, что требует значительных вычислительных ресурсов для поддержания актуального индекса.</p></li>
+<li><p><strong>Gold-BM25 negatives:</strong> Вариация BM25 hard negatives, где BM25 используется не только для ранжирования документов по запросу, но и для поиска документов, лексически похожих на <em>позитивный</em> документ. Это уже шаг в сторону “контекстуальных ключей”, но CCS развивает эту идею глубже.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>Архитектура<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>CCS не вводит новой архитектуры модели. Это <strong>методика обучения</strong>, которая может быть применена к любой существующей архитектуре Dense Retrieval, использующей два энкодера (two-tower architecture), например, к DPR-подобным моделям на основе BERT.</p>
+<p>Модель состоит из:</p>
+<ul class="simple">
+<li><p><strong>Query Encoder:</strong> Преобразует запрос в векторное представление (эмбеддинг).</p></li>
+<li><p><strong>Passage Encoder:</strong> Преобразует документ (пассаж) в векторное представление (эмбеддинг).</p></li>
+<li><p><strong>Similarity Function:</strong> Обычно скалярное произведение (dot-product) или косинусное сходство между эмбеддингами запроса и документа для вычисления оценки релевантности.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>Алгоритм обучения (с фокусом на сэмплирование)<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>Обучение Dense Retrieval модели с использованием CCS можно разбить на следующие шаги для каждой итерации:</p>
+<ol class="arabic simple">
+<li><p><strong>Выбор батча:</strong> Выбирается батч запросов <span class="math notranslate nohighlight">\(Q = \{q_1, \ldots, q_B\}\)</span> и соответствующих им позитивных документов <span class="math notranslate nohighlight">\(D^+ = \{d_1^+, \ldots, d_B^+\}\)</span>.</p></li>
+<li><p><strong>Генерация Contextual Clue Negatives (CCN):</strong></p>
+<ul class="simple">
+<li><p>Для каждого позитивного документа <span class="math notranslate nohighlight">\(d_i^+\)</span> в батче используется уже существующий (возможно, предварительно обученный) Dense Retrieval энкодер (или даже BM25), чтобы найти набор <span class="math notranslate nohighlight">\(K\)</span> документов из всего корпуса, которые <strong>наиболее похожи на <span class="math notranslate nohighlight">\(d_i^+\)</span></strong>. Эти документы формируют <strong>кандидатский набор контекстуальных ключей</strong>.</p></li>
+<li><p>Из этого кандидатского набора исключаются все документы, которые являются истинно релевантными для текущего запроса <span class="math notranslate nohighlight">\(q_i\)</span>.</p></li>
+<li><p>Оставшиеся документы являются <strong>Contextual Clue Negatives (CCNs)</strong>. Они семантически близки к позитивному документу <span class="math notranslate nohighlight">\(d_i^+\)</span>, но не релевантны запросу <span class="math notranslate nohighlight">\(q_i\)</span>, что делает их сложными для различения моделью.</p></li>
+</ul>
+</li>
+<li><p><strong>Добавление других негативов:</strong> К сгенерированным CCN могут быть добавлены другие типы негативов, например, in-batch negatives (все другие позитивные документы из текущего батча, которые не являются <span class="math notranslate nohighlight">\(d_i^+\)</span>) и/или BM25 hard negatives, для дальнейшего обогащения набора негативных примеров.</p></li>
+<li><p><strong>Кодирование:</strong> Query Encoder кодирует все запросы из батча, Passage Encoder кодирует позитивные документы и все собранные негативные примеры.</p></li>
+<li><p><strong>Вычисление функции потерь:</strong> Используется стандартная контрастивная функция потерь (например, Negative Log-Likelihood или Triplet Loss). Она максимизирует сходство между запросом и его позитивным документом, и минимизирует сходство между запросом и всеми негативными документами. Обучение на CCN заставляет модель учиться более тонким различиям, чтобы корректно ранжировать <span class="math notranslate nohighlight">\(d_i^+\)</span> выше <span class="math notranslate nohighlight">\(CCN\)</span>.</p></li>
+</ol>
+<p><strong>Ключевой момент:</strong> Генерация CCN может выполняться оффлайн перед началом обучения или периодически обновляться во время обучения (подобно ANCE, но сфокусировано на связи с позитивным документом). В исходной статье авторы предлагают использовать “teacher” Dense Retriever для генерации этих ключей.</p>
+</section>
+<section id="id8">
+<h2>Алгоритм инференса<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>Метод CCS никак не влияет на процесс инференса. После обучения модель Dense Retrieval работает стандартным образом:</p>
+<ol class="arabic simple">
+<li><p><strong>Кодирование запроса:</strong> Запрос <span class="math notranslate nohighlight">\(Q\)</span> кодируется Query Encoder’ом, чтобы получить эмбеддинг <span class="math notranslate nohighlight">\(E_Q\)</span>.</p></li>
+<li><p><strong>Кодирование корпуса:</strong> Все документы в корпусе предварительно кодируются Passage Encoder’ом, и их эмбеддинги <span class="math notranslate nohighlight">\(E_D = \{E_{d_1}, E_{d_2}, \ldots, E_{d_N}\}\)</span> сохраняются в индексе ANN (Approximate Nearest Neighbor), таком как Faiss, HNSW и т.д.</p></li>
+<li><p><strong>Поиск:</strong> Вычисляется сходство (например, скалярное произведение) между эмбеддингом запроса <span class="math notranslate nohighlight">\(E_Q\)</span> и всеми эмбеддингами документов <span class="math notranslate nohighlight">\(E_D\)</span> в индексе ANN.</p></li>
+<li><p><strong>Ранжирование:</strong> Возвращаются <span class="math notranslate nohighlight">\(K\)</span> документов с наивысшими оценками сходства.</p></li>
+</ol>
+</section>
+<section id="id9">
+<h2>Результаты<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>CCS был протестирован на стандартных датасетах для Dense Retrieval, таких как <strong>MS MARCO Passage Ranking</strong>.</p>
+<ul class="simple">
+<li><p>Модели, обученные с использованием CCS, <strong>превзошли</strong> базовые модели, использующие только in-batch negatives или BM25 hard negatives, по таким метрикам, как MRR&#64;10 (Mean Reciprocal Rank at 10) и Recall&#64;K.</p></li>
+<li><p>Например, на MS MARCO CCS показал <strong>улучшение до 1-2 процентных пункта MRR&#64;10</strong> по сравнению с сильными baseline-моделями, использующими продвинутые стратегии негативного сэмплирования. Это существенное улучшение в высококонкурентной области.</p></li>
+<li><p>CCS продемонстрировал, что генерируемые им контекстно-чувствительные негативы действительно заставляют модель изучать более надежное и дискриминативное пространство эмбеддингов, улучшая способность модели различать тонкие семантические различия между релевантными и нерелевантными документами.</p></li>
+<li><p>Преимущество CCS также заключается в его относительной простоте реализации по сравнению с более сложными схемами майнинга негативов, такими как ANCE, которые требуют постоянного обновления индекса.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>📝 Критический анализ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id11">
+<h1>Contextual Clues Sampling (CCS, 2022)<a class="headerlink" href="#id11" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/pdf/2203.07623">[paper]</a><br>CCS = Contextual Clues Sampling</p>
+<p>Contextual Clues Sampling (CCS) — метод сэмплирования негативных примеров, предложенный исследователями из Университета Вашингтона и Microsoft Research в 2022 году. Он улучшает обучение моделей Dense Retrieval, создавая более сложные, контекстно-чувствительные негативные примеры для контрастивного обучения.</p>
+<section id="id12">
+<h2>Контекст<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>Dense Retrieval модели, такие как DPR (2020), ANCE (2020), ColBERT (2020), превосходят традиционные Sparse Retrieval подходы благодаря мощным языковым моделям и контрастивной функции потерь. Качество негативных примеров критично: сложные негативы (hard negatives) помогают модели различать тонкие семантические различия.</p>
+</section>
+<section id="id13">
+<h2>Проблема<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>Существующие методы генерации hard negatives имеют ограничения:</p>
+<ul class="simple">
+<li><p><strong>In-batch negatives:</strong> Просты, но зависят от состава батча.</p></li>
+<li><p><strong>BM25 negatives:</strong> Эффективны, но основаны на лексическом совпадении.</p></li>
+<li><p><strong>ANN negatives:</strong> Дороги в вычислениях.</p></li>
+<li><p><strong>OHNM:</strong> Вычислительно затратны.</p></li>
+</ul>
+</section>
+<section id="id14">
+<h2>Идея метода<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p>CCS генерирует hard negatives, которые разделяют <strong>контекстуальные ключи</strong> с позитивным документом, но не релевантны запросу. Это заставляет модель учиться более тонким различиям.</p>
+</section>
+<section id="id15">
+<h2>Постановка задачи<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<p>Решается задача <strong>Dense Retrieval</strong>: для запроса <span class="math notranslate nohighlight">\(Q\)</span> найти <span class="math notranslate nohighlight">\(K\)</span> наиболее релевантных документов из корпуса. Модели обучаются с контрастивной функцией потерь, различая позитивные и негативные документы.</p>
+</section>
+<section id="id16">
+<h2>Архитектура<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<p>CCS — методика обучения, применимая к любой архитектуре Dense Retrieval с двумя энкодерами (two-tower architecture), например, DPR на основе BERT.</p>
+</section>
+<section id="id17">
+<h2>Алгоритм обучения<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Выбор батча:</strong> Выбирается батч запросов и позитивных документов.</p></li>
+<li><p><strong>Генерация CCN:</strong> Находятся документы, похожие на позитивный, но не релевантные запросу.</p></li>
+<li><p><strong>Добавление других негативов:</strong> Включаются in-batch и BM25 negatives.</p></li>
+<li><p><strong>Кодирование:</strong> Кодируются запросы и документы.</p></li>
+<li><p><strong>Вычисление функции потерь:</strong> Максимизируется сходство между запросом и позитивным документом, минимизируется с негативными.</p></li>
+</ol>
+</section>
+<section id="id18">
+<h2>Алгоритм инференса<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<p>CCS не влияет на инференс. Запрос кодируется, документы предварительно кодируются и сохраняются в индексе ANN. Вычисляется сходство, возвращаются <span class="math notranslate nohighlight">\(K\)</span> документов с наивысшими оценками.</p>
+</section>
+<section id="id19">
+<h2>Результаты<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
+<p>CCS протестирован на MS MARCO Passage Ranking:</p>
+<ul class="simple">
+<li><p>Улучшение MRR&#64;10 до 1-2 п.п. по сравнению с базовыми моделями.</p></li>
+<li><p>CCS улучшает способность модели различать тонкие семантические различия.</p></li>
+<li><p>Простота реализации по сравнению с ANCE.</p></li>
+</ul>
+</section>
+<section id="id20">
+<h2>💻 Пример кода<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics.pairwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BertTokenizer</span><span class="p">,</span> <span class="n">BertModel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Initialize BERT model and tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">encode_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Encodes text into BERT embeddings.&quot;&quot;&quot;</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">outputs</span><span class="o">.</span><span class="n">last_hidden_state</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="c1"># Example documents and queries</span>
+<span class="n">positive_doc</span> <span class="o">=</span> <span class="s2">&quot;The capital of France is Paris.&quot;</span>
+<span class="n">negative_doc_1</span> <span class="o">=</span> <span class="s2">&quot;Paris is a city in France known for its art and culture.&quot;</span>
+<span class="n">negative_doc_2</span> <span class="o">=</span> <span class="s2">&quot;The Eiffel Tower is a famous landmark in Paris.&quot;</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What is the capital of France?&quot;</span>
+
+<span class="c1"># Encode the query and documents</span>
+<span class="n">query_embedding</span> <span class="o">=</span> <span class="n">encode_text</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="n">positive_embedding</span> <span class="o">=</span> <span class="n">encode_text</span><span class="p">(</span><span class="n">positive_doc</span><span class="p">)</span>
+<span class="n">negative_embedding_1</span> <span class="o">=</span> <span class="n">encode_text</span><span class="p">(</span><span class="n">negative_doc_1</span><span class="p">)</span>
+<span class="n">negative_embedding_2</span> <span class="o">=</span> <span class="n">encode_text</span><span class="p">(</span><span class="n">negative_doc_2</span><span class="p">)</span>
+
+<span class="c1"># Calculate similarities</span>
+<span class="n">similarity_positive</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">positive_embedding</span><span class="p">)</span>
+<span class="n">similarity_negative_1</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">negative_embedding_1</span><span class="p">)</span>
+<span class="n">similarity_negative_2</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">negative_embedding_2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Similarity with positive document: </span><span class="si">{</span><span class="n">similarity_positive</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Similarity with negative document 1: </span><span class="si">{</span><span class="n">similarity_negative_1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Similarity with negative document 2: </span><span class="si">{</span><span class="n">similarity_negative_2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Contextual Clues Sampling (CCS) Example</span>
+<span class="c1"># Assume we have a pre-trained dense retrieval model to find contextually similar documents</span>
+<span class="c1"># Here we simulate this by using cosine similarity to find negatives similar to the positive doc</span>
+
+<span class="c1"># Simulate finding contextually similar negatives</span>
+<span class="n">contextual_negatives</span> <span class="o">=</span> <span class="p">[</span><span class="n">negative_doc_1</span><span class="p">,</span> <span class="n">negative_doc_2</span><span class="p">]</span>
+<span class="n">contextual_negatives_embeddings</span> <span class="o">=</span> <span class="p">[</span><span class="n">negative_embedding_1</span><span class="p">,</span> <span class="n">negative_embedding_2</span><span class="p">]</span>
+
+<span class="c1"># Calculate similarity between positive doc and potential negatives</span>
+<span class="n">similarities_to_positive</span> <span class="o">=</span> <span class="p">[</span><span class="n">cosine_similarity</span><span class="p">(</span><span class="n">positive_embedding</span><span class="p">,</span> <span class="n">neg_emb</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">neg_emb</span> <span class="ow">in</span> <span class="n">contextual_negatives_embeddings</span><span class="p">]</span>
+
+<span class="c1"># Select the most contextually similar negative</span>
+<span class="n">most_contextual_negative_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">similarities_to_positive</span><span class="p">)</span>
+<span class="n">most_contextual_negative</span> <span class="o">=</span> <span class="n">contextual_negatives</span><span class="p">[</span><span class="n">most_contextual_negative_index</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Most contextually similar negative: </span><span class="si">{</span><span class="n">most_contextual_negative</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># In a real CCS setup, this negative would be used in contrastive loss training</span>
+<span class="c1"># to improve the model&#39;s ability to distinguish between subtle contextual differences.</span>
+<span class="err">```</span>
+
+<span class="c1">### Explanation:</span>
+
+<span class="mf">1.</span> <span class="o">**</span><span class="n">BERT</span> <span class="n">Encoding</span><span class="o">**</span><span class="p">:</span> <span class="n">We</span> <span class="n">use</span> <span class="n">a</span> <span class="n">pre</span><span class="o">-</span><span class="n">trained</span> <span class="n">BERT</span> <span class="n">model</span> <span class="n">to</span> <span class="n">encode</span> <span class="n">text</span> <span class="n">into</span> <span class="n">embeddings</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">common</span> <span class="n">approach</span> <span class="ow">in</span> <span class="n">dense</span> <span class="n">retrieval</span> <span class="n">systems</span> <span class="n">to</span> <span class="n">represent</span> <span class="n">queries</span> <span class="ow">and</span> <span class="n">documents</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="o">**</span><span class="n">Similarity</span> <span class="n">Calculation</span><span class="o">**</span><span class="p">:</span> <span class="n">We</span> <span class="n">calculate</span> <span class="n">cosine</span> <span class="n">similarity</span> <span class="n">between</span> <span class="n">the</span> <span class="n">query</span> <span class="ow">and</span> <span class="n">each</span> <span class="n">document</span> <span class="n">to</span> <span class="n">simulate</span> <span class="n">the</span> <span class="n">retrieval</span> <span class="n">process</span><span class="o">.</span> <span class="n">The</span> <span class="n">goal</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">have</span> <span class="n">the</span> <span class="n">positive</span> <span class="n">document</span> <span class="p">(</span><span class="n">relevant</span> <span class="n">to</span> <span class="n">the</span> <span class="n">query</span><span class="p">)</span> <span class="n">have</span> <span class="n">a</span> <span class="n">higher</span> <span class="n">similarity</span> <span class="n">score</span> <span class="n">than</span> <span class="n">the</span> <span class="n">negatives</span><span class="o">.</span>
+
+<span class="mf">3.</span> <span class="o">**</span><span class="n">Contextual</span> <span class="n">Clues</span> <span class="n">Sampling</span> <span class="p">(</span><span class="n">CCS</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">We</span> <span class="n">simulate</span> <span class="n">the</span> <span class="n">CCS</span> <span class="n">process</span> <span class="n">by</span> <span class="n">finding</span> <span class="n">negatives</span> <span class="n">that</span> <span class="n">are</span> <span class="n">contextually</span> <span class="n">similar</span> <span class="n">to</span> <span class="n">the</span> <span class="n">positive</span> <span class="n">document</span><span class="o">.</span> <span class="n">In</span> <span class="n">practice</span><span class="p">,</span> <span class="n">a</span> <span class="n">pre</span><span class="o">-</span><span class="n">trained</span> <span class="n">dense</span> <span class="n">retrieval</span> <span class="n">model</span> <span class="n">would</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">find</span> <span class="n">these</span> <span class="n">negatives</span><span class="o">.</span>
+
+<span class="mf">4.</span> <span class="o">**</span><span class="n">Selection</span> <span class="n">of</span> <span class="n">Contextual</span> <span class="n">Negatives</span><span class="o">**</span><span class="p">:</span> <span class="n">We</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">similarity</span> <span class="n">between</span> <span class="n">the</span> <span class="n">positive</span> <span class="n">document</span> <span class="ow">and</span> <span class="n">potential</span> <span class="n">negatives</span><span class="p">,</span> <span class="n">selecting</span> <span class="n">the</span> <span class="n">one</span> <span class="n">most</span> <span class="n">similar</span> <span class="n">to</span> <span class="n">the</span> <span class="n">positive</span> <span class="n">document</span><span class="o">.</span> <span class="n">This</span> <span class="n">negative</span> <span class="ow">is</span> <span class="n">then</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">training</span> <span class="n">to</span> <span class="n">improve</span> <span class="n">the</span> <span class="n">model</span><span class="s1">&#39;s ability to distinguish subtle differences.</span>
+
+<span class="n">This</span> <span class="n">example</span> <span class="n">illustrates</span> <span class="n">the</span> <span class="n">core</span> <span class="n">idea</span> <span class="n">of</span> <span class="n">CCS</span><span class="p">:</span> <span class="n">generating</span> <span class="n">hard</span> <span class="n">negatives</span> <span class="n">that</span> <span class="n">share</span> <span class="n">contextual</span> <span class="n">clues</span> <span class="k">with</span> <span class="n">the</span> <span class="n">positive</span> <span class="n">document</span><span class="p">,</span> <span class="n">forcing</span> <span class="n">the</span> <span class="n">model</span> <span class="n">to</span> <span class="n">learn</span> <span class="n">finer</span> <span class="n">distinctions</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3_11",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3_11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="doc2query.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Doc2Query (2019)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="s3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">S3 (2024)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Contextual Clues Sampling (CCS, 2022)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Контекст</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Проблема</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Идея метода</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Постановка задачи</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Существующие методы генерации негативных примеров</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Архитектура</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Алгоритм обучения (с фокусом на сэмплирование)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Алгоритм инференса</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Результаты</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">📝 Критический анализ</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Contextual Clues Sampling (CCS, 2022)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Контекст</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Проблема</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Идея метода</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Постановка задачи</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Архитектура</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Алгоритм обучения</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Алгоритм инференса</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Результаты</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">💻 Пример кода</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

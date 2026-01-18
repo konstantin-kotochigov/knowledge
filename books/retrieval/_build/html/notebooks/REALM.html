@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>REALM (2020) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/REALM';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/REALM.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/REALM.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>REALM (2020)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">REALM (2020)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">REALM (2020)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Контекст</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Идея</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Постановка задачи</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Существующие альтернативы</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Архитектура</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Алгоритм обучения</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Алгоритм инференса</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Результаты</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">💻 Пример кода</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="realm-2020">
+<h1>REALM (2020)<a class="headerlink" href="#realm-2020" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/pdf/2004.04906">[paper]</a><br>
+REALM = Retrieval-Augmented Language Model</p>
+<p>REALM — это модель, предложенная исследователями из Google AI, которая представляет собой предобученную языковую модель (Language Model, LM), дополненную механизмом извлечения документов (Retrieval). Она разработана для улучшения фактической точности генерации текста за счет динамического обращения к обширной базе знаний.</p>
+<p><strong>Контекст</strong></p>
+<p>Большие языковые модели (LLM) демонстрируют впечатляющие способности к генерации связного и грамматически правильного текста. Однако они часто страдают от «галлюцинаций» (hallucinations), когда генерируют фактически неточные или выдуманные утверждения. Это происходит потому, что их знания ограничены данными, на которых они были обучены (parametric memory), и они не могут получать доступ к актуальной информации или обновлять свои знания без полного переобучения. Для задач, требующих точных и своевременных фактов, таких как ответы на вопросы с открытым доменом (Open-domain Question Answering), такая зависимость от внутренней, “замороженной” памяти становится серьезным ограничением.</p>
+<p><strong>Идея метода</strong></p>
+<p>Ключевая идея REALM заключается в том, чтобы преодолеть ограничения параметрической памяти LLM путем интеграции <em>внешнего, явно индексированного хранилища знаний</em> непосредственно в процесс инференса и обучения модели. Вместо того чтобы полагаться исключительно на знания, усвоенные во время предобучения, REALM учится динамически извлекать релевантные фрагменты текста из большого текстового корпуса (например, Wikipedia) и использовать их как контекст для генерации ответа. Это позволяет модели быть более фактической, прозрачной и способной адаптироваться к изменяющимся знаниям без необходимости полного переобучения.</p>
+<p><strong>Постановка задачи</strong></p>
+<p>REALM решает задачу <strong>генерации текста, основанной на фактах (fact-grounded text generation)</strong>, с особым акцентом на <strong>ответы на вопросы с открытым доменом (Open-domain Question Answering)</strong>. Цель состоит в том, чтобы, получив вопрос, модель могла генерировать точный и информативный ответ, который подтверждается информацией из обширной, неструктурированной базы знаний.</p>
+<p><strong>Существующие альтернативы</strong></p>
+<p>До появления REALM существовали различные подходы к работе с фактической информацией в языковых моделях:</p>
+<ul class="simple">
+<li><p><strong>Стандартные предобученные языковые модели (например, BERT (2018), GPT-2 (2019))</strong>: Эти модели обучаются на огромных текстовых корпусах, пытаясь закодировать все знания в свои параметры. Их архитектура не предусматривает доступа к внешним базам данных во время инференса. Как следствие, они склонны к галлюцинациям и не могут обрабатывать вопросы, требующие знаний, отсутствующих в их обученных параметрах или появившихся после обучения.</p></li>
+<li><p><strong>Двухэтапные системы Open-domain QA (например, DrQA (2017), DPR (2020))</strong>: Эти системы состоят из двух отдельных компонентов:</p>
+<ul>
+<li><p><strong>Retriever</strong>: Извлекает N наиболее релевантных документов/пассажей из базы знаний на основе запроса. Примеры включают Sparse Retrieval (BM25) или Dense Retrieval (как в DPR).</p></li>
+<li><p><strong>Reader</strong>: Принимает извлеченные документы и исходный запрос, а затем читает их, чтобы сгенерировать точный ответ. Обычно это Transformer-based модель (например, BERT).</p></li>
+<li><p><strong>Архитектурное отличие</strong>: В этих системах Retriever и Reader обучаются (или настраиваются) <strong>отдельно</strong>. Retriever обычно не является дифференцируемым относительно задачи Reader’а, что ограничивает их совместную оптимизацию. DPR, хотя и использует Dense Retrieval, все равно является двухфазным, где Retriever предобучен отдельно.</p></li>
+</ul>
+</li>
+<li><p><strong>Языковые модели, дополненные графами знаний (Knowledge Graph augmented LMs) (например, K-BERT (2020))</strong>: Эти модели пытаются инкорпорировать структурированные знания из графов знаний (Knowledge Graphs, KG) в процесс обучения или инференса.</p>
+<ul>
+<li><p><strong>Архитектурное отличие</strong>: Зависимость от ручного курирования и создания KG, а также от их статической природы. REALM использует необработанный текстовый корпус, что обеспечивает большую гибкость и актуальность.</p></li>
+</ul>
+</li>
+</ul>
+<p>REALM отличается тем, что <strong>интегрирует компонент извлечения (Retrieval) непосредственно в архитектуру языковой модели</strong> и делает его <strong>конечно-дифференцируемым (end-to-end differentiable)</strong>. Это позволяет Retriever’у обучаться совместно с генератором текста, оптимизируясь под общую цель – производство точных ответов.</p>
+<p><strong>Архитектура</strong></p>
+<p>Модель REALM состоит из трех основных компонентов:</p>
+<ol class="arabic simple">
+<li><p><strong>Knowledge Retriever (Извлекатель знаний)</strong>:</p>
+<ul class="simple">
+<li><p>Представляет собой Transformer-encoder модель (например, BERT-base), которая индексирует все документы из большой базы знаний (например, Wikipedia) в виде плотных эмбеддингов (dense embeddings).</p></li>
+<li><p>Каждый документ/пассаж <span class="math notranslate nohighlight">\(p_i\)</span> преобразуется в эмбеддинг <span class="math notranslate nohighlight">\(E_P(p_i)\)</span>. Эти эмбеддинги предварительно рассчитываются и хранятся в индексе ближайших соседей (например, FAISS).</p></li>
+<li><p>При получении запроса <span class="math notranslate nohighlight">\(q\)</span>, тот же Knowledge Retriever генерирует эмбеддинг запроса <span class="math notranslate nohighlight">\(E_Q(q)\)</span>.</p></li>
+<li><p>Релевантность документа <span class="math notranslate nohighlight">\(p_i\)</span> запросу <span class="math notranslate nohighlight">\(q\)</span> оценивается через скалярное произведение (dot product) их эмбеддингов: <span class="math notranslate nohighlight">\(score(q, p_i) = E_Q(q) \cdot E_P(p_i)\)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Knowledge-Augmented Encoder (Расширенный энкодер знаний)</strong>:</p>
+<ul class="simple">
+<li><p>Это еще одна Transformer-encoder модель (например, BERT-large), которая выступает в роли “читателя” (Reader).</p></li>
+<li><p>Она принимает на вход исходный запрос <span class="math notranslate nohighlight">\(q\)</span> и набор из <span class="math notranslate nohighlight">\(K\)</span> наиболее релевантных пассажей <span class="math notranslate nohighlight">\(\{p_1, \ldots, p_K\}\)</span>, извлеченных Knowledge Retriever’ом.</p></li>
+<li><p>Эти пассажи и запрос конкатенируются и подаются в модель, которая обрабатывает их совместно с помощью механизма Self-Attention.</p></li>
+<li><p>На выходе Knowledge-Augmented Encoder генерирует конечный ответ.</p></li>
+</ul>
+</li>
+<li><p><strong>Implicit Retrieval (Неявное извлечение)</strong>:</p>
+<ul class="simple">
+<li><p>Ключевая особенность REALM: процесс извлечения пассажей становится “неявным” в том смысле, что Retriever не является дискретным, недифференцируемым шагом. Вместо этого, он моделируется как <strong>вероятностное распределение</strong> над всеми пассажами в базе знаний.</p></li>
+<li><p>Для данного запроса <span class="math notranslate nohighlight">\(q\)</span>, вероятность извлечения пассажа <span class="math notranslate nohighlight">\(p_i\)</span> вычисляется как <span class="math notranslate nohighlight">\(P(p_i|q) \propto \exp(E_Q(q) \cdot E_P(p_i))\)</span>.</p></li>
+<li><p>Во время обучения, вместо того чтобы выбирать <em>только</em> top-K пассажей, модель может рассматривать вклад <em>всех</em> пассажей через это распределение. Однако на практике, для эффективности, используется приближение с выборкой (sampling) или отсечением по top-K пассажам. Это позволяет градиентам течь через процесс извлечения, оптимизируя Retriever вместе с Reader’ом.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Алгоритм обучения</strong></p>
+<p>Обучение REALM проходит в два этапа:</p>
+<ol class="arabic simple">
+<li><p><strong>Неконтролируемое предобучение (Unsupervised Pre-training) – “Masked Knowledge Model”</strong>:</p>
+<ul class="simple">
+<li><p><strong>Цель</strong>: Научить Retriever эффективно находить информацию, а Reader — использовать её для восстановления пропущенных частей текста.</p></li>
+<li><p><strong>Механизм</strong>: Задача аналогична Masked Language Modeling (MLM) в BERT, но с важным отличием.</p>
+<ul>
+<li><p>Из большого текстового корпуса (например, Wikipedia) выбираются документы.</p></li>
+<li><p>Из этих документов случайным образом маскируются токены (например, 15% токенов).</p></li>
+<li><p>Модель <em>не</em> предсказывает замаскированные токены напрямую из контекста самого документа. Вместо этого, <em>Knowledge Retriever</em> сначала пытается найти <span class="math notranslate nohighlight">\(K\)</span> наиболее релевантных пассажей из <strong>всей базы знаний</strong>, которые могли бы содержать информацию для предсказания замаскированных токенов.</p></li>
+<li><p>Затем <em>Knowledge-Augmented Encoder</em> получает исходный документ с маскированными токенами, а также извлеченные <span class="math notranslate nohighlight">\(K\)</span> пассажей. Его задача — предсказать замаскированные токены, используя как контекст исходный документ, так и <em>извлеченные знания</em>.</p></li>
+<li><p><strong>Loss Function</strong>: Оптимизируется сумма log-вероятностей правильного предсказания замаскированных токенов. Эта функция потерь является сквозной и дифференцируемой, что позволяет градиентам течь и к параметрам Knowledge Retriever’а, и к Knowledge-Augmented Encoder’а. Таким образом, Retriever учится извлекать <em>полезные</em> для предсказания пассажи, а Encoder — эффективно использовать их.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Контролируемая донастройка (Supervised Fine-tuning)</strong>:</p>
+<ul class="simple">
+<li><p>После предобучения модель донастраивается на конкретных downstream-задачах, таких как Open-domain Question Answering (например, Natural Questions, TriviaQA).</p></li>
+<li><p>На этом этапе модель получает пары (вопрос, ответ) и учится генерировать правильный ответ, используя тот же механизм извлечения знаний.</p></li>
+<li><p><strong>Loss Function</strong>: Обычно используется кросс-энтропийная функция потерь для предсказания токенов ответа.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Алгоритм инференса</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Индексация базы знаний</strong>: Все документы (пассажи) из базы знаний (например, Wikipedia) один раз пропускаются через обученный <strong>Knowledge Retriever (Passage Encoder)</strong> для получения их dense embeddings. Эти эмбеддинги сохраняются в высокопроизводительном индексе ближайших соседей (например, FAISS).</p></li>
+<li><p><strong>Получение запроса</strong>: Модель получает входящий вопрос <span class="math notranslate nohighlight">\(q\)</span>.</p></li>
+<li><p><strong>Извлечение кандидатов</strong>: Вопрос <span class="math notranslate nohighlight">\(q\)</span> пропускается через <strong>Knowledge Retriever (Query Encoder)</strong> для получения его эмбеддинга <span class="math notranslate nohighlight">\(E_Q(q)\)</span>. Затем этот эмбеддинг используется для поиска <span class="math notranslate nohighlight">\(K\)</span> наиболее релевантных пассажей <span class="math notranslate nohighlight">\(\{p_1, \ldots, p_K\}\)</span> в ранее созданном индексе ближайших соседей.</p></li>
+<li><p><strong>Генерация ответа</strong>: Извлеченные текстовые пассажи <span class="math notranslate nohighlight">\(\{p_1, \ldots, p_K\}\)</span> конкатенируются с исходным вопросом <span class="math notranslate nohighlight">\(q\)</span> и подаются в <strong>Knowledge-Augmented Encoder</strong>. Encoder обрабатывает эту объединенную последовательность и генерирует конечный ответ.</p></li>
+</ol>
+<p><strong>Результаты</strong></p>
+<p>REALM был оценен на нескольких широко используемых наборах данных для Open-domain Question Answering, включая Natural Questions и TriviaQA.</p>
+<ul class="simple">
+<li><p>На Natural Questions, REALM значительно превзошел предыдущие подходы, включая модели на базе BERT без retrieval, увеличив F1-score на 9.5 процентных пункта (с 36.6% до 46.1%) по сравнению с базовой моделью BERT-large.</p></li>
+<li><p>На TriviaQA, REALM также показал существенное улучшение, достигнув F1-score 49.3%, что является значительным приростом по сравнению с моделями, не использующими внешний retrieval.</p></li>
+<li><p>Эти результаты продемонстрировали, что <strong>интеграция дифференцируемого retrieval компонента и совместное его обучение с языковой моделью позволяет достичь гораздо более высокой фактической точности</strong> в задачах, требующих обширных и актуальных знаний.</p></li>
+</ul>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>REALM (2020)<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/pdf/2004.04906">[paper]</a><br>
+REALM = Retrieval-Augmented Language Model</p>
+<p>REALM — модель от Google AI, представляющая собой предобученную языковую модель с механизмом извлечения документов для повышения фактической точности текста через динамическое обращение к базе знаний.</p>
+<section id="id3">
+<h2>Контекст<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Большие языковые модели (LLM) часто генерируют фактически неточные утверждения из-за ограниченности знаний, усвоенных во время обучения. Для задач, требующих актуальных фактов, это является ограничением.</p>
+</section>
+<section id="id4">
+<h2>Идея<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>REALM интегрирует внешнее хранилище знаний в процесс инференса и обучения, извлекая релевантные фрагменты текста из большого корпуса (например, Wikipedia) для генерации более точных ответов.</p>
+</section>
+<section id="id5">
+<h2>Постановка задачи<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>REALM решает задачу <strong>fact-grounded text generation</strong>, с акцентом на <strong>Open-domain Question Answering</strong>, генерируя точные ответы, подтвержденные информацией из базы знаний.</p>
+</section>
+<section id="id6">
+<h2>Существующие альтернативы<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Стандартные LLM (BERT, GPT-2)</strong>: Не имеют доступа к внешним базам данных во время инференса.</p></li>
+<li><p><strong>Двухэтапные системы QA (DrQA, DPR)</strong>: Retriever и Reader обучаются отдельно, что ограничивает совместную оптимизацию.</p></li>
+<li><p><strong>Knowledge Graph augmented LMs (K-BERT)</strong>: Зависимость от статических графов знаний.</p></li>
+</ul>
+<p>REALM интегрирует retrieval в архитектуру модели и делает его <strong>end-to-end differentiable</strong>, позволяя совместное обучение Retriever и Reader.</p>
+</section>
+<section id="id7">
+<h2>Архитектура<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Knowledge Retriever</strong>: Transformer-encoder, индексирующий документы в виде dense embeddings и оценивающий их релевантность запросу через dot product.</p></li>
+<li><p><strong>Knowledge-Augmented Encoder</strong>: Transformer-encoder, обрабатывающий запрос и извлеченные пассажи для генерации ответа.</p></li>
+<li><p><strong>Implicit Retrieval</strong>: Процесс извлечения моделируется как вероятностное распределение, позволяя градиентам течь через процесс извлечения.</p></li>
+</ol>
+</section>
+<section id="id8">
+<h2>Алгоритм обучения<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Unsupervised Pre-training</strong>: Retriever извлекает релевантные пассажи для предсказания замаскированных токенов, оптимизируя совместно с Encoder.</p></li>
+<li><p><strong>Supervised Fine-tuning</strong>: Донастройка на задачах QA с использованием кросс-энтропийной функции потерь.</p></li>
+</ol>
+</section>
+<section id="id9">
+<h2>Алгоритм инференса<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Индексация</strong>: Документы индексируются через Knowledge Retriever.</p></li>
+<li><p><strong>Извлечение кандидатов</strong>: Извлекаются релевантные пассажи для запроса.</p></li>
+<li><p><strong>Генерация ответа</strong>: Извлеченные пассажи и запрос обрабатываются для генерации ответа.</p></li>
+</ol>
+</section>
+<section id="id10">
+<h2>Результаты<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>REALM превзошел предыдущие подходы на Natural Questions и TriviaQA, увеличив F1-score на 9.5 п.п. на Natural Questions и достигнув 49.3% на TriviaQA, демонстрируя улучшение фактической точности.</p>
+</section>
+<section id="id11">
+<h2>💻 Пример кода<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Пример иллюстрации основных концепций REALM с использованием Python и PyTorch.</span>
+<span class="c1"># Этот код демонстрирует, как можно реализовать основные компоненты REALM, такие как Knowledge Retriever и Knowledge-Augmented Encoder.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BertModel</span><span class="p">,</span> <span class="n">BertTokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">faiss</span><span class="w"> </span><span class="kn">import</span> <span class="n">IndexFlatL2</span>
+
+<span class="c1"># Установка устройства</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+
+<span class="c1"># Инициализация токенизатора и модели BERT</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">)</span>
+<span class="n">bert_model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Функция для получения эмбеддингов текста с использованием BERT</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_embeddings</span><span class="p">(</span><span class="n">texts</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">bert_model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">outputs</span><span class="o">.</span><span class="n">last_hidden_state</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Среднее по всем токенам</span>
+
+<span class="c1"># Пример базы знаний (в реальности это будет большой корпус, например, Wikipedia)</span>
+<span class="n">knowledge_base</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Python is a programming language.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The capital of France is Paris.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The Great Wall of China is visible from space.&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Индексация базы знаний</span>
+<span class="n">knowledge_embeddings</span> <span class="o">=</span> <span class="n">get_embeddings</span><span class="p">(</span><span class="n">knowledge_base</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">IndexFlatL2</span><span class="p">(</span><span class="n">knowledge_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">knowledge_embeddings</span><span class="p">)</span>
+
+<span class="c1"># Пример запроса</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What is the capital of France?&quot;</span>
+
+<span class="c1"># Получение эмбеддинга запроса</span>
+<span class="n">query_embedding</span> <span class="o">=</span> <span class="n">get_embeddings</span><span class="p">([</span><span class="n">query</span><span class="p">])</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="c1"># Извлечение наиболее релевантных документов</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Количество извлекаемых документов</span>
+<span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query_embedding</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="c1"># Печать извлеченных документов</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Query:&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Retrieved documents:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">knowledge_base</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+
+<span class="c1"># Knowledge-Augmented Encoder (Reader)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">KnowledgeAugmentedEncoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bert_model</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">KnowledgeAugmentedEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bert_model</span> <span class="o">=</span> <span class="n">bert_model</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">passages</span><span class="p">):</span>
+        <span class="c1"># Конкатенация запроса и извлеченных документов</span>
+        <span class="n">combined_texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">query</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">passage</span> <span class="k">for</span> <span class="n">passage</span> <span class="ow">in</span> <span class="n">passages</span><span class="p">]</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">combined_texts</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bert_model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">outputs</span><span class="o">.</span><span class="n">last_hidden_state</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Среднее по всем токенам</span>
+
+<span class="c1"># Инициализация Knowledge-Augmented Encoder</span>
+<span class="n">knowledge_augmented_encoder</span> <span class="o">=</span> <span class="n">KnowledgeAugmentedEncoder</span><span class="p">(</span><span class="n">bert_model</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Пример использования Knowledge-Augmented Encoder</span>
+<span class="n">retrieved_passages</span> <span class="o">=</span> <span class="p">[</span><span class="n">knowledge_base</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">output_embeddings</span> <span class="o">=</span> <span class="n">knowledge_augmented_encoder</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">retrieved_passages</span><span class="p">)</span>
+
+<span class="c1"># Печать результата</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output embeddings shape:&quot;</span><span class="p">,</span> <span class="n">output_embeddings</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="err">```</span>
+
+<span class="c1">### Комментарии к коду:</span>
+
+<span class="mf">1.</span> <span class="o">**</span><span class="n">Knowledge</span> <span class="n">Retriever</span><span class="o">**</span><span class="p">:</span> 
+   <span class="o">-</span> <span class="n">Используется</span> <span class="n">модель</span> <span class="n">BERT</span> <span class="n">для</span> <span class="n">получения</span> <span class="n">эмбеддингов</span> <span class="n">как</span> <span class="n">для</span> <span class="n">базы</span> <span class="n">знаний</span><span class="p">,</span> <span class="n">так</span> <span class="n">и</span> <span class="n">для</span> <span class="n">запроса</span><span class="o">.</span>
+   <span class="o">-</span> <span class="n">FAISS</span> <span class="n">используется</span> <span class="n">для</span> <span class="n">индексации</span> <span class="n">и</span> <span class="n">поиска</span> <span class="n">ближайших</span> <span class="n">соседей</span><span class="p">,</span> <span class="n">что</span> <span class="n">позволяет</span> <span class="n">эффективно</span> <span class="n">извлекать</span> <span class="n">релевантные</span> <span class="n">документы</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="o">**</span><span class="n">Knowledge</span><span class="o">-</span><span class="n">Augmented</span> <span class="n">Encoder</span><span class="o">**</span><span class="p">:</span>
+   <span class="o">-</span> <span class="n">Это</span> <span class="n">компонент</span><span class="p">,</span> <span class="n">который</span> <span class="n">принимает</span> <span class="n">на</span> <span class="n">вход</span> <span class="n">запрос</span> <span class="n">и</span> <span class="n">извлеченные</span> <span class="n">документы</span><span class="p">,</span> <span class="n">конкатенирует</span> <span class="n">их</span> <span class="n">и</span> <span class="n">обрабатывает</span> <span class="n">с</span> <span class="n">помощью</span> <span class="n">BERT</span><span class="o">.</span>
+   <span class="o">-</span> <span class="n">В</span> <span class="n">реальной</span> <span class="n">реализации</span><span class="p">,</span> <span class="n">этот</span> <span class="n">компонент</span> <span class="n">будет</span> <span class="n">обучаться</span> <span class="n">совместно</span> <span class="n">с</span> <span class="n">Knowledge</span> <span class="n">Retriever</span> <span class="n">для</span> <span class="n">оптимизации</span> <span class="n">извлечения</span> <span class="n">и</span> <span class="n">использования</span> <span class="n">знаний</span><span class="o">.</span>
+
+<span class="mf">3.</span> <span class="o">**</span><span class="n">Индексация</span> <span class="n">и</span> <span class="n">Извлечение</span><span class="o">**</span><span class="p">:</span>
+   <span class="o">-</span> <span class="n">База</span> <span class="n">знаний</span> <span class="n">индексируется</span> <span class="n">с</span> <span class="n">использованием</span> <span class="n">FAISS</span><span class="p">,</span> <span class="n">что</span> <span class="n">позволяет</span> <span class="n">быстро</span> <span class="n">находить</span> <span class="n">ближайшие</span> <span class="n">документы</span> <span class="n">по</span> <span class="n">эмбеддингам</span><span class="o">.</span>
+   <span class="o">-</span> <span class="n">Извлечение</span> <span class="n">релевантных</span> <span class="n">документов</span> <span class="n">происходит</span> <span class="n">через</span> <span class="n">поиск</span> <span class="n">ближайших</span> <span class="n">соседей</span> <span class="n">для</span> <span class="n">эмбеддинга</span> <span class="n">запроса</span><span class="o">.</span>
+
+<span class="n">Этот</span> <span class="n">пример</span> <span class="n">иллюстрирует</span> <span class="n">основные</span> <span class="n">архитектурные</span> <span class="n">особенности</span> <span class="n">REALM</span><span class="p">,</span> <span class="n">такие</span> <span class="n">как</span> <span class="n">интеграция</span> <span class="n">retrieval</span> <span class="n">компонента</span> <span class="n">и</span> <span class="n">его</span> <span class="n">совместное</span> <span class="n">использование</span> <span class="n">с</span> <span class="n">языковой</span> <span class="n">моделью</span> <span class="n">для</span> <span class="n">генерации</span> <span class="n">более</span> <span class="n">точных</span> <span class="n">и</span> <span class="n">обоснованных</span> <span class="n">ответов</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3_11",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3_11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">REALM (2020)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">REALM (2020)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Контекст</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Идея</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Постановка задачи</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Существующие альтернативы</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Архитектура</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Алгоритм обучения</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Алгоритм инференса</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Результаты</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">💻 Пример кода</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

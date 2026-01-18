@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GraphRAG (2024) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/graphrag';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LightRAG (2024)" href="lightrag.html" />
+    <link rel="prev" title="DeepRetrieval (2024)" href="deepretrieval.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/graphrag.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/graphrag.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>GraphRAG (2024)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">GraphRAG (2024)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">GraphRAG (2024)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Постановка задачи</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Мотивация</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Существующие подходы</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Идея</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Архитектура</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Алгоритм обучения</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Алгоритм инференса</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Результаты</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">💻 Пример кода</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="graphrag-2024">
+<h1>GraphRAG (2024)<a class="headerlink" href="#graphrag-2024" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://arxiv.org/pdf/2404.16130">[paper]</a><br>
+GraphRAG = Graph Retrieval-Augmented Generation</p>
+<p><strong>GraphRAG</strong> — это метод построения систем Retrieval-Augmented Generation, который объединяет извлечение знаний на основе графов (Knowledge Graph) и возможности LLM для решения задач глобального обобщения больших текстовых корпусов.</p>
+<p><strong>Постановка задачи</strong><br>
+Дана большая коллекция неструктурированных текстовых документов <span class="math notranslate nohighlight">\(D\)</span>. Необходимо ответить на запрос пользователя <span class="math notranslate nohighlight">\(Q\)</span>, который может носить как локальный характер (конкретный факт), так и глобальный характер (агрегация тем по всему корпусу, например: “Какие основные этические проблемы поднимаются в этих документах?”).</p>
+<p><strong>Мотивация</strong><br>
+Классический RAG (2020), основанный на Vector Search и Dense Retrieval, отлично справляется с поиском конкретных фрагментов текста, которые семантически близки к запросу (Local Search). Однако он принципиально не способен решать задачи Global Machine Reading. Если запрос требует понимания всего датасета целиком, стандартный RAG не может эффективно собрать информацию из тысяч разрозненных чанков, так как векторный поиск находит только “соседей”, но не видит общую структуру и взаимосвязи между далекими частями текста.</p>
+<p><strong>Существующие подходы</strong><br>
+На момент выхода работы основными альтернативами были:</p>
+<ul class="simple">
+<li><p>Baseline RAG (2020): стандартный подход с использованием векторной базы данных и Top-K retrieval. Проблема: игнорирует структурные связи и не дает глобального контекста.</p></li>
+<li><p>Long-context LLM: попытка запихнуть весь корпус документов в контекстное окно современных моделей (типа Gemini 1.5 Pro). Проблема: ограничение по объему (context window всё еще конечно), экспоненциальный рост стоимости и деградация качества (Lost in the Middle).</p></li>
+<li><p>Multi-vector RAG: использование иерархических индексов или суммаризаций чанков. Проблема: слабая поддержка многошаговых связей между сущностями.</p></li>
+</ul>
+<p><strong>Идея</strong><br>
+Вместо того чтобы просто разбивать текст на куски и индексировать их векторами, давайте построим из текста Knowledge Graph, выделим в нем тематические сообщества (Community Detection) и заранее создадим суммаризации (Reports) для каждого такого сообщества. При поиске мы будем обращаться не к исходным текстам, а к этой иерархии отчетов.</p>
+<p><strong>Архитектура</strong><br>
+Система состоит из двух больших блоков: Pipeline индексации и Engine выполнения запросов.</p>
+<ol class="arabic simple">
+<li><p>Text Units: исходный текст делится на крупные чанки.</p></li>
+<li><p>Graph Extraction: LLM проходит по чанкам и извлекает сущности (Entities), их типы и отношения (Relationships).</p></li>
+<li><p>Graph Enrichment: на основе извлеченных данных строится граф, где узлы — сущности, а ребра — связи.</p></li>
+<li><p>Community Detection: граф разбивается на иерархические кластеры (сообщества) с помощью алгоритма Leiden. Этот алгоритм группирует узлы, которые сильно связаны друг с другом.</p></li>
+<li><p>Community Summarization: для каждого обнаруженного сообщества LLM генерирует подробный отчет (Community Report), резюмирующий всю информацию о входящих в него сущностях и связях.</p></li>
+</ol>
+<p><strong>Алгоритм обучения</strong><br>
+В GraphRAG нет этапа обучения весов нейросети в классическом понимании (Fine-tuning). Обучение заменяется этапом сложной структурированной индексации (Indexing Pipeline):</p>
+<ol class="arabic simple">
+<li><p>Экстракция: LLM получает промпт на извлечение триплетов (субъект-предикат-объект) из текста.</p></li>
+<li><p>Разрешение сущностей (Entity Resolution): устранение дубликатов, когда разные текстовые упоминания относятся к одной сущности.</p></li>
+<li><p>Генерация отчетов: для каждого уровня иерархии сообществ (от мелких групп до гигантских кластеров) генерируется Summary. Это позволяет подготовить ответы на вопросы разного уровня абстракции.</p></li>
+</ol>
+<p><strong>Алгоритм инференса</strong><br>
+GraphRAG поддерживает два режима работы в зависимости от типа запроса:</p>
+<ol class="arabic simple">
+<li><p>Global Search: используется для вопросов об общей картине.</p>
+<ul class="simple">
+<li><p>Запрос рассылается по всем отчетам сообществ определенного уровня иерархии.</p></li>
+<li><p>LLM оценивает релевантность каждого отчета и генерирует промежуточные ответы.</p></li>
+<li><p>Финальная LLM агрегирует эти ответы в один структурированный результат.</p></li>
+</ul>
+</li>
+<li><p>Local Search: используется для вопросов о конкретных деталях.</p>
+<ul class="simple">
+<li><p>Выполняется поиск сущностей, связанных с запросом.</p></li>
+<li><p>Из графа извлекаются соседние узлы, связи и связанные с ними текстовые чанки.</p></li>
+<li><p>Весь этот граф-контекст подается в LLM для генерации ответа.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Результаты</strong><br>
+Авторы сравнивали GraphRAG с Baseline RAG на наборах данных (например, Podcast transcripts, News articles) по двум метрикам: Comprehensiveness (полнота покрытия аспектов вопроса) и Faithfulness (отсутствие галлюцинаций).</p>
+<ul class="simple">
+<li><p>На глобальных запросах GraphRAG превзошел Baseline RAG в 80% случаев по метрике Comprehensiveness.</p></li>
+<li><p>За счет использования Community Reports модель смогла извлекать информацию, которая была разнесена по разным документам и не имела общих ключевых слов, что невозможно для стандартного Dense Retrieval.</p></li>
+<li><p>Эффективность системы напрямую коррелирует с уровнем иерархии сообществ: использование среднего уровня иерархии дает оптимальный баланс между детализацией и стоимостью токенов.</p></li>
+</ul>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>GraphRAG (2024)<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/pdf/2404.16130">[paper]</a><br>
+GraphRAG = Graph Retrieval-Augmented Generation</p>
+<p><strong>GraphRAG</strong> — метод для Retrieval-Augmented Generation, объединяющий Knowledge Graph и LLM для глобального обобщения текстов.</p>
+<section id="id3">
+<h2>Постановка задачи<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Дана коллекция текстов <span class="math notranslate nohighlight">\(D\)</span>. Нужно ответить на запрос <span class="math notranslate nohighlight">\(Q\)</span>, который может быть локальным (факт) или глобальным (агрегация тем).</p>
+</section>
+<section id="id4">
+<h2>Мотивация<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Классический RAG (2020) хорошо ищет локальные фрагменты, но не справляется с глобальным чтением. Он не видит общую структуру и связи в тексте.</p>
+</section>
+<section id="id5">
+<h2>Существующие подходы<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Baseline RAG (2020):</strong> использует векторную базу и Top-K retrieval, игнорируя структурные связи.</p></li>
+<li><p><strong>Long-context LLM:</strong> ограничен объемом контекстного окна, что ведет к деградации качества.</p></li>
+<li><p><strong>Multi-vector RAG:</strong> слабая поддержка многошаговых связей.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>Идея<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>Создание Knowledge Graph из текста, выделение тематических сообществ и создание суммаризаций (Reports) для них. Поиск осуществляется через эту иерархию отчетов.</p>
+</section>
+<section id="id7">
+<h2>Архитектура<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>Система состоит из Pipeline индексации и Engine выполнения запросов.</p>
+<ol class="arabic simple">
+<li><p><strong>Text Units:</strong> текст делится на чанки.</p></li>
+<li><p><strong>Graph Extraction:</strong> LLM извлекает сущности и отношения.</p></li>
+<li><p><strong>Graph Enrichment:</strong> строится граф с узлами и связями.</p></li>
+<li><p><strong>Community Detection:</strong> граф разбивается на кластеры с помощью алгоритма Leiden.</p></li>
+<li><p><strong>Community Summarization:</strong> для каждого сообщества генерируется отчет.</p></li>
+</ol>
+<img src="img/img.png" width=500>
+</section>
+<section id="id8">
+<h2>Алгоритм обучения<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>Вместо обучения весов используется сложная индексация:</p>
+<ol class="arabic simple">
+<li><p><strong>Экстракция:</strong> LLM извлекает триплеты из текста.</p></li>
+<li><p><strong>Entity Resolution:</strong> устранение дубликатов сущностей.</p></li>
+<li><p><strong>Генерация отчетов:</strong> создание Summary для каждого уровня иерархии.</p></li>
+</ol>
+</section>
+<section id="id9">
+<h2>Алгоритм инференса<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>GraphRAG поддерживает два режима:</p>
+<ol class="arabic simple">
+<li><p><strong>Global Search:</strong> для вопросов об общей картине.</p>
+<ul class="simple">
+<li><p>Запрос обрабатывается через отчеты сообществ.</p></li>
+<li><p>LLM агрегирует промежуточные ответы.</p></li>
+</ul>
+</li>
+<li><p><strong>Local Search:</strong> для конкретных деталей.</p>
+<ul class="simple">
+<li><p>Поиск сущностей и извлечение соседних узлов.</p></li>
+<li><p>Граф-контекст подается в LLM для ответа.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id10">
+<h2>Результаты<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>GraphRAG превосходит Baseline RAG на глобальных запросах в 80% случаев по Comprehensiveness. Использование Community Reports позволяет извлекать информацию из разных документов без общих ключевых слов. Эффективность системы зависит от уровня иерархии сообществ, где средний уровень обеспечивает оптимальный баланс детализации и стоимости.</p>
+</section>
+<section id="id11">
+<h2>💻 Пример кода<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Импорт необходимых библиотек
+from collections import defaultdict
+import networkx as nx
+from networkx.algorithms import community
+from transformers import pipeline
+
+# Шаг 1: Разделение текста на крупные чанки
+documents = [
+    &quot;Document 1 text about AI and ethics.&quot;,
+    &quot;Document 2 text about machine learning and privacy.&quot;,
+    &quot;Document 3 text about AI, ethics, and privacy.&quot;
+]
+
+# Шаг 2: Извлечение сущностей и отношений с помощью LLM
+# Используем pre-trained модель для извлечения триплетов (субъект-предикат-объект)
+triplet_extraction = pipeline(&quot;text2text-generation&quot;, model=&quot;t5-small&quot;)
+
+def extract_triplets(text):
+    prompt = f&quot;Extract triplets from: {text}&quot;
+    result = triplet_extraction(prompt, max_length=50, num_return_sequences=1)
+    return result[0][&#39;generated_text&#39;]
+
+triplets = [extract_triplets(doc) for doc in documents]
+
+# Шаг 3: Построение графа знаний
+G = nx.Graph()
+
+for triplet in triplets:
+    # Пример триплета: &quot;AI - related to - ethics&quot;
+    entities = triplet.split(&quot;, &quot;)
+    for entity in entities:
+        subject, predicate, obj = entity.split(&quot; - &quot;)
+        G.add_node(subject)
+        G.add_node(obj)
+        G.add_edge(subject, obj, relation=predicate)
+
+# Шаг 4: Обнаружение сообществ с помощью алгоритма Leiden
+# Для простоты используем алгоритм Girvan-Newman, который доступен в NetworkX
+communities_generator = community.girvan_newman(G)
+top_level_communities = next(communities_generator)
+communities = sorted(map(sorted, top_level_communities))
+
+# Шаг 5: Генерация отчетов для каждого сообщества
+# Используем LLM для генерации суммаризации
+summarization = pipeline(&quot;summarization&quot;, model=&quot;facebook/bart-large-cnn&quot;)
+
+def generate_community_report(community):
+    text = &quot; &quot;.join(community)
+    summary = summarization(text, max_length=50, min_length=25, do_sample=False)
+    return summary[0][&#39;summary_text&#39;]
+
+community_reports = {i: generate_community_report(community) for i, community in enumerate(communities)}
+
+# Шаг 6: Обработка запросов
+def global_search(query):
+    # Рассылаем запрос по всем отчетам сообществ
+    relevant_reports = []
+    for report in community_reports.values():
+        if query.lower() in report.lower():
+            relevant_reports.append(report)
+    # Агрегируем ответы
+    return &quot; &quot;.join(relevant_reports)
+
+def local_search(query):
+    # Поиск сущностей, связанных с запросом
+    related_nodes = [node for node in G.nodes if query.lower() in node.lower()]
+    # Извлечение соседних узлов и связей
+    context = []
+    for node in related_nodes:
+        neighbors = list(G.neighbors(node))
+        context.append((node, neighbors))
+    return context
+
+# Пример использования
+query_global = &quot;ethics&quot;
+query_local = &quot;AI&quot;
+
+global_result = global_search(query_global)
+local_result = local_search(query_local)
+
+print(&quot;Global Search Result:&quot;, global_result)
+print(&quot;Local Search Result:&quot;, local_result)
+```
+
+### Комментарии к коду:
+
+1. **Разделение текста на чанки**: Мы начинаем с простого разделения текстов на крупные чанки. В реальной системе это может быть более сложный процесс, учитывающий семантические границы.
+
+2. **Извлечение триплетов**: Используем LLM для извлечения триплетов (субъект-предикат-объект) из текста. Это позволяет нам построить граф знаний.
+
+3. **Построение графа знаний**: На основе извлеченных триплетов строим граф, где узлы — это сущности, а ребра — отношения между ними.
+
+4. **Обнаружение сообществ**: Используем алгоритм обнаружения сообществ для кластеризации графа. В реальной системе можно использовать более сложные алгоритмы, такие как Leiden.
+
+5. **Генерация отчетов**: Для каждого сообщества генерируем суммаризацию с помощью LLM. Это позволяет нам подготовить ответы на запросы разного уровня абстракции.
+
+6. **Обработка запросов**: Реализуем два режима поиска — глобальный и локальный. Глобальный поиск агрегирует информацию из отчетов сообществ, а локальный — извлекает конкретные детали из графа.
+
+Этот код иллюстрирует основные концепции GraphRAG, такие как использование графов знаний и генерация отчетов для сообществ, что позволяет эффективно обрабатывать как локальные, так и глобальные запросы.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: ""
+        },
+        kernelOptions: {
+            name: "",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = ''</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="deepretrieval.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DeepRetrieval (2024)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lightrag.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">LightRAG (2024)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">GraphRAG (2024)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">GraphRAG (2024)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Постановка задачи</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Мотивация</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Существующие подходы</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Идея</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Архитектура</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Алгоритм обучения</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Алгоритм инференса</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Результаты</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">💻 Пример кода</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

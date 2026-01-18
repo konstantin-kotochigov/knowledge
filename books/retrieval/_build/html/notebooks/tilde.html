@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TILDE (2021) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/tilde';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/tilde.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/tilde.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TILDE (2021)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tilde-2021">
+<h1>TILDE (2021)<a class="headerlink" href="#tilde-2021" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/abs/2108.13111">[paper]</a><br>
+TILDE = Term Independent Likelihood moDEl</p>
+<p><strong>TILDE</strong> — это метод Learned Sparse Retrieval для первого этапа поиска (First Stage Retrieval). Он использует BERT для предсказания вероятности появления каждого слова из всего словаря (vocabulary) в потенциальном запросе к данному документу. Это позволяет строить очень эффективные разреженные индексы, которые работают со скоростью классического BM25, но обладают семантическим пониманием уровня трансформерных моделей.</p>
+<p><strong>Постановка задачи</strong><br>
+Дана коллекция документов <span class="math notranslate nohighlight">\(D\)</span>. По входящему текстовому запросу <span class="math notranslate nohighlight">\(Q\)</span> необходимо максимально быстро вернуть топ-K наиболее релевантных документов. Основное ограничение — поиск должен быть масштабируемым на миллионы документов, что обычно подразумевает использование инвертированного индекса.</p>
+<p><strong>Мотивация</strong><br>
+Существующие на тот момент модели либо были очень медленными (Cross-Encoders), либо требовали сложной инфраструктуры для векторного поиска (Dense Retrieval), либо страдали от проблемы Vocabulary Mismatch (BM25). Авторы хотели создать модель, которая делает расширение документа (Document Expansion) так же качественно, как нейросети, но без необходимости генерации текста (как в Doc2query) и с сохранением структуры инвертированного индекса.</p>
+<p><strong>Существующие подходы</strong><br>
+На момент появления TILDE (2021) основными альтернативами были:</p>
+<ul class="simple">
+<li><p>BM25 (1990-е): использует точное совпадение слов. Быстро, но не понимает синонимы.</p></li>
+<li><p>Doc2query (2019): использует T5 для генерации новых слов/вопросов к документу. Главный минус — очень медленная индексация из-за авторегрессионной генерации (нужно генерировать по 40-80 токенов на каждый пассаж).</p></li>
+<li><p>DeepCT (2019): перевзвешивает только те слова, которые уже есть в документе. Не решает проблему отсутствия нужных слов (Vocabulary Mismatch).</p></li>
+<li><p>SPLADE (2021): использует MLM head и разреженную регуляризацию. Очень эффективно, но архитектурно сложнее и на тот момент требовало тщательного подбора коэффициентов регуляризации для контроля разреженности.</p></li>
+</ul>
+<p><strong>Идея</strong><br>
+Основная идея TILDE заключается в предположении о независимости термов (Term Independence). Вместо того чтобы моделировать вероятность запроса целиком, модель предсказывает вероятность появления каждого слова из словаря <span class="math notranslate nohighlight">\(V\)</span> в запросе <span class="math notranslate nohighlight">\(Q\)</span> при условии документа <span class="math notranslate nohighlight">\(D\)</span> независимо друг от друга. Это превращает задачу Document Expansion в задачу многоклассовой классификации (или регрессии) над всем словарем токенов BERT.</p>
+<p><strong>Архитектура</strong><br>
+TILDE базируется на архитектуре BERT (обычно <code class="docutils literal notranslate"><span class="pre">distilbert-base-uncased</span></code> для скорости):</p>
+<ol class="arabic simple">
+<li><p>Input: Текст документа, дополненный специальным токеном <code class="docutils literal notranslate"><span class="pre">[CLS]</span></code>.</p></li>
+<li><p>Encoder: BERT обрабатывает документ и возвращает контекстуализированные векторы.</p></li>
+<li><p>Projection Head: Используется вектор <code class="docutils literal notranslate"><span class="pre">[CLS]</span></code>-токена с последнего слоя. Он проходит через полносвязный слой, который проецирует его в пространство размерности <span class="math notranslate nohighlight">\(|V|\)</span> (размер словаря BERT, около 30 522 токенов).</p></li>
+<li><p>Output: Вектор логитов <span class="math notranslate nohighlight">\(L\)</span>, где каждый элемент <span class="math notranslate nohighlight">\(L_i\)</span> соответствует вероятности того, что i-й токен из словаря будет присутствовать в релевантном запросе.</p></li>
+</ol>
+<p><strong>Алгоритм обучения</strong><br>
+Модель обучается на парах (запрос, документ) из датасета MS MARCO:</p>
+<ol class="arabic simple">
+<li><p>Для каждого документа в обучающей выборке мы знаем “золотой” запрос.</p></li>
+<li><p>Модель предсказывает веса для всех 30k токенов словаря.</p></li>
+<li><p>Loss function: Используется Binary Cross Entropy (BCE). Для слов, которые реально присутствуют в запросе, целевое значение — 1, для остальных — 0.</p></li>
+<li><p>В отличие от стандартного языкового моделирования, здесь нет маскирования. Модель учится по всему документу предсказывать именно слова запроса.</p></li>
+</ol>
+<p><strong>Алгоритм инференса</strong><br>
+Процесс разделен на offline индексацию и online поиск:</p>
+<ol class="arabic simple">
+<li><p>Offline Indexing:</p>
+<ul class="simple">
+<li><p>Каждый документ пропускается через TILDE.</p></li>
+<li><p>Из выходного вектора выбираются топ-K токенов с наибольшими весами (например, топ-200 слов).</p></li>
+<li><p>Эти веса квантуются (превращаются в целые числа) для экономии места.</p></li>
+<li><p>В инвертированный индекс записываются эти выбранные токены с их новыми весами. Это по сути “обогащенный” документ.</p></li>
+</ul>
+</li>
+<li><p>Online Retrieval:</p>
+<ul class="simple">
+<li><p>Запрос не пропускается через нейросеть (это называется Query-Free Inference в контексте TILDE).</p></li>
+<li><p>Мы просто берем токены запроса и ищем их в нашем инвертированном индексе, суммируя веса, предсказанные моделью на этапе индексации.</p></li>
+<li><p>Это дает колоссальный прирост скорости, так как на этапе поиска нет вообще никакой работы GPU.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Результаты</strong><br>
+Сравнение проводилось на MS MARCO Passage Ranking:</p>
+<ul class="simple">
+<li><p>Эффективность: TILDE достигает MRR&#64;10 около 0.33-0.34, что на 15-18пп выше, чем у классического BM25 (0.18).</p></li>
+<li><p>Скорость: TILDE выполняет запрос за 10-20 мс на CPU, что идентично скорости BM25, в то время как Cross-Encoders требуют сотни миллисекунд и GPU.</p></li>
+<li><p>Скорость индексации: TILDE в 10-50 раз быстрее, чем Doc2query, так как делает один прямой проход (forward pass) вместо долгой генерации текста.</p></li>
+<li><p>В расширенной версии (TILDEv2) авторы добавили обработку запроса (Query Encoder), что позволило еще больше сократить разрыв с Dense Retrieval моделями, сохранив при этом разреженную структуру индекса.</p></li>
+</ul>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># TILDE (2021)</span>
+---
+[[paper]](https://arxiv.org/abs/2108.13111)&lt;br&gt;
+TILDE = Term Independent Likelihood moDEl
+
+<span class="gs">**TILDE**</span> — метод Learned Sparse Retrieval для первого этапа поиска. Использует BERT для предсказания вероятности появления каждого слова из словаря в запросе к документу, создавая разреженные индексы с семантическим пониманием уровня трансформеров.
+
+<span class="gs">__Постановка задачи__</span>&lt;br&gt;
+По запросу $Q$ вернуть топ-K релевантных документов из коллекции $D$. Поиск должен быть масштабируемым на миллионы документов, используя инвертированный индекс.
+
+<span class="gs">__Мотивация__</span>&lt;br&gt;
+Существующие модели были либо медленными, либо требовали сложной инфраструктуры, либо страдали от Vocabulary Mismatch. TILDE стремится к качественному Document Expansion без генерации текста и с сохранением структуры инвертированного индекса.
+
+<span class="gs">__Существующие подходы__</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span>BM25: быстро, но не понимает синонимы.
+<span class="k">-</span><span class="w"> </span>Doc2query: медленная индексация из-за генерации.
+<span class="k">-</span><span class="w"> </span>DeepCT: не решает Vocabulary Mismatch.
+<span class="k">-</span><span class="w"> </span>SPLADE: эффективно, но сложнее в настройке.
+
+<span class="gs">__Идея__</span>&lt;br&gt;
+Предполагается независимость термов. Модель предсказывает вероятность каждого слова из словаря $V$ в запросе $Q$ при условии документа $D$, превращая Document Expansion в многоклассовую классификацию.
+
+<span class="gs">__Архитектура__</span>&lt;br&gt;
+&lt;img src=&quot;img/img.png&quot; width=500&gt;
+<span class="k">1.</span> Input: Документ с токеном <span class="sb">`[CLS]`</span>.
+<span class="k">2.</span> Encoder: BERT возвращает контекстуализированные векторы.
+<span class="k">3.</span> Projection Head: Вектор <span class="sb">`[CLS]`</span> проецируется в пространство размерности $|V|$.
+<span class="k">4.</span> Output: Вектор логитов $L$, где $L_i$ — вероятность i-го токена в запросе.
+
+<span class="gs">__Алгоритм обучения__</span>&lt;br&gt;
+Обучение на парах (запрос, документ) из MS MARCO:
+<span class="k">1.</span> Предсказание весов для всех токенов словаря.
+<span class="k">2.</span> Loss: Binary Cross Entropy. Целевое значение — 1 для присутствующих в запросе слов, 0 — для остальных.
+
+<span class="gs">__Алгоритм инференса__</span>&lt;br&gt;
+<span class="k">1.</span> Offline Indexing:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Пропуск документа через TILDE.
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Выбор топ-K токенов с наибольшими весами.
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Квантуются веса и записываются в инвертированный индекс.
+
+<span class="k">2.</span> Online Retrieval:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Запрос не проходит через нейросеть.
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Поиск токенов запроса в индексе, суммирование весов.
+
+<span class="gs">__Результаты__</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span>Эффективность: MRR@10 около 0.33-0.34, на 15-18пп выше BM25.
+<span class="k">-</span><span class="w"> </span>Скорость: Запрос за 10-20 мс на CPU, аналогично BM25.
+<span class="k">-</span><span class="w"> </span>Индексация: В 10-50 раз быстрее Doc2query.
+<span class="k">-</span><span class="w"> </span>TILDEv2 добавляет Query Encoder, сокращая разрыв с Dense Retrieval моделями.
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>💻 Пример кода<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import torch
+from transformers import DistilBertTokenizer, DistilBertModel
+import torch.nn as nn
+import torch.nn.functional as F
+
+# Определяем модель TILDE
+class TILDE(nn.Module):
+    def __init__(self, vocab_size):
+        super(TILDE, self).__init__()
+        # Используем DistilBERT в качестве энкодера
+        self.encoder = DistilBertModel.from_pretrained(&#39;distilbert-base-uncased&#39;)
+        # Полносвязный слой для проекции в пространство размерности словаря
+        self.projection = nn.Linear(self.encoder.config.hidden_size, vocab_size)
+
+    def forward(self, input_ids, attention_mask):
+        # Получаем вектор [CLS] из DistilBERT
+        outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
+        cls_output = outputs.last_hidden_state[:, 0, :]  # Вектор [CLS]
+        # Проецируем в пространство размерности словаря
+        logits = self.projection(cls_output)
+        return logits
+
+# Инициализация токенизатора и модели
+tokenizer = DistilBertTokenizer.from_pretrained(&#39;distilbert-base-uncased&#39;)
+vocab_size = len(tokenizer)  # Размер словаря BERT
+model = TILDE(vocab_size)
+
+# Пример документа
+document = &quot;The quick brown fox jumps over the lazy dog.&quot;
+
+# Токенизация документа
+inputs = tokenizer(document, return_tensors=&#39;pt&#39;, truncation=True, padding=True)
+
+# Прогоняем документ через модель
+logits = model(inputs[&#39;input_ids&#39;], inputs[&#39;attention_mask&#39;])
+
+# Применяем сигмоиду для получения вероятностей
+probabilities = torch.sigmoid(logits)
+
+# Выбираем топ-K токенов с наибольшими вероятностями
+top_k = 10
+top_k_probs, top_k_indices = torch.topk(probabilities, top_k, dim=1)
+
+# Выводим топ-K токенов и их вероятности
+top_k_tokens = [tokenizer.decode([idx]) for idx in top_k_indices[0]]
+print(&quot;Top-K tokens:&quot;, top_k_tokens)
+print(&quot;Probabilities:&quot;, top_k_probs[0].tolist())
+
+# Пример индексации
+# В реальной системе мы бы сохранили top_k_tokens и их вероятности в инвертированный индекс
+
+# Пример поиска
+# Для поиска мы бы использовали токены запроса и искали их в инвертированном индексе
+query = &quot;fast fox&quot;
+query_tokens = tokenizer.tokenize(query)
+
+# Псевдокод для поиска
+# results = search_inverted_index(query_tokens)
+# print(&quot;Retrieved documents:&quot;, results)
+```
+
+### Объяснение ключевых моментов:
+
+1. **Архитектура**: Мы используем `DistilBERT` для получения контекстуализированного вектора `[CLS]`, который затем проецируется в пространство размерности словаря BERT с помощью полносвязного слоя.
+
+2. **Предсказание вероятностей**: Модель предсказывает вероятности для каждого токена из словаря, используя сигмоидную функцию активации.
+
+3. **Индексация**: На этапе индексации мы выбираем топ-K токенов с наибольшими вероятностями и сохраняем их в инвертированном индексе. Это позволяет эффективно обогащать документы.
+
+4. **Поиск**: На этапе поиска мы используем токены запроса для поиска в инвертированном индексе, что делает процесс очень быстрым, так как не требует прогонки запроса через нейросеть.
+
+Этот пример демонстрирует, как TILDE использует BERT для предсказания вероятностей появления токенов в запросе, сохраняя при этом эффективность разреженного поиска.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

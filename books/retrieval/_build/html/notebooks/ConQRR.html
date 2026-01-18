@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ConQRR (2020) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/ConQRR';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/ConQRR.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/ConQRR.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ConQRR (2020)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conqrr-2020">
+<h1>ConQRR (2020)<a class="headerlink" href="#conqrr-2020" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://arxiv.org/abs/2105.08811">[paper]</a><br>
+ConQRR = Conversational Query Rewriting for Retrieval</p>
+<p><strong>ConQRR</strong> — это метод переписывания поисковых запросов в контексте многораундовых диалогов. Модель обучается преобразовывать неполный или двусмысленный реплики пользователя (например, содержащие местоимения «он», «этот») в полноценные, семантически независимые запросы, оптимизированные специально для поисковых систем.</p>
+<p><strong>Контекст</strong><br>
+В диалоговых системах (Information-seeking dialogue) пользователи часто полагаются на контекст предыдущих фраз. Возникают две основные проблемы:</p>
+<ol class="arabic simple">
+<li><p>Anaphora: использование местоимений, ссылающихся на объекты из истории («Расскажи о его биографии»).</p></li>
+<li><p>Ellipsis: пропуск слов, которые подразумеваются из контекста («А где он родился?» — подразумевается «Где родился [ученый X]?»).</p></li>
+</ol>
+<p><strong>Идея</strong><br>
+Большинство существующих методов обучаются на основе Maximum Likelihood Estimation (MLE), чтобы минимизировать разницу между предсказанием модели и эталонным текстом, написанным человеком. Однако «человеческое» переписывание не всегда является оптимальным для поискового движка. Идея ConQRR — использовать Reinforcement Learning (RL), где награда (reward) напрямую зависит от качества работы поисковика (Retriever) после переписывания.</p>
+<p><strong>Постановка задачи</strong><br>
+Дан текущий запрос <span class="math notranslate nohighlight">\(q_t\)</span> и история диалога <span class="math notranslate nohighlight">\(H = \{q_1, a_1, ..., q_{t-1}, a_{t-1}\}\)</span>. Нужно сгенерировать новый запрос <span class="math notranslate nohighlight">\(q'_t\)</span>, который содержит всю необходимую информацию для поиска релевантного документа <span class="math notranslate nohighlight">\(D^+\)</span> в большой коллекции без обращения к истории <span class="math notranslate nohighlight">\(H\)</span>.</p>
+<p><strong>Альтернативы на 2020 год</strong><br></p>
+<ul class="simple">
+<li><p><strong>Query Likelihood / Expansion</strong>: классические методы добавления терминов из истории, часто приводили к зашумлению запроса лишними словами.</p></li>
+<li><p><strong>Original Query + Context</strong>: простая конкатенация истории и текущего запроса для энкодера. Неэффективно, так как увеличивает длину входа и вносит много нерелевантного шума.</p></li>
+<li><p><strong>GPT-2 / T5 Rewriters (SFT)</strong>: модели, обученные только с учителем (Supervised Fine-Tuning) на датасетах типа CANARD. Проблема: модель может выдать грамматически верный текст, который плохо работает с BM25 или DPR из-за отсутствия ключевых ключевых слов.</p></li>
+</ul>
+<p><strong>Архитектура</strong><br>
+Система состоит из двух основных блоков:</p>
+<ol class="arabic simple">
+<li><p><strong>Rewriter</strong>: генеративная модель (в оригинале — T5-base), которая принимает на вход <span class="math notranslate nohighlight">\(H + q_t\)</span> и генерирует последовательность токенов <span class="math notranslate nohighlight">\(q'_t\)</span>.</p></li>
+<li><p><strong>Scorer (Environment)</strong>: фиксированный Retriever (например, BM25 или обученный DPR (2020)), который оценивает, насколько удачным получился переписанный запрос.</p></li>
+</ol>
+<p><strong>Алгоритм обучения</strong><br>
+Процесс разбит на две стадии:</p>
+<ol class="arabic simple">
+<li><p><strong>Warm-up (SFT)</strong>:
+Модель обучается на парах «контекст + запрос —&gt; эталонный переписанный запрос» из датасета CANARD. Это необходимо, чтобы генератор научился основам языка и не выдавал бессмысленный набор токенов на старте RL.</p></li>
+<li><p><strong>Reinforcement Learning (Policy Gradient)</strong>:</p>
+<ul class="simple">
+<li><p>Модель генерирует несколько вариантов переписанного запроса с помощью Sampling.</p></li>
+<li><p>Для каждого варианта вычисляется награда на основе метрик ранжирования.</p></li>
+<li><p>Используется алгоритм REINFORCE. Для уменьшения дисперсии градиента применяется Baseline (средняя награда или награда от жадного декодирования).</p></li>
+<li><p><strong>Reward Shaping</strong>: Награда <span class="math notranslate nohighlight">\(R\)</span> считается как Recall&#64;K или MRR. Для того чтобы модель не “ломала” язык в угоду поисковику, добавляется штраф в виде KL-divergence между текущей политикой и SFT-моделью.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Алгоритм инференса</strong><br></p>
+<ol class="arabic simple">
+<li><p>На вход подается цепочка диалога и текущая реплика.</p></li>
+<li><p>Rewriter генерирует переписанный запрос <span class="math notranslate nohighlight">\(q'_t\)</span> (используется Beam Search для стабильности).</p></li>
+<li><p>Полученный <span class="math notranslate nohighlight">\(q'_t\)</span> отправляется в стандартный Dense или Sparse Retriever.</p></li>
+<li><p>Извлеченные документы выдаются пользователю или передаются в Reader-модель.</p></li>
+</ol>
+<p><strong>Результаты</strong><br>
+Эксперименты проводились на датасетах TREC CAsT (2019) и QReCC.</p>
+<ul class="simple">
+<li><p><strong>Эффективность</strong>: Использование RL-этапа позволило улучшить метрику Recall&#64;100 на 6-8 п.п. по сравнению с чистым SFT-обучением на той же архитектуре (T5).</p></li>
+<li><p><strong>Влияние на Retrieval</strong>: ConQRR показал, что запросы, оптимизированные через RL, часто содержат избыточные синонимы или специфические ключевые слова, которые человек бы не вставил в “красивое” предложение, но которые критически важны для работы BM25.</p></li>
+<li><p><strong>Сравнение</strong>: По метрике MRR модель превзошла существовавший на тот момент метод QuReTeC (2020) на 12%, за счет того, что QuReTeC был ограничен только операциями классификации токенов (оставлять/удалять), а ConQRR может генерировать новые связующие слова.</p></li>
+</ul>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># ConQRR (2020)</span>
+---
+[[paper]](https://arxiv.org/abs/2105.08811)&lt;br&gt;
+ConQRR = Conversational Query Rewriting for Retrieval
+
+<span class="gs">**ConQRR**</span> — метод переписывания запросов в диалогах. Модель преобразует неполные реплики пользователя в полноценные запросы для поисковых систем.
+
+<span class="gs">**Контекст**</span>&lt;br&gt;
+В диалогах пользователи часто используют анафоры и эллипсисы, что затрудняет поиск. ConQRR решает эти проблемы.
+
+<span class="gs">**Идея**</span>&lt;br&gt;
+В отличие от методов на основе MLE, ConQRR использует Reinforcement Learning (RL), где награда зависит от качества работы поисковика после переписывания.
+
+<span class="gs">**Постановка задачи**</span>&lt;br&gt;
+Дан запрос $q_t$ и история $H$. Нужно сгенерировать $q&#39;_t$, содержащий всю информацию для поиска документа $D^+$ без обращения к $H$.
+
+<span class="gs">**Альтернативы на 2020 год**</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span><span class="gs">**Query Likelihood / Expansion**</span>: добавление терминов из истории, часто зашумляющее запрос.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Original Query + Context**</span>: конкатенация истории и запроса, увеличивающая длину и шум.
+<span class="k">-</span><span class="w"> </span><span class="gs">**GPT-2 / T5 Rewriters (SFT)**</span>: модели, обученные с учителем, но не всегда эффективные для BM25 или DPR.
+
+<span class="gs">**Архитектура**</span>&lt;br&gt;
+Система состоит из:
+<span class="k">1.</span> <span class="gs">**Rewriter**</span>: генеративная модель (T5-base), генерирующая $q&#39;_t$.
+<span class="k">2.</span> <span class="gs">**Scorer (Environment)**</span>: Retriever (например, BM25 или DPR), оценивающий переписанный запрос.
+
+&lt;img src=&quot;img/img.png&quot; width=500&gt;
+
+<span class="gs">**Алгоритм обучения**</span>&lt;br&gt;
+<span class="k">1.</span> <span class="gs">**Warm-up (SFT)**</span>: обучение на парах «контекст + запрос —&gt; эталонный запрос» из CANARD.
+<span class="k">2.</span> <span class="gs">**Reinforcement Learning (Policy Gradient)**</span>:
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Генерация вариантов переписанного запроса.
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Вычисление награды на основе метрик ранжирования.
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Алгоритм REINFORCE с Baseline для уменьшения дисперсии.
+<span class="w">   </span><span class="k">-</span><span class="w"> </span><span class="gs">**Reward Shaping**</span>: награда $R$ как Recall@K или MRR с штрафом за отклонение от SFT.
+
+<span class="gs">**Алгоритм инференса**</span>&lt;br&gt;
+<span class="k">1.</span> Вход: диалог и текущая реплика.
+<span class="k">2.</span> Rewriter генерирует $q&#39;_t$ (Beam Search).
+<span class="k">3.</span> $q&#39;_t$ отправляется в Retriever.
+<span class="k">4.</span> Извлеченные документы выдаются пользователю или Reader-модели.
+
+<span class="gs">**Результаты**</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span><span class="gs">**Эффективность**</span>: RL-этап улучшил Recall@100 на 6-8 п.п. по сравнению с SFT.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Влияние на Retrieval**</span>: запросы через RL содержат важные ключевые слова для BM25.
+<span class="k">-</span><span class="w"> </span><span class="gs">**Сравнение**</span>: ConQRR превзошел QuReTeC (2020) на 12% по MRR, генерируя новые связующие слова.
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>💻 Пример кода<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Пример реализации основных концепций ConQRR на Python</span>
+
+<span class="c1"># Импортируем необходимые библиотеки</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">T5ForConditionalGeneration</span><span class="p">,</span> <span class="n">T5Tokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rank_bm25</span><span class="w"> </span><span class="kn">import</span> <span class="n">BM25Okapi</span>
+
+<span class="c1"># Инициализация модели и токенизатора T5</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">T5Tokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;t5-base&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">T5ForConditionalGeneration</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;t5-base&quot;</span><span class="p">)</span>
+
+<span class="c1"># Пример истории диалога и текущего запроса</span>
+<span class="n">history</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Who is Albert Einstein?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Tell me about his biography.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Where was he born?&quot;</span>
+<span class="p">]</span>
+<span class="n">current_query</span> <span class="o">=</span> <span class="s2">&quot;And what about his achievements?&quot;</span>
+
+<span class="c1"># Конкатенация истории и текущего запроса</span>
+<span class="n">input_text</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">history</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">current_query</span>
+
+<span class="c1"># Токенизация входного текста</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">input_text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">input_ids</span>
+
+<span class="c1"># Генерация переписанного запроса с помощью T5</span>
+<span class="n">output_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">num_beams</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">rewritten_query</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">output_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rewritten Query:&quot;</span><span class="p">,</span> <span class="n">rewritten_query</span><span class="p">)</span>
+
+<span class="c1"># Пример использования BM25 для оценки качества переписанного запроса</span>
+<span class="c1"># Создаем коллекцию документов (игрушечный пример)</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Albert Einstein was born in Ulm, Germany.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;He developed the theory of relativity.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Einstein received the Nobel Prize in Physics in 1921.&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Токенизация документов</span>
+<span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">documents</span><span class="p">]</span>
+
+<span class="c1"># Инициализация BM25</span>
+<span class="n">bm25</span> <span class="o">=</span> <span class="n">BM25Okapi</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
+
+<span class="c1"># Оценка переписанного запроса</span>
+<span class="n">tokenized_query</span> <span class="o">=</span> <span class="n">rewritten_query</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">bm25</span><span class="o">.</span><span class="n">get_scores</span><span class="p">(</span><span class="n">tokenized_query</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BM25 Scores:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+
+<span class="c1"># Пример использования Reinforcement Learning для улучшения переписанного запроса</span>
+<span class="c1"># (упрощенная версия, без реализации полного RL цикла)</span>
+
+<span class="c1"># Функция награды, основанная на BM25</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">reward_function</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">documents</span><span class="p">):</span>
+    <span class="n">tokenized_query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">bm25</span><span class="o">.</span><span class="n">get_scores</span><span class="p">(</span><span class="n">tokenized_query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>  <span class="c1"># Простая сумма баллов BM25 как награда</span>
+
+<span class="c1"># Генерация нескольких вариантов переписанного запроса</span>
+<span class="n">sampled_queries</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">num_beams</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># Вычисление награды для каждого варианта</span>
+<span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="n">reward_function</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">documents</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">sampled_queries</span><span class="p">]</span>
+
+<span class="c1"># Выбор лучшего варианта на основе награды</span>
+<span class="n">best_query</span> <span class="o">=</span> <span class="n">sampled_queries</span><span class="p">[</span><span class="n">rewards</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">rewards</span><span class="p">))]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best Rewritten Query:&quot;</span><span class="p">,</span> <span class="n">best_query</span><span class="p">)</span>
+
+<span class="c1"># Важно отметить, что в реальной реализации RL этапа используется алгоритм REINFORCE</span>
+<span class="c1"># и более сложные техники, такие как Reward Shaping и Baseline для уменьшения дисперсии градиента.</span>
+<span class="err">```</span>
+
+<span class="c1">### Комментарии к коду:</span>
+<span class="mf">1.</span> <span class="o">**</span><span class="n">Rewriter</span><span class="o">**</span><span class="p">:</span> <span class="n">Используется</span> <span class="n">модель</span> <span class="n">T5</span> <span class="n">для</span> <span class="n">переписывания</span> <span class="n">запроса</span><span class="o">.</span> <span class="n">Мы</span> <span class="n">конкатенируем</span> <span class="n">историю</span> <span class="n">диалога</span> <span class="n">и</span> <span class="n">текущий</span> <span class="n">запрос</span><span class="p">,</span> <span class="n">чтобы</span> <span class="n">модель</span> <span class="n">могла</span> <span class="n">учитывать</span> <span class="n">контекст</span><span class="o">.</span>
+<span class="mf">2.</span> <span class="o">**</span><span class="n">Scorer</span> <span class="p">(</span><span class="n">Environment</span><span class="p">)</span><span class="o">**</span><span class="p">:</span> <span class="n">Используем</span> <span class="n">BM25</span> <span class="n">для</span> <span class="n">оценки</span> <span class="n">качества</span> <span class="n">переписанного</span> <span class="n">запроса</span><span class="o">.</span> <span class="n">Это</span> <span class="n">иллюстрирует</span><span class="p">,</span> <span class="n">как</span> <span class="n">ConQRR</span> <span class="n">использует</span> <span class="n">фиксированный</span> <span class="n">Retriever</span> <span class="n">для</span> <span class="n">оценки</span><span class="o">.</span>
+<span class="mf">3.</span> <span class="o">**</span><span class="n">Reinforcement</span> <span class="n">Learning</span><span class="o">**</span><span class="p">:</span> <span class="n">Пример</span> <span class="n">упрощенной</span> <span class="n">функции</span> <span class="n">награды</span><span class="p">,</span> <span class="n">основанной</span> <span class="n">на</span> <span class="n">BM25</span><span class="o">.</span> <span class="n">В</span> <span class="n">реальной</span> <span class="n">реализации</span> <span class="n">используется</span> <span class="n">алгоритм</span> <span class="n">REINFORCE</span> <span class="n">и</span> <span class="n">другие</span> <span class="n">техники</span> <span class="n">для</span> <span class="n">оптимизации</span> <span class="n">переписывания</span><span class="o">.</span>
+<span class="mf">4.</span> <span class="o">**</span><span class="n">Inference</span><span class="o">**</span><span class="p">:</span> <span class="n">Генерация</span> <span class="n">и</span> <span class="n">выбор</span> <span class="n">лучшего</span> <span class="n">переписанного</span> <span class="n">запроса</span> <span class="n">на</span> <span class="n">основе</span> <span class="n">награды</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3_11",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3_11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

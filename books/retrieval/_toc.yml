@@ -1,0 +1,36 @@
+format: jb-book
+root: intro
+parts:
+  - caption: Описание задачи
+    title: Обзор
+    chapters:
+    - file: notebooks/Overview
+      title: Постановка
+  - caption: Базовые методы
+    chapters:
+    - file: notebooks/colbert
+    - file: notebooks/coil
+    - file: notebooks/dpr
+    - file: notebooks/dpr_ctl
+    - file: notebooks/unicoil
+    - file: notebooks/splade 
+    - file: notebooks/splade++
+    - file: notebooks/rag
+    - file: notebooks/exaranker
+  - caption: Query Enhancment
+    chapters:
+    - file: notebooks/realm
+    - file: notebooks/search_r1
+    - file: notebooks/conqrr
+  - caption: Document Enhancement
+    chapters:
+    - file: notebooks/prf
+    - file: notebooks/doc2query
+    - file: notebooks/contextual_clues
+  - caption: Multistage Methods
+    chapters:
+    - file: notebooks/s3
+    - file: notebooks/deepretrieval
+    - file: notebooks/graphrag
+    - file: notebooks/lightrag
+    - file: notebooks/pathrag

@@ -1,0 +1,716 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DeepCT (2019) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/deepct';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/deepct.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/deepct.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>DeepCT (2019)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Пример кода</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="deepct-2019">
+<h1>DeepCT (2019)<a class="headerlink" href="#deepct-2019" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://arxiv.org/pdf/1910.10687">[paper]</a><br>
+DeepCT = Deep Contextualized Term Weighting</p>
+<p><strong>DeepCT</strong> — это метод <u>обучаемого</u> разреженного информационного поиска (Learned Sparse Retrieval), основанный замене стандартной частоты слова (TF) на вычисляемую нейросетью величину, который позволяет повысить точность первого этапа поиска (First Stage Retrieval) за счет учета семантики и сохранить его быстроту за счет возможности использования инвертированного индекса</p>
+<p><strong>Постановка задачи</strong><br>
+Решается классическая задача инфомрационного поиска. По заданному запросу <span class="math notranslate nohighlight">\(Q\)</span> найти <span class="math notranslate nohighlight">\(K\)</span> наиболее релевантных документов из коллекции <span class="math notranslate nohighlight">\(D = \{d_1, d_2, \ldots, d_N\}\)</span></p>
+<p><strong>Мотивация</strong><br>
+Традиционный Sparse Retrieval поиск (BM25) полагается на статистики Term Frequency (TF) — чем чаще слово встречается в тексте, тем оно важнее. В реальности же вес слова при мэтчинге сильно зависит от окружающего слово контекста в конкретном документе. Для нормального учета контекста был предложен более современный подход Dense Retrieval, основанный на вычислении эмбедингов Трансформерными модделями. Иго минусом однако является то, что он менее точный и требует поддержания approximate индекса</p>
+<p><strong>Существующие подходы</strong><br>
+На момент выхода модели существовали следующие подходы:</p>
+<ul class="simple">
+<li><p>BM25: классический Sparse Retrieval - частоты без контекста не учитывают семантику</p></li>
+<li><p>Deep Relevance Matching Models (DRMM, 2016): используют эмбеддинги для сопоставления запроса и документа, но слишком медленны для поиска по всей коллекции</p></li>
+<li><p>BERT re-rankers (2019): кросс-энкодерная архитекутура (early interaction) - хорошо учитывает контекст, но они могут применяться только к малому подмножеству документов (этап re-ranking), так как требуют прогона всех пар “запрос-документ” через трансформер</p></li>
+<li><p>Doc2query (2019): генерирует возможные вопросы к документу и добавляет их в текст. Это расширяет документ (Expansion), но не исправляет веса уже существующих в нем слов</p></li>
+</ul>
+<p><strong><u>Идея</u></strong><br>
+Давайте использовать Sparse Retrieval, но вместо вычисления эвристик TF параметризуем их через нейросетевую модель. В результате получим семантически “богатое” представление каждого слова с высокой скоростью поиска характерной для Sparse Retrieval</p>
+<p><strong>Архитектура</strong><br>
+DeepCT использует стандартный BERT (обычно <code class="docutils literal notranslate"><span class="pre">base-uncased</span></code>) в качестве энкодера</p>
+<ol class="arabic simple">
+<li><p>Input = документ</p></li>
+<li><p>Encoder - BERT генерирует контекстуализированные векторы для каждого токена.</p></li>
+<li><p>Output Layer: поверх последнего слоя BERT добавляется полносвязный слой (Linear Layer) с одним выходом. Для каждого токена <span class="math notranslate nohighlight">\(i\)</span> предсказывается скалярное значение <span class="math notranslate nohighlight">\(w_i\)</span>, которое отражает его важность.</p></li>
+<li><p>Aggregation: Поскольку BERT работает с WordPiece-токенами, веса для подслов агрегируются (например, берется вес первого подслова), чтобы получить итоговый вес для целого слова.</p></li>
+</ol>
+<p><strong>Алгоритм обучения</strong><br>
+обучаем на задаче предсказания Query-Term Frequency (QTF)</p>
+<ol class="arabic simple">
+<li><p>берем большой датасет с парами, например, MS MARCO</p></li>
+<li><p>делаем self-supervised разметку: для каждого слова <span class="math notranslate nohighlight">\(t\)</span> из документа <span class="math notranslate nohighlight">\(D\)</span> и всех релевантных ему запросов <span class="math notranslate nohighlight">\(\{q_1, q_2, ...\}\)</span> считаем частоту слова <span class="math notranslate nohighlight">\(t\)</span> из документа</p></li>
+<li><p>решаем задачу регрессии. Минимизируем MSE между предсказанным весом <span class="math notranslate nohighlight">\(w_i\)</span> и нормализованным значением QTF
+$<span class="math notranslate nohighlight">\(\mathcal{L} = \sum (w_{predicted} - \text{normalized\_QTF})^2\)</span>$</p></li>
+</ol>
+<p><strong>Алгоритм инференса</strong><br>
+Процесс применения DeepCT происходит <strong>offline</strong> (до начала поиска):</p>
+<ol class="arabic simple">
+<li><p>Обработка коллекции: Каждый документ в базе пропускается через обученный DeepCT</p></li>
+<li><p>Трансформация весов: Полученные дробные веса <span class="math notranslate nohighlight">\(w_i\)</span> масштабируются в целые числа (например, путем умножения на константу и округления). Это делается для того, чтобы “обмануть” поисковый движок.</p></li>
+<li><p>Индексация: В инвертированный индекс (Lucene/ElasticSearch) вместо реального количества упоминаний слова (TF) записывается предсказанное значение. Например, если слово “apple” встречается в тексте 1 раз, но DeepCT считает его важным, в индекс записывается, что оно встретилось там 15 раз.</p></li>
+<li><p>Retrieval: Поиск выполняется стандартным алгоритмом BM25. Поскольку веса в индексе уже контекстуализированы, BM25 автоматически выдает более качественные результаты без дополнительных затрат времени при обработке запроса.</p></li>
+</ol>
+<p><strong>Результаты</strong><br>
+Сравнивали на датасете MS MARCO (Passage Retrieval):</p>
+<ul class="simple">
+<li><p>Recall&#64;1000 дает +10пп против классического BM25. Метрика MRR&#64;10 +30%</p></li>
+<li><p>сохранили скорость ответа</p></li>
+<li><p>DeepCT первым предложил использовать BERT не для сравнения запроса с документом, а для предобработки (enrichment) статического индекса, сохраняя при этом эффективность классического поиска</p></li>
+</ul>
+<section id="id1">
+<h2>Пример кода<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BertTokenizer</span><span class="p">,</span> <span class="n">BertModel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+
+<span class="c1"># Define the DeepCT model</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DeepCT</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bert_model_name</span><span class="o">=</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DeepCT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bert</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">bert_model_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bert</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Linear layer to predict term importance</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="p">):</span>
+        <span class="c1"># Get contextualized embeddings from BERT</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bert</span><span class="p">(</span><span class="n">input_ids</span><span class="o">=</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="o">=</span><span class="n">attention_mask</span><span class="p">)</span>
+        <span class="c1"># Use the last hidden state</span>
+        <span class="n">last_hidden_state</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">last_hidden_state</span>
+        <span class="c1"># Predict term importance for each token</span>
+        <span class="n">term_importance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">last_hidden_state</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">term_importance</span>
+
+<span class="c1"># Initialize tokenizer and model</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;bert-base-uncased&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DeepCT</span><span class="p">()</span>
+
+<span class="c1"># Example passage</span>
+<span class="n">passage</span> <span class="o">=</span> <span class="s2">&quot;The condition of the patient was stable, but the condition of the contract was under review.&quot;</span>
+
+<span class="c1"># Tokenize the passage</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">passage</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Forward pass through the model</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">term_importance_scores</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">],</span> <span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;attention_mask&#39;</span><span class="p">])</span>
+
+<span class="c1"># Convert token IDs back to words</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">convert_ids_to_tokens</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Aggregate scores for subwords to get word-level importance</span>
+<span class="n">word_importance</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">term_importance_scores</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;##&quot;</span><span class="p">):</span>
+        <span class="c1"># Append score to the previous word</span>
+        <span class="n">word_importance</span><span class="p">[</span><span class="n">last_word</span><span class="p">]</span> <span class="o">+=</span> <span class="n">score</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Start a new word</span>
+        <span class="n">last_word</span> <span class="o">=</span> <span class="n">token</span>
+        <span class="n">word_importance</span><span class="p">[</span><span class="n">last_word</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="c1"># Display the importance scores</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Word Importance Scores:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">word_importance</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Note: In a real-world scenario, you would train the model using a dataset like MS MARCO</span>
+<span class="c1"># and use the Query-Term Frequency (QTF) as labels for supervised learning.</span>
+<span class="c1"># Here, we demonstrate the inference step with a pre-trained BERT model and random weights.</span>
+<span class="err">```</span>
+
+<span class="c1">### Explanation:</span>
+
+<span class="mf">1.</span> <span class="o">**</span><span class="n">Model</span> <span class="n">Architecture</span><span class="o">**</span><span class="p">:</span> 
+   <span class="o">-</span> <span class="n">The</span> <span class="err">`</span><span class="n">DeepCT</span><span class="err">`</span> <span class="k">class</span><span class="w"> </span><span class="nc">extends</span> <span class="err">`</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="err">`</span> <span class="ow">and</span> <span class="n">uses</span> <span class="n">a</span> <span class="n">pre</span><span class="o">-</span><span class="n">trained</span> <span class="n">BERT</span> <span class="n">model</span> <span class="k">as</span> <span class="n">the</span> <span class="n">encoder</span><span class="o">.</span>
+   <span class="o">-</span> <span class="n">A</span> <span class="n">linear</span> <span class="n">layer</span> <span class="ow">is</span> <span class="n">added</span> <span class="n">on</span> <span class="n">top</span> <span class="n">of</span> <span class="n">BERT</span> <span class="n">to</span> <span class="n">predict</span> <span class="n">the</span> <span class="n">importance</span> <span class="n">of</span> <span class="n">each</span> <span class="n">token</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="o">**</span><span class="n">Tokenization</span><span class="o">**</span><span class="p">:</span>
+   <span class="o">-</span> <span class="n">The</span> <span class="n">passage</span> <span class="ow">is</span> <span class="n">tokenized</span> <span class="n">using</span> <span class="n">BERT</span><span class="s1">&#39;s tokenizer, which handles subword tokenization.</span>
+
+<span class="mf">3.</span> <span class="o">**</span><span class="n">Inference</span><span class="o">**</span><span class="p">:</span>
+   <span class="o">-</span> <span class="n">The</span> <span class="n">model</span> <span class="n">predicts</span> <span class="n">a</span> <span class="n">scalar</span> <span class="n">importance</span> <span class="n">score</span> <span class="k">for</span> <span class="n">each</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">passage</span><span class="o">.</span>
+   <span class="o">-</span> <span class="n">Scores</span> <span class="k">for</span> <span class="n">subword</span> <span class="n">tokens</span> <span class="n">are</span> <span class="n">aggregated</span> <span class="n">to</span> <span class="n">get</span> <span class="n">word</span><span class="o">-</span><span class="n">level</span> <span class="n">importance</span><span class="o">.</span>
+
+<span class="mf">4.</span> <span class="o">**</span><span class="n">Output</span><span class="o">**</span><span class="p">:</span>
+   <span class="o">-</span> <span class="n">The</span> <span class="n">script</span> <span class="n">prints</span> <span class="n">the</span> <span class="n">importance</span> <span class="n">scores</span> <span class="k">for</span> <span class="n">each</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">passage</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="n">example</span> <span class="n">illustrates</span> <span class="n">how</span> <span class="n">DeepCT</span> <span class="n">uses</span> <span class="n">BERT</span> <span class="n">to</span> <span class="n">predict</span> <span class="n">term</span> <span class="n">importance</span> <span class="n">based</span> <span class="n">on</span> <span class="n">context</span><span class="p">,</span> <span class="n">replacing</span> <span class="n">traditional</span> <span class="n">term</span> <span class="n">frequency</span> <span class="k">with</span> <span class="n">context</span><span class="o">-</span><span class="n">aware</span> <span class="n">weights</span><span class="o">.</span> <span class="n">In</span> <span class="n">practice</span><span class="p">,</span> <span class="n">you</span> <span class="n">would</span> <span class="n">train</span> <span class="n">this</span> <span class="n">model</span> <span class="k">with</span> <span class="n">labeled</span> <span class="n">data</span> <span class="n">to</span> <span class="n">learn</span> <span class="n">meaningful</span> <span class="n">importance</span> <span class="n">scores</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3_11",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3_11'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Пример кода</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

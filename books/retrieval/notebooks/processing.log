@@ -1,0 +1,22 @@
+2026-01-14T00:35:57.405817	Метод информационного поиска DeepRetrieval (2025)	gemini-3-flash-preview	0	failed
+2026-01-14T00:36:00.090408	Метод информационного поиска DeepImpact	gemini-3-flash-preview	0	failed
+2026-01-14T00:39:40.999401	Метод информационного поиска DeepRetrieval (2025)	gemini-3-flash-preview	8104	success
+2026-01-14T00:58:12.550946	DeepRetrieval: Hacking Real Search Engines and Retrievers with Large Language Models via Reinforcement Learning	gemini-3-flash-preview	5510	success
+2026-01-14T01:05:17.892540	Метод информационного поиска DeepImpact (https://arxiv.org/abs/2104.12016)	gemini-3-flash-preview	5166	success
+2026-01-14T02:39:14.991853	DeepRetrieval:Метод информационного поиска DeepRetrieval (https://arxiv.org/pdf/2503.00223)	gemini-3-flash-preview	0	failed
+2026-01-14T05:23:18.509470	Метод информационного поиска Pseudo-Relevance Feedback (PRF)	gemini-3-flash-preview	5192	success
+2026-01-14T05:23:56.686861	Метод информационного поиска Deep Passage Retrieval (DPR)	gemini-3-flash-preview	4695	success
+2026-01-14T05:24:40.078760	Метод информационного поиска DPR-CTL (2020)	gemini-3-flash-preview	6527	success
+2026-01-14T05:25:16.543788	Метод информационного поиска RAG (2020)	gemini-3-flash-preview	4613	success
+2026-01-14T05:25:57.784076	Метод информационного поиска ExaRanker (2023)	gemini-3-flash-preview	5229	success
+2026-01-14T05:26:37.092856	Метод информационного поиска Search-R1 (2025)	gemini-3-flash-preview	5124	success
+2026-01-14T05:27:32.698181	Метод информационного поиска S3 (Search, Select, Serve)	gemini-3-flash-preview	7502	success
+2026-01-14T05:28:13.249250	Метод информационного поиска GraphRAG (2024)	gemini-3-flash-preview	4801	success
+2026-01-14T05:28:52.723709	Метод информационного поиска LightRAG (2024)	gemini-3-flash-preview	5274	success
+2026-01-14T05:29:28.924749	Метод информационного поиска PathRAG (2025)	gemini-3-flash-preview	5096	success
+2026-01-14T05:30:08.961565	Метод информационного поиска / SPLADE (2021)	gemini-3-flash-preview	4843	success
+2026-01-14T05:30:48.076215	Метод информационного поиска SPLADE++ (2021)	gemini-3-flash-preview	4923	success
+2026-01-14T05:31:24.326493	Метод информационного поиска uniCOIL (2022)	gemini-3-flash-preview	5030	success
+2026-01-14T05:32:01.984059	Метод информационного поиска TILDE	gemini-3-flash-preview	4969	success
+2026-01-14T05:32:42.157256	Метод информационного поиска Doc2Query (2019)	gemini-3-flash-preview	4932	success
+2026-01-14T05:33:23.933671	Методы информационного поиска E5	gemini-3-flash-preview	4885	success

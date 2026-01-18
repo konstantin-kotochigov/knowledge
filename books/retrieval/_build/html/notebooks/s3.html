@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>S3 (2024) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/s3';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DeepRetrieval (2024)" href="deepretrieval.html" />
+    <link rel="prev" title="Contextual Clues Sampling (CCS, 2022)" href="contextual_clues.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/s3.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/s3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>S3 (2024)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="s3-2024">
+<h1>S3 (2024)<a class="headerlink" href="#s3-2024" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/pdf/2407.01953">[paper]</a><br>
+S3 = Search, Select, and Serve</p>
+<p><strong>S3</strong> — это системный фреймворк для оптимизации инференса Large Language Models (LLM), который радикально повышает пропускную способность (Throughput) при работе с длинными контекстами. Метод основан на динамическом предсказании и извлечении только тех частей KV cache, которые действительно необходимы для генерации текущего токена, вместо обработки всей истории контекста.</p>
+<p><strong>Постановка задачи</strong><br>
+При генерации текста в LLM основной проблемой является рост KV cache. Для каждого нового токена модель должна вычислить Attention по всем предыдущим токенам. В задачах с длинным контекстом (Long-context Generation) или RAG объем KV cache растет линейно, что приводит к дефициту памяти GPU и замедлению инференса из-за ограничений Memory Bandwidth. Задача S3 — минимизировать количество данных KV cache, участвующих в вычислениях, без потери качества генерации.</p>
+<p><strong>Мотивация</strong><br>
+Современные системы обслуживания (Serving Systems) тратят до 80% времени на чтение KV cache из памяти в вычислительные ядра. Анализ паттернов внимания показывает, что большинство Attention heads в трансформере являются разреженными: для предсказания следующего токена реально важны лишь 5-10% предыдущих токенов. Если мы научимся заранее определять эти “важные” токены, мы сможем сократить объем вычислений и передачи данных в несколько раз.</p>
+<p><strong>Существующие подходы</strong><br>
+До появления S3 использовались следующие методы оптимизации KV cache:</p>
+<ul class="simple">
+<li><p>PagedAttention (vLLM, 2023): оптимизирует управление памятью через фрагментацию, но все равно хранит и считывает полный KV cache для каждого запроса.</p></li>
+<li><p>H2O (2023): использует жадный алгоритм для удаления “неважных” токенов из кэша (Eviction). Проблема в том, что вытеснение происходит статически — однажды удаленный токен нельзя вернуть, даже если он понадобится для будущих генераций.</p></li>
+<li><p>StreamingLLM (2023): сохраняет только фиксированное окно последних токенов и первые токены (Attention Sinks). Метод неэффективен для задач, требующих доступа к середине длинного документа.</p></li>
+</ul>
+<p><strong>Идея</strong><br>
+Вместо того чтобы хранить меньше или удалять данные навсегда, авторы предложили концепцию динамического извлечения. S3 рассматривает KV cache как “базу данных”, а процесс вычисления Attention — как поисковый запрос. Перед основным проходом модели запускается легковесный предиктор, который предсказывает, какие блоки контекста будут иметь наибольшие веса внимания. Это позволяет загружать из памяти GPU только релевантные фрагменты.</p>
+<p><strong>Архитектура</strong><br>
+Система состоит из трех ключевых компонентов:</p>
+<ol class="arabic simple">
+<li><p>Predictor: маленькая нейросеть (обычно двухслойный MLP или линейный слой), которая обучается предсказывать важность блоков токенов на основе текущего Hidden State.</p></li>
+<li><p>KV Cache Manager: специализированный менеджер памяти, который организует KV cache в виде блоков и поддерживает быстрый доступ к произвольным индексам.</p></li>
+<li><p>Sparse Attention Engine: кастомное ядро (Kernel), которое умеет эффективно вычислять Attention только по выбранному подмножеству индексов.</p></li>
+</ol>
+<p><strong>Алгоритм обучения</strong><br>
+Обучается только модуль Predictor, веса основной LLM остаются замороженными:</p>
+<ol class="arabic simple">
+<li><p>Сбор данных: Прогоняется набор текстов через целевую LLM, собираются реальные карты Attention (Ground Truth) для каждого слоя и каждой головы.</p></li>
+<li><p>Формирование меток: Для каждого блока токенов (например, размером 16 или 64) вычисляется агрегированный вес внимания. Блоки с максимальными весами помечаются как целевые.</p></li>
+<li><p>Обучение предиктора: Решается задача классификации или ранжирования. Предиктор учится по вектору текущего состояния (Query) предсказывать вероятности того, что конкретный блок KV (Key/Value) будет востребован.</p></li>
+</ol>
+<p><strong>Алгоритм инференса</strong><br>
+Процесс генерации каждого токена разделен на три фазы:</p>
+<ol class="arabic simple">
+<li><p>Search: Текущий Hidden State подается в Predictor. Он выдает список индексов блоков KV cache, которые, скорее всего, получат высокие веса внимания в текущем слое.</p></li>
+<li><p>Select: Система фильтрует предсказанные блоки, применяя порог (Threshold) или выбирая Top-K. Это гарантирует, что объем передаваемых данных не превысит заданный лимит.</p></li>
+<li><p>Serve: Выполняется стандартный проход трансформера, но в блоке Self-Attention участвуют только выбранные KV-пары. Остальные данные даже не считываются из основной видеопамяти в кэш L2/регистры GPU.</p></li>
+</ol>
+<p><strong>Результаты</strong><br>
+Метод тестировался на моделях Llama-2-7B (2023) и Mistral-7B (2023) с контекстами до 32k токенов:</p>
+<ul class="simple">
+<li><p>Throughput увеличился в 6.4 раза по сравнению с vLLM при сохранении идентичного уровня Perplexity.</p></li>
+<li><p>Использование памяти KV cache сократилось на 80% без значимой потери точности в задачах LongBench (падение метрик составило менее 1%).</p></li>
+<li><p>S3 показал новизну в том, что первым реализовал “предсказательный” Sparse Attention на уровне системы обслуживания, а не только как теоретическую конструкцию архитектуры модели.</p></li>
+</ul>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># S3 (2024)</span>
+---
+[[paper]](https://arxiv.org/pdf/2407.01953)&lt;br&gt;
+S3 = Search, Select, and Serve
+
+<span class="gs">__S3__</span> — системный фреймворк для оптимизации инференса Large Language Models (LLM), повышающий пропускную способность при работе с длинными контекстами. Метод динамически предсказывает и извлекает только необходимые части KV cache для генерации текущего токена, избегая обработки всей истории контекста.
+
+<span class="gs">__Постановка задачи__</span>&lt;br&gt;
+При генерации текста в LLM основная проблема — рост KV cache. Для каждого нового токена модель должна вычислить Attention по всем предыдущим токенам, что приводит к дефициту памяти GPU и замедлению инференса. S3 минимизирует объем данных KV cache, участвующих в вычислениях, без потери качества генерации.
+
+<span class="gs">__Мотивация__</span>&lt;br&gt;
+Современные системы обслуживания тратят до 80% времени на чтение KV cache. Анализ показывает, что для предсказания следующего токена важны лишь 5-10% предыдущих токенов. Если заранее определять эти &quot;важные&quot; токены, можно сократить объем вычислений и передачи данных.
+
+<span class="gs">__Существующие подходы__</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span>PagedAttention (vLLM, 2023): оптимизирует память через фрагментацию, но хранит полный KV cache.
+<span class="k">-</span><span class="w"> </span>H2O (2023): удаляет &quot;неважные&quot; токены, но статически.
+<span class="k">-</span><span class="w"> </span>StreamingLLM (2023): сохраняет только фиксированное окно последних и первых токенов.
+
+<span class="gs">__Идея__</span>&lt;br&gt;
+S3 предлагает динамическое извлечение. KV cache рассматривается как &quot;база данных&quot;, а вычисление Attention — как поисковый запрос. Легковесный предиктор предсказывает, какие блоки контекста будут иметь наибольшие веса внимания, загружая из памяти GPU только релевантные фрагменты.
+
+&lt;img src=&quot;img/img.png&quot; width=500&gt;
+
+<span class="gs">__Архитектура__</span>&lt;br&gt;
+<span class="k">1.</span> Predictor: маленькая нейросеть, предсказывающая важность блоков токенов.
+<span class="k">2.</span> KV Cache Manager: организует KV cache в виде блоков для быстрого доступа.
+<span class="k">3.</span> Sparse Attention Engine: вычисляет Attention только по выбранным индексам.
+
+<span class="gs">__Алгоритм обучения__</span>&lt;br&gt;
+Обучается только Predictor, веса LLM остаются замороженными:
+<span class="k">1.</span> Сбор данных: Прогон текстов через LLM, сбор карт Attention.
+<span class="k">2.</span> Формирование меток: Вычисление агрегированных весов внимания для блоков токенов.
+<span class="k">3.</span> Обучение предиктора: Предсказание вероятностей востребованности блоков KV.
+
+<span class="gs">__Алгоритм инференса__</span>&lt;br&gt;
+<span class="k">1.</span> Search: Predictor выдает индексы блоков KV cache с высокими весами внимания.
+<span class="k">2.</span> Select: Фильтрация предсказанных блоков, применение порога или выбор Top-K.
+<span class="k">3.</span> Serve: Проход трансформера с участием только выбранных KV-пар.
+
+<span class="gs">__Результаты__</span>&lt;br&gt;
+Метод тестировался на моделях Llama-2-7B (2023) и Mistral-7B (2023) с контекстами до 32k токенов:
+<span class="k">-</span><span class="w"> </span>Throughput увеличился в 6.4 раза по сравнению с vLLM при сохранении уровня Perplexity.
+<span class="k">-</span><span class="w"> </span>Использование памяти KV cache сократилось на 80% без значимой потери точности в задачах LongBench (падение метрик менее 1%).
+<span class="k">-</span><span class="w"> </span>S3 первым реализовал &quot;предсказательный&quot; Sparse Attention на уровне системы обслуживания.
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>💻 Пример кода<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+# Dummy data to simulate KV cache and hidden states
+KV_cache = torch.rand(1000, 64)  # Simulated KV cache with 1000 blocks of size 64
+hidden_state = torch.rand(64)    # Current hidden state of size 64
+
+# Predictor: A simple MLP to predict important KV blocks
+class Predictor(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(Predictor, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.fc2 = nn.Linear(hidden_size, output_size)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = torch.sigmoid(self.fc2(x))  # Output probabilities for each block
+        return x
+
+# Initialize the predictor
+predictor = Predictor(input_size=64, hidden_size=32, output_size=1000)
+
+# Search Phase: Use the predictor to find important blocks
+block_importance = predictor(hidden_state)
+# Select top-K important blocks
+top_k_blocks = torch.topk(block_importance, k=10).indices
+
+# Select Phase: Filter the KV cache to only include important blocks
+selected_KV_cache = KV_cache[top_k_blocks]
+
+# Serve Phase: Perform attention only on selected KV cache
+# Dummy attention mechanism for illustration
+def sparse_attention(query, keys, values):
+    # Simple dot-product attention for demonstration
+    scores = torch.matmul(query, keys.T)
+    attention_weights = F.softmax(scores, dim=-1)
+    output = torch.matmul(attention_weights, values)
+    return output
+
+# Simulate query, keys, and values
+query = hidden_state
+keys = selected_KV_cache
+values = selected_KV_cache  # In practice, values might be different
+
+# Perform sparse attention
+output = sparse_attention(query, keys, values)
+
+# Output represents the result of the attention mechanism
+print(&quot;Attention Output:&quot;, output)
+
+# Explanation:
+# 1. Predictor is a small neural network that predicts the importance of each block in the KV cache.
+# 2. During the Search phase, the predictor outputs probabilities indicating the importance of each block.
+# 3. In the Select phase, we choose the top-K important blocks based on the predictor&#39;s output.
+# 4. The Serve phase involves performing attention only on the selected blocks, reducing memory and computation.
+# 5. This approach dynamically selects relevant parts of the KV cache, optimizing memory usage and throughput.
+```
+
+This code demonstrates the S3 method&#39;s core idea: dynamically predicting and selecting relevant parts of the KV cache for efficient attention computation. The Predictor is a lightweight MLP that estimates the importance of each block, allowing the system to focus only on the most relevant data, thus optimizing memory and computational resources.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="contextual_clues.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Contextual Clues Sampling (CCS, 2022)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="deepretrieval.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DeepRetrieval (2024)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

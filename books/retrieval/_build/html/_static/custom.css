@@ -1,0 +1,24 @@
+:root {
+    /* Основная ширина текстового блока (было около 800px) */
+    --pst-content-width: 2000px !important;
+    
+    /* Ширина всего центрального контейнера (включая боковые отступы) */
+    --pst-col-width-main: 2400px !important;
+}
+
+/* Принудительно расширяем контейнер статьи */
+.bd-main .bd-content .bd-article-container {
+    max-width: 2400px !important;
+    min-width: 1200px !important; /* Чтобы не сжималось обратно */
+}
+
+/* Растягиваем сам текст и ячейки кода */
+.bd-article {
+    max-width: 100% !important;
+}
+
+/* Убираем лишние отступы слева, чтобы контент не был зажат */
+.bd-content > .bd-article-container {
+    margin-left: 20px !important;
+    margin-right: auto !important;
+}

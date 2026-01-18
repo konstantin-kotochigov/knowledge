@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pseudo-Relevance Feedback (PRF) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/prf';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Doc2Query (2019)" href="doc2query.html" />
+    <link rel="prev" title="Search-R1 (2025)" href="search_r1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/prf.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/prf.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pseudo-Relevance Feedback (PRF)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pseudo-relevance-feedback-prf">
+<h1>Pseudo-Relevance Feedback (PRF)<a class="headerlink" href="#pseudo-relevance-feedback-prf" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://dl.acm.org/doi/10.1145/358968.358994">[paper]</a> (Classic RM3 paper, 2001) <br>
+<a class="reference external" href="https://dl.acm.org/doi/10.1145/1221.1223">[original_concept]</a> (Rocchio Algorithm, 1971) <br>
+PRF = Pseudo-Relevance Feedback</p>
+<p><strong>PRF</strong> — это алгоритмический метод автоматического уточнения поискового запроса, который основывается на предположении, что несколько наиболее релевантных документов (Top-K) из результатов первичного поиска содержат важные термины, описывающие интент пользователя. Метод позволяет решить проблему Vocabulary Mismatch без участия человека в процессе разметки.</p>
+<p><strong>Постановка задачи</strong><br>
+Пользователь подает короткий и неполный запрос <span class="math notranslate nohighlight">\(Q\)</span>. Необходимо вернуть список документов <span class="math notranslate nohighlight">\(D\)</span>, отранжированных по релевантности, минимизируя пропуски релевантных документов, которые не содержат точных слов из запроса.</p>
+<p><strong>Мотивация</strong><br>
+Основная проблема поиска — Vocabulary Mismatch (лексический разрыв). Пользователь может искать “лечение мигрени”, в то время как в наиболее качественных медицинских статьях используются термины “терапия” и “гемикрания”. Обычный Sparse Retrieval (BM25, TF-IDF) не найдет эти документы, так как в них нет пересечения по токенам. PRF пытается “догадаться”, какие еще слова могли бы дополнить запрос, глядя на результаты первого этапа поиска.</p>
+<p><strong>Существующие подходы</strong><br>
+До появления и популяризации PRF (и в частности его эффективных реализаций вроде RM3 в 2001 году) существовали:</p>
+<ul class="simple">
+<li><p>Relevance Feedback (1971): классический метод Роккио, требующий от пользователя явно отметить, какие документы релевантны, а какие нет. Это работает точно, но пользователи редко готовы давать фидбек.</p></li>
+<li><p>Thesaurus-based Expansion: расширение запроса с помощью синонимов из внешних словарей (WordNet). Проблема в том, что словари статичны и не учитывают контекст конкретной коллекции документов.</p></li>
+<li><p>Global Analysis: статистический анализ всей коллекции документов для поиска ассоциаций между словами. Это вычислительно дорого и плохо адаптируется под специфические темы запросов.</p></li>
+</ul>
+<p><strong>Идея</strong><br>
+Вместо того чтобы просить пользователя разметить результаты, мы “слепо” (Blind Feedback) предполагаем, что первые <span class="math notranslate nohighlight">\(K\)</span> документов в выдаче являются релевантными. Мы извлекаем из этих документов наиболее характерные термины и добавляем их к исходному запросу, смещая вектор запроса в сторону “центра масс” релевантной информации.</p>
+<p><strong>Архитектура</strong><br>
+PRF не является отдельной моделью с весами, это процедурный фреймворк, встраиваемый в Retrieval Pipeline. Он состоит из следующих компонентов:</p>
+<ol class="arabic simple">
+<li><p>Ranker (Initial Retrieval): базовый движок поиска (например, BM25).</p></li>
+<li><p>Feedback Pool: буфер, содержащий Top-K документов первого этапа.</p></li>
+<li><p>Term Selector: модуль анализа важности слов в документах фидбека (использует TF-IDF, KL-divergence или Log-odds ratio).</p></li>
+<li><p>Query Reformulator: механизм объединения исходного запроса и новых терминов.</p></li>
+</ol>
+<p><strong>Алгоритм работы</strong><br>
+Метод работает исключительно на этапе инференса (или выполнения запроса), так как он адаптируется под каждый конкретный Query.</p>
+<ol class="arabic simple">
+<li><p>Initial Retrieval: Выполняется поиск по исходному запросу <span class="math notranslate nohighlight">\(Q\)</span>. Получаем список <span class="math notranslate nohighlight">\(R = \{d_1, d_2, \ldots, d_n\}\)</span>.</p></li>
+<li><p>Sampling: Отбираются первые <span class="math notranslate nohighlight">\(K\)</span> документов (обычно <span class="math notranslate nohighlight">\(K \in [5, 50]\)</span>).</p></li>
+<li><p>Feature Extraction: Для всех слов в этих документах рассчитывается их “информативность” относительно данного набора. В модели RM3 (2001) это делается через оценку вероятности появления слова в языковой модели релевантности <span class="math notranslate nohighlight">\(P(w|R)\)</span>.</p></li>
+<li><p>Expansion: Выбираются Top-M слов с наибольшим весом. Эти слова добавляются в запрос.</p></li>
+<li><p>Re-weighting: Итоговый запрос формируется как линейная комбинация: <span class="math notranslate nohighlight">\(Q_{new} = \alpha \cdot Q_{old} + (1 - \alpha) \cdot Q_{expanded}\)</span>. Параметр <span class="math notranslate nohighlight">\(\alpha\)</span> контролирует, насколько сильно мы доверяем исходным словам пользователя.</p></li>
+<li><p>Final Retrieval: Выполняется повторный поиск с использованием <span class="math notranslate nohighlight">\(Q_{new}\)</span> по всей коллекции.</p></li>
+</ol>
+<p><strong>Алгоритм обучения</strong><br>
+В классическом PRF (Rocchio, RM3) обучения в смысле градиентного спуска нет. Однако существуют гиперпараметры, которые оптимизируются на валидационной выборке:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K\)</span> (Feedback Documents): количество документов для анализа.</p></li>
+<li><p><span class="math notranslate nohighlight">\(M\)</span> (Expansion Terms): количество добавляемых слов.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> (Original Weight): вес исходного запроса.
+В современных версиях (Neural PRF, 2017+) в качестве Term Selector используется нейронная сеть, которая обучается предсказывать веса терминов, минимизируя Cross-Entropy между распределением терминов в расширенном запросе и распределением в идеально релевантном документе.</p></li>
+</ul>
+<p><strong>Результаты</strong><br>
+Метод PRF является одним из самых стабильных способов поднять качество поиска:</p>
+<ul class="simple">
+<li><p>Mean Average Precision (MAP) увеличивается на 10-20% по сравнению с базовым BM25 на датасетах TREC.</p></li>
+<li><p>Recall&#64;1000 растет за счет нахождения документов, не содержащих исходных слов запроса (решение Vocabulary Mismatch).</p></li>
+<li><p>Основной риск (Query Drift): если первые <span class="math notranslate nohighlight">\(K\)</span> документов оказались нерелевантными (“мусор на входе”), PRF только ухудшит результат, уводя поиск еще дальше в сторону нерелевантной темы. Это привело к появлению методов фильтрации фидбека.</p></li>
+</ul>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Pseudo-Relevance Feedback (PRF)</span>
+---
+[[paper]](https://dl.acm.org/doi/10.1145/358968.358994) (Classic RM3 paper, 2001)  
+[[original_concept]](https://dl.acm.org/doi/10.1145/1221.1223) (Rocchio Algorithm, 1971)  
+
+<span class="gs">**PRF**</span> — алгоритм автоматического уточнения поискового запроса, предполагающий, что несколько наиболее релевантных документов (Top-K) содержат важные термины, описывающие интент пользователя. Метод решает проблему Vocabulary Mismatch без участия человека.
+
+<span class="gs">__Постановка задачи__</span>  
+Пользователь подает короткий запрос $Q$. Необходимо вернуть список документов $D$, отранжированных по релевантности, минимизируя пропуски документов, не содержащих точных слов из запроса.
+
+<span class="gs">__Мотивация__</span>  
+Основная проблема — Vocabulary Mismatch. Например, пользователь ищет &quot;лечение мигрени&quot;, а в статьях используются &quot;терапия&quot; и &quot;гемикрания&quot;. PRF пытается дополнить запрос, анализируя результаты первого этапа поиска.
+
+<span class="gs">__Существующие подходы__</span>  
+До PRF существовали:
+<span class="k">-</span><span class="w"> </span>Relevance Feedback (1971): требовал явной разметки релевантности от пользователя.
+<span class="k">-</span><span class="w"> </span>Thesaurus-based Expansion: использовал статичные словари, не учитывающие контекст.
+<span class="k">-</span><span class="w"> </span>Global Analysis: статистический анализ всей коллекции, вычислительно дорогой.
+
+<span class="gs">__Идея__</span>  
+Вместо разметки пользователем, предполагаем, что первые $K$ документов релевантны. Извлекаем из них термины и добавляем к запросу, смещая его вектор к &quot;центру масс&quot; релевантной информации.
+
+<span class="gs">__Архитектура__</span>  
+PRF — процедурный фреймворк в Retrieval Pipeline:
+<span class="k">1.</span> Ranker: базовый движок поиска (например, BM25).
+<span class="k">2.</span> Feedback Pool: буфер с Top-K документами.
+<span class="k">3.</span> Term Selector: анализ важности слов (TF-IDF, KL-divergence).
+<span class="k">4.</span> Query Reformulator: объединяет исходный запрос и новые термины.
+
+&lt;img src=&quot;img/img.png&quot; width=500&gt;
+
+<span class="gs">__Алгоритм работы__</span>  
+Метод работает на этапе инференса, адаптируясь под каждый Query.
+
+<span class="k">1.</span> Initial Retrieval: поиск по $Q$, получаем список $R$.
+<span class="k">2.</span> Sampling: отбираем первые $K$ документов.
+<span class="k">3.</span> Feature Extraction: рассчитываем &quot;информативность&quot; слов в документах.
+<span class="k">4.</span> Expansion: выбираем Top-M слов, добавляем в запрос.
+<span class="k">5.</span> Re-weighting: формируем $Q_{new}$ как линейную комбинацию: $Q_{new} = \alpha \cdot Q<span class="ge">_{old} + (1 - \alpha) \cdot Q_</span>{expanded}$.
+<span class="k">6.</span> Final Retrieval: повторный поиск с $Q_{new}$.
+
+<span class="gs">__Алгоритм обучения__</span>  
+В классическом PRF обучения нет, но оптимизируются гиперпараметры: $K$, $M$, $\alpha$. В современных версиях (Neural PRF, 2017+) используется нейронная сеть для предсказания весов терминов.
+
+<span class="gs">__Результаты__</span>  
+PRF стабильно улучшает качество поиска:
+<span class="k">-</span><span class="w"> </span>Mean Average Precision (MAP) увеличивается на 10-20% по сравнению с BM25 на TREC.
+<span class="k">-</span><span class="w"> </span>Recall@1000 растет за счет нахождения документов, не содержащих исходных слов запроса.
+<span class="k">-</span><span class="w"> </span>Риск Query Drift: нерелевантные $K$ документы ухудшают результат, что привело к методам фильтрации фидбека.
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>💻 Пример кода<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Импортируем необходимые библиотеки
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+# Пример коллекции документов
+documents = [
+    &quot;Migraine treatment includes medication and lifestyle changes.&quot;,
+    &quot;Therapy for hemicrania involves various approaches.&quot;,
+    &quot;Migraine is a common type of headache.&quot;,
+    &quot;Hemicrania is another term for migraine.&quot;,
+    &quot;Effective migraine therapy can improve quality of life.&quot;
+]
+
+# Исходный запрос пользователя
+query = &quot;migraine treatment&quot;
+
+# Шаг 1: Initial Retrieval с использованием TF-IDF
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(documents)
+query_vector = vectorizer.transform([query])
+
+# Вычисляем косинусное сходство между запросом и документами
+cosine_similarities = cosine_similarity(query_vector, tfidf_matrix).flatten()
+
+# Получаем индексы Top-K документов
+K = 3
+top_k_indices = cosine_similarities.argsort()[-K:][::-1]
+
+# Шаг 2: Sampling - отбираем Top-K документов
+feedback_pool = [documents[i] for i in top_k_indices]
+
+# Шаг 3: Feature Extraction - вычисляем важность терминов
+# Объединяем документы из feedback_pool в один текст
+feedback_text = &quot; &quot;.join(feedback_pool)
+feedback_vector = vectorizer.transform([feedback_text])
+
+# Вычисляем вероятности появления слов в языковой модели релевантности
+term_importance = feedback_vector.toarray().flatten()
+
+# Шаг 4: Expansion - выбираем Top-M терминов для расширения запроса
+M = 2
+top_m_indices = term_importance.argsort()[-M:][::-1]
+expansion_terms = [vectorizer.get_feature_names_out()[i] for i in top_m_indices]
+
+# Шаг 5: Re-weighting - формируем новый запрос
+alpha = 0.7
+expanded_query_terms = query.split() + expansion_terms
+expanded_query = &quot; &quot;.join(expanded_query_terms)
+
+# Шаг 6: Final Retrieval - повторный поиск с расширенным запросом
+expanded_query_vector = vectorizer.transform([expanded_query])
+final_cosine_similarities = cosine_similarity(expanded_query_vector, tfidf_matrix).flatten()
+
+# Сортируем документы по релевантности
+final_ranking_indices = final_cosine_similarities.argsort()[::-1]
+
+# Выводим результаты
+print(&quot;Исходный запрос:&quot;, query)
+print(&quot;Расширенные термины:&quot;, expansion_terms)
+print(&quot;Новый запрос:&quot;, expanded_query)
+print(&quot;\nРанжированные документы:&quot;)
+for idx in final_ranking_indices:
+    print(f&quot;Документ: {documents[idx]} (Сходство: {final_cosine_similarities[idx]:.4f})&quot;)
+```
+
+### Объяснение ключевых моментов:
+
+1. **Initial Retrieval**: Используем TF-IDF для первичного поиска, чтобы получить Top-K документов, которые наиболее релевантны исходному запросу.
+
+2. **Sampling**: Отбираем первые K документов из результатов первичного поиска для дальнейшего анализа.
+
+3. **Feature Extraction**: Вычисляем важность терминов в отобранных документах, используя TF-IDF. Это позволяет определить, какие термины могут быть полезны для расширения запроса.
+
+4. **Expansion**: Выбираем Top-M терминов с наибольшей важностью и добавляем их к исходному запросу.
+
+5. **Re-weighting**: Формируем новый запрос как комбинацию исходного и расширенного запросов, контролируя влияние каждого с помощью параметра α.
+
+6. **Final Retrieval**: Выполняем повторный поиск с расширенным запросом, чтобы улучшить результаты и минимизировать проблему Vocabulary Mismatch.
+
+Этот пример иллюстрирует, как PRF может быть реализован с использованием простых инструментов, таких как TF-IDF, для улучшения качества поиска.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: ""
+        },
+        kernelOptions: {
+            name: "",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = ''</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="search_r1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Search-R1 (2025)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="doc2query.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Doc2Query (2019)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

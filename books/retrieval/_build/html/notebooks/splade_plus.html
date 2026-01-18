@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SPLADE++ (2021) &#8212; Информационный поиск</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a16a1b6a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-XXXXX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/splade_plus';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Информационный поиск</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Book Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Описание задачи</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Text Retrieval</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Базовые методы</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="colbert.html">ColBERT (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coil.html">COIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dpr_ctl.html">DPR (2020)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unicoil.html">uniCOIL (2021)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splade.html">SPLADE (2021)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="rag.html">RAG (2020)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="exaranker.html">ExaRanker (2023)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Query Enhancment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="search_r1.html">Search-R1 (2025)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Document Enhancement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prf.html">Pseudo-Relevance Feedback (PRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc2query.html">Doc2Query (2019)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contextual_clues.html">Contextual Clues Sampling (CCS, 2022)</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Multistage Methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3 (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretrieval.html">DeepRetrieval (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graphrag.html">GraphRAG (2024)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lightrag.html">LightRAG (2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathrag.html">PathRAG (2025)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kobstabtin-kotochigov/retrieval_book/edit/main/./notebooks/splade_plus.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/splade_plus.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SPLADE++ (2021)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="splade-2021">
+<h1>SPLADE++ (2021)<a class="headerlink" href="#splade-2021" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><a class="reference external" href="https://arxiv.org/abs/2109.10086">[paper]</a><br>
+SPLADE = Sparse Lexical and Expansion Model</p>
+<p><strong>SPLADE++</strong> — это метод Learned Sparse Retrieval, который трансформирует текст в высокоразмерные разреженные векторы (размерности словаря). Он совмещает преимущества традиционного поиска по ключевым словам (эффективность Inverted Index) и нейросетевых моделей (учет контекста и семантическое расширение запроса).</p>
+<p><strong>Постановка задачи</strong><br>
+Построение эффективного First Stage Retrieval. Необходимо отобразить документ <span class="math notranslate nohighlight">\(D\)</span> и запрос <span class="math notranslate nohighlight">\(Q\)</span> в разреженные векторы весов токенов из словаря <span class="math notranslate nohighlight">\(V\)</span>, чтобы релевантность вычислялась как скалярное произведение <span class="math notranslate nohighlight">\(S(Q, D) = \sum_{t \in Q \cap D} w_t^{(Q)} \cdot w_t^{(D)}\)</span>.</p>
+<p><strong>Мотивация</strong><br>
+Dense Retrieval (например, DPR, 2020) требует больших вычислительных ресурсов для хранения и поиска по векторным индексам (FAISS) и страдает от проблемы “максимального внутреннего произведения” (MIPS). Классический BM25 не учитывает семантику (проблема Vocabulary Mismatch). Идеальное решение должно использовать структуру Inverted Index, но уметь “догадываться”, какие слова важны в контексте и какие синонимы (Expansion) стоит добавить в документ, которых там изначально не было.</p>
+<p><strong>Существующие подходы</strong><br></p>
+<ul class="simple">
+<li><p>BM25 (1990s): использует точные совпадения и статистики частот, не понимает синонимы.</p></li>
+<li><p>Doc2query (2019): расширяет документ, генерируя возможные вопросы с помощью T5. Это дорого вычислительно и может вносить шум.</p></li>
+<li><p>DeepCT (2019): перевзвешивает существующие термы через BERT, но не умеет добавлять новые слова (нет Expansion).</p></li>
+<li><p>SPLADE v1 (2021): первая итерация метода, использующая логарифмическую активацию, но имевшая проблемы со стабильностью обучения и качеством ранжирования без дистилляции.</p></li>
+</ul>
+<p><strong>Идея</strong><br>
+Использовать Masked Language Modeling (MLM) голову предобученного Трансформера для предсказания важности каждого слова из всего словаря для данного текста. Если модель видит текст про “смартфон”, она должна выставить высокие веса не только слову “смартфон”, но и словам “телефон”, “гаджет”, “iphone”, даже если их нет в исходном тексте. Чтобы вектор оставался разреженным (sparse), применяется специальная регуляризация.</p>
+<p><strong>Архитектура</strong><br>
+В основе лежит BERT-like энкодер.</p>
+<ol class="arabic simple">
+<li><p>Input: Последовательность токенов.</p></li>
+<li><p>Contextualized Embeddings: Получение векторов <span class="math notranslate nohighlight">\(h_i\)</span> для каждого токена.</p></li>
+<li><p>Logit Prediction: Для каждого токена <span class="math notranslate nohighlight">\(i\)</span> на позиции в тексте вычисляется вес по всему словарю <span class="math notranslate nohighlight">\(V\)</span> через веса MLM-головы: <span class="math notranslate nohighlight">\(w_{ij} = \text{transform}(h_i)^T \cdot e_j + b_j\)</span>, где <span class="math notranslate nohighlight">\(e_j\)</span> — эмбеддинг токена <span class="math notranslate nohighlight">\(j\)</span> из словаря.</p></li>
+<li><p>Pooling &amp; Saturation: Веса агрегируются по всей длине текста. Важнейший элемент — функция активации:
+<span class="math notranslate nohighlight">\(w_j = \sum_{i \in \text{sequence}} \log(1 + \text{relu}(w_{ij}))\)</span>
+Использование <span class="math notranslate nohighlight">\(\log\)</span> подавляет доминирование слишком частых токенов и делает распределение весов более устойчивым.</p></li>
+<li><p>Sparsification: Применение FLOPs Regularization во время обучения зануляет веса большинства нерелевантных токенов словаря.</p></li>
+</ol>
+<p><strong>Алгоритм обучения</strong><br>
+SPLADE++ ввел несколько критических улучшений в процесс обучения:</p>
+<ol class="arabic simple">
+<li><p>Contrastive Learning: Использование In-batch negatives и Hard Negatives (отбираемых с помощью других моделей ранжирования).</p></li>
+<li><p>Knowledge Distillation: Обучение на “мягких” метках от мощного Cross-Encoder (например, на базе Electra или RoBERTa). Модель учится воспроизводить скоры релевантности, а не просто бинарную метку.</p></li>
+<li><p>Loss Function: Комбинация Ranking Loss (например, MarginMSE) и Regularization Loss (FLOPs penalty).
+<span class="math notranslate nohighlight">\(\mathcal{L} = \mathcal{L}_{distill} + \lambda \cdot \mathcal{L}_{flops}\)</span>
+<span class="math notranslate nohighlight">\(\mathcal{L}_{flops}\)</span> минимизирует ожидаемое количество операций при поиске, заставляя модель выбирать только самые информативные токены.</p></li>
+</ol>
+<p><strong>Алгоритм инференса</strong><br></p>
+<ol class="arabic simple">
+<li><p>Indexing (Offline): Документы прогоняются через SPLADE++, на выходе — разреженные векторы (обычно &lt; 100-200 ненулевых компонент из 30 000). Эти веса сохраняются в стандартный Inverted Index (например, Lucene/Elasticsearch).</p></li>
+<li><p>Query Encoding (Online): Запрос преобразуется в такой же разреженный вектор.</p></li>
+<li><p>Retrieval: Выполняется стандартный поиск по инвертированному индексу. Поскольку векторы разрежены, скорость сопоставима с BM25.</p></li>
+</ol>
+<p><strong>Результаты</strong><br>
+Эксперименты на датасете MS MARCO (Passage Ranking):</p>
+<ul class="simple">
+<li><p>SPLADE++ достиг MRR&#64;10 = 0.380, что на тот момент превосходило лучшие Dense Retrieval модели (DPR ~0.320) и значительно обходило BM25 (0.184).</p></li>
+<li><p>В отличие от Dense моделей, SPLADE++ показал значительно лучшую обобщающую способность на Zero-shot задачах (бенчмарк BEIR), так как сохраняет лексическую точность.</p></li>
+<li><p>По сравнению с DeepCT, точность Recall&#64;1000 выросла более чем на 10% за счет механизма Expansion.</p></li>
+</ul>
+<section id="id1">
+<h2>📝 Критический анализ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># SPLADE++ (2021)</span>
+---
+[[paper]](https://arxiv.org/abs/2109.10086)&lt;br&gt;
+SPLADE = Sparse Lexical and Expansion Model
+
+<span class="gs">**SPLADE++**</span> — метод Learned Sparse Retrieval, преобразующий текст в разреженные векторы. Он сочетает эффективность Inverted Index и семантическое расширение запроса нейросетями.
+
+<span class="gs">__Постановка задачи__</span>&lt;br&gt;
+Создание эффективного First Stage Retrieval. Необходимо отобразить документ $D$ и запрос $Q$ в разреженные векторы, чтобы релевантность вычислялась как скалярное произведение.
+
+<span class="gs">__Мотивация__</span>&lt;br&gt;
+Dense Retrieval требует больших ресурсов и страдает от MIPS. BM25 не учитывает семантику. Идеальное решение использует Inverted Index и семантическое расширение.
+
+<span class="gs">__Существующие подходы__</span>&lt;br&gt;
+<span class="k">-</span><span class="w"> </span>BM25: точные совпадения, не понимает синонимы.
+<span class="k">-</span><span class="w"> </span>Doc2query: расширяет документ, но дорого и шумно.
+<span class="k">-</span><span class="w"> </span>DeepCT: перевзвешивает термы, но без Expansion.
+<span class="k">-</span><span class="w"> </span>SPLADE v1: логарифмическая активация, но проблемы со стабильностью.
+
+<span class="gs">__Идея__</span>&lt;br&gt;
+Использовать Masked Language Modeling для предсказания важности слов. Регуляризация сохраняет разреженность векторов.
+
+<span class="gs">__Архитектура__</span>&lt;br&gt;
+BERT-like энкодер:
+<span class="k">1.</span> Input: Токены.
+<span class="k">2.</span> Contextualized Embeddings: Векторы $h_i$.
+<span class="k">3.</span> Logit Prediction: Веса через MLM-голову.
+<span class="k">4.</span> Pooling &amp; Saturation: Агрегация весов.
+<span class="k">5.</span> Sparsification: FLOPs Regularization зануляет нерелевантные веса.
+
+&lt;img src=&quot;img/img.png&quot; width=500&gt;
+
+<span class="gs">__Алгоритм обучения__</span>&lt;br&gt;
+<span class="k">1.</span> Contrastive Learning: In-batch и Hard Negatives.
+<span class="k">2.</span> Knowledge Distillation: Обучение на &quot;мягких&quot; метках.
+<span class="k">3.</span> Loss Function: Ranking и Regularization Loss.
+
+<span class="gs">__Алгоритм инференса__</span>&lt;br&gt;
+<span class="k">1.</span> Indexing: Документы в разреженные векторы.
+<span class="k">2.</span> Query Encoding: Запрос в разреженный вектор.
+<span class="k">3.</span> Retrieval: Поиск по инвертированному индексу.
+
+<span class="gs">__Результаты__</span>&lt;br&gt;
+На MS MARCO SPLADE++ достиг MRR@10 = 0.380, превосходя Dense Retrieval модели и BM25. Обладает лучшей обобщающей способностью на Zero-shot задачах и улучшает Recall@1000 более чем на 10% по сравнению с DeepCT.
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>💻 Пример кода<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Иллюстративный Python пример, демонстрирующий основные концепции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Пример иллюстрации основных концепций SPLADE++ на Python
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from transformers import BertTokenizer, BertModel
+
+# SPLADE++ использует BERT-like энкодер для получения контекстуализированных эмбеддингов
+class SPLADEPlusPlus(nn.Module):
+    def __init__(self, bert_model_name=&#39;bert-base-uncased&#39;):
+        super(SPLADEPlusPlus, self).__init__()
+        self.tokenizer = BertTokenizer.from_pretrained(bert_model_name)
+        self.bert = BertModel.from_pretrained(bert_model_name)
+        self.vocab_size = self.bert.config.vocab_size
+        self.linear = nn.Linear(self.bert.config.hidden_size, self.vocab_size)
+
+    def forward(self, input_text):
+        # Токенизация входного текста
+        inputs = self.tokenizer(input_text, return_tensors=&#39;pt&#39;, padding=True, truncation=True)
+        # Получение контекстуализированных эмбеддингов
+        outputs = self.bert(**inputs)
+        # Применение линейного слоя для предсказания весов по всему словарю
+        logits = self.linear(outputs.last_hidden_state)
+        # Агрегация весов по всей длине текста с использованием логарифмической активации
+        weights = torch.log1p(F.relu(logits)).sum(dim=1)
+        return weights
+
+# Пример использования модели для преобразования текста в разреженный вектор
+model = SPLADEPlusPlus()
+
+# Пример документа и запроса
+document = &quot;The smartphone has a great camera and long battery life.&quot;
+query = &quot;Best phone with good camera&quot;
+
+# Получение разреженных векторов для документа и запроса
+doc_weights = model(document)
+query_weights = model(query)
+
+# Вычисление релевантности как скалярное произведение
+relevance_score = torch.dot(doc_weights.squeeze(), query_weights.squeeze())
+
+print(f&quot;Relevance Score: {relevance_score.item()}&quot;)
+
+# Пример регуляризации FLOPs для разреживания векторов
+def flops_regularization(weights, lambda_flops=0.1):
+    # FLOPs penalty для зануления нерелевантных токенов
+    return lambda_flops * torch.sum(weights &gt; 0).float()
+
+# Пример вычисления FLOPs регуляризации
+flops_penalty = flops_regularization(doc_weights)
+print(f&quot;FLOPs Penalty: {flops_penalty.item()}&quot;)
+
+# Пример обучения с использованием контрастивного обучения и дистилляции
+def training_step(model, document, query, cross_encoder_score, lambda_flops=0.1):
+    # Получение разреженных векторов
+    doc_weights = model(document)
+    query_weights = model(query)
+    
+    # Вычисление релевантности
+    relevance_score = torch.dot(doc_weights.squeeze(), query_weights.squeeze())
+    
+    # Loss функции: дистилляция и регуляризация
+    distillation_loss = F.mse_loss(relevance_score, cross_encoder_score)
+    flops_penalty = flops_regularization(doc_weights, lambda_flops)
+    
+    # Общая функция потерь
+    loss = distillation_loss + flops_penalty
+    return loss
+
+# Пример использования функции обучения
+cross_encoder_score = torch.tensor(0.8)  # Пример &quot;мягкой&quot; метки от Cross-Encoder
+loss = training_step(model, document, query, cross_encoder_score)
+print(f&quot;Training Loss: {loss.item()}&quot;)
+```
+
+Этот код иллюстрирует основные концепции SPLADE++, такие как использование BERT-like энкодера для получения контекстуализированных эмбеддингов, применение логарифмической активации для агрегации весов, и использование FLOPs регуляризации для разреживания векторов. Также показан пример обучения с использованием дистилляции и контрастивного обучения.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">📝 Критический анализ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">💻 Пример кода</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Konstantin Kotochigov
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

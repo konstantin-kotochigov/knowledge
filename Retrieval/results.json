@@ -1,0 +1,92 @@
+{
+  "deepretrieval": {
+    "model": "gemini-3-flash-preview",
+    "status": "failed",
+    "last_updated": "2026-01-14T02:39:14.991747"
+  },
+  "deepimpact": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T01:05:17.892473"
+  },
+  "prf": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:23:18.508279"
+  },
+  "dpr": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:23:56.686849"
+  },
+  "dpr_ctl": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:24:40.078655"
+  },
+  "rag": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:25:16.543777"
+  },
+  "exaranker": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:25:57.784065"
+  },
+  "search_r1": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:26:37.092844"
+  },
+  "s3": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:27:32.698170"
+  },
+  "graphrag": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:28:13.249239"
+  },
+  "lightrag": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:28:52.723632"
+  },
+  "pathrag": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:29:28.924739"
+  },
+  "splade": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:30:08.961554"
+  },
+  "splade_plus": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:30:48.076204"
+  },
+  "unicoil": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:31:24.326484"
+  },
+  "tilde": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:32:01.984048"
+  },
+  "doc2query": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:32:42.157245"
+  },
+  "e5": {
+    "model": "gemini-3-flash-preview",
+    "status": "success",
+    "last_updated": "2026-01-14T05:33:23.933617"
+  }
+}
