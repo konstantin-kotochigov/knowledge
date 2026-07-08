@@ -1,0 +1,15 @@
+numpy
+scipy
+pandas
+scikit-learn         # Utilities, pipelines, evaluation metrics
+matplotlib
+tqdm                 # Progress bars
+
+transformers
+tokenizers           # Fast tokenizers (Rust-backed)
+datasets             # Load & process NLP datasets
+evaluate              # Metrics: accuracy, F1, BLEU, ROUGE, etc.
+accelerate           # Trainer abstraction, device management
+huggingface-hub      # Model/dataset downloads
+
+gensim
