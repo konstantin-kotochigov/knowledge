@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode Репетитор</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .date {
+            font-size: 1em;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+        
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .problem-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .problem-header {
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .problem-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .problem-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9em;
+        }
+        
+        .difficulty {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .difficulty.easy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .difficulty.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .difficulty.hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .problem-id {
+            padding: 5px 12px;
+            background: #e9ecef;
+            border-radius: 20px;
+            color: #495057;
+        }
+        
+        .problem-description {
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .collapsible {
+            margin: 15px 0;
+        }
+        
+        .collapsible-header {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+        
+        .collapsible-header:hover {
+            background: #e9ecef;
+        }
+        
+        .collapsible-header.hint {
+            border-left: 4px solid #ffc107;
+        }
+        
+        .collapsible-header.solution {
+            border-left: 4px solid #28a745;
+        }
+        
+        .collapsible-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .collapsible-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+        
+        .collapsible-icon.open {
+            transform: rotate(180deg);
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f8f9fa;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .collapsible-content.open {
+            max-height: 5000px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-top: none;
+        }
+        
+        .collapsible-content p {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .no-problems {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            padding: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 LeetCode Репетитор</h1>
+            <p class="subtitle">Ежедневная практика программирования</p>
+            <p class="date">{{ date }}</p>
+        </header>
+        
+        {% if problems %}
+        <div class="problems-grid">
+            {% for problem in problems %}
+            <div class="problem-card">
+                <div class="problem-header">
+                    <h2 class="problem-title">{{ problem.title }}</h2>
+                    <div class="problem-meta">
+                        <span class="problem-id">#{{ problem.leetcode_id }}</span>
+                        <span class="difficulty {{ problem.difficulty.lower() }}">{{ problem.difficulty }}</span>
+                    </div>
+                </div>
+                
+                <div class="problem-description">
+                    {{ problem.description|safe }}
+                </div>
+                
+                {% if problem.hint %}
+                <div class="collapsible">
+                    <div class="collapsible-header hint" onclick="toggleCollapsible(this)">
+                        <span class="collapsible-title">💡 Подсказка</span>
+                        <span class="collapsible-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <p>{{ problem.hint }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if problem.solution %}
+                <div class="collapsible">
+                    <div class="collapsible-header solution" onclick="toggleCollapsible(this)">
+                        <span class="collapsible-title">✅ Решение</span>
+                        <span class="collapsible-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <p>{{ problem.solution|safe }}</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-problems">
+            <p>📚 Задачи на сегодня пока не готовы</p>
+            <p style="font-size: 0.8em; margin-top: 20px;">Запустите парсер и генератор решений</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <script>
+        function toggleCollapsible(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.collapsible-icon');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.classList.remove('open');
+            } else {
+                content.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+    </script>
+</body>
+</html>
